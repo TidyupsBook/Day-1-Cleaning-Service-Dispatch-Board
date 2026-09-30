@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="tidyBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="sparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Full-bleed background with rounded squircle -->
+  <rect width="512" height="512" rx="108" fill="url(#tidyBg)" />
+
+  <!-- Shield/Sparkle Clean Symbol in Central Safe Zone -->
+  <g transform="translate(106, 96)">
+    <!-- Shield Outline -->
+    <path d="M150 10 L270 50 C270 170, 200 260, 150 290 C100 260, 30 170, 30 50 Z" 
+          fill="#1E40AF" stroke="#60A5FA" stroke-width="12" stroke-linejoin="round" />
+    
+    <!-- Sparkle Stars -->
+    <!-- Large Central Sparkle -->
+    <path d="M150 70 Q150 130 90 130 Q150 130 150 190 Q150 130 210 130 Q150 130 150 70 Z" 
+          fill="url(#sparkleGrad)" />
+    
+    <!-- Small Top-Right Sparkle -->
+    <path d="M225 60 Q225 90 195 90 Q225 90 225 120 Q225 90 255 90 Q225 90 225 60 Z" 
+          fill="#FFFFFF" />
+
+    <!-- Small Bottom-Left Sparkle -->
+    <path d="M85 160 Q85 185 60 185 Q85 185 85 210 Q85 185 110 185 Q85 185 85 160 Z" 
+          fill="#93C5FD" />
+  </g>
+
+  <!-- Bottom Brand Ribbon Text -->
+  <text x="256" y="440" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="44" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">TIDYUPS</text>
+  <text x="256" y="475" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="20" fill="#93C5FD" text-anchor="middle" letter-spacing="4">DISPATCH &amp; BOOKING</text>
+</svg>
