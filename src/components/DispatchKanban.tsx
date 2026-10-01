@@ -20,7 +20,8 @@ import {
   ArrowUpRight,
   ExternalLink,
   Plus,
-  Database
+  Database,
+  MessageSquare
 } from 'lucide-react';
 
 interface DispatchKanbanProps {
@@ -37,6 +38,7 @@ interface DispatchKanbanProps {
   onOpenManifest: (tech: Technician) => void;
   onOpenNewTicketModal: () => void;
   onOpenJobberModal?: () => void;
+  onMessageTech?: (tech: Technician) => void;
   onClose?: () => void;
   activeTab?: 'BOARD' | 'UNASSIGNED';
   onActiveTabChange?: (tab: 'BOARD' | 'UNASSIGNED') => void;
@@ -56,6 +58,7 @@ export const DispatchKanban: React.FC<DispatchKanbanProps> = ({
   onOpenManifest,
   onOpenNewTicketModal,
   onOpenJobberModal,
+  onMessageTech,
   onClose,
   activeTab: controlledActiveTab,
   onActiveTabChange,
@@ -661,6 +664,16 @@ export const DispatchKanban: React.FC<DispatchKanbanProps> = ({
                       >
                         <FileText className="w-3.5 h-3.5" />
                       </button>
+                      {onMessageTech && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); onMessageTech(tech); }}
+                          className="p-1.5 text-slate-400 hover:text-pink-600 cursor-pointer rounded"
+                          title={`Message ${tech.name}`}
+                          aria-label={`Message ${tech.name}`}
+                        >
+                          <MessageSquare className="w-3.5 h-3.5" />
+                        </button>
+                      )}
                     </div>
                   </div>
                 );
@@ -709,6 +722,18 @@ export const DispatchKanban: React.FC<DispatchKanbanProps> = ({
                     </div>
 
                     <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+                      {onMessageTech && (
+                        <button
+                          onClick={() => onMessageTech(tech)}
+                          className="min-h-[36px] px-2.5 py-1.5 rounded-lg bg-pink-50 hover:bg-pink-100 text-pink-700 text-xs flex items-center gap-1 border border-pink-200 transition-colors cursor-pointer"
+                          title={`Send Direct Message to ${tech.name}`}
+                          aria-label={`Send Direct Message to ${tech.name}`}
+                        >
+                          <MessageSquare className="w-3.5 h-3.5 text-pink-600" aria-hidden="true" />
+                          <span className="hidden sm:inline text-[10px] font-bold">Chat</span>
+                        </button>
+                      )}
+
                       <button
                         onClick={() => onOpenManifest(tech)}
                         className="min-h-[36px] px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs flex items-center gap-1 border border-slate-200 transition-colors cursor-pointer"

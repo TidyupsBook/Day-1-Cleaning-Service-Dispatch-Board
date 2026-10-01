@@ -1,6 +1,8 @@
 import express from "express";
+import http from "http";
 import path from "path";
 import dotenv from "dotenv";
+import { WebSocketServer, WebSocket } from "ws";
 import { GoogleGenAI, Type } from "@google/genai";
 import { createServer as createViteServer } from "vite";
 import { createDispatchPrompt } from "./prompt_templates/dispatchPrompt";
@@ -1951,6 +1953,152 @@ app.all("/api/manifest/print", (req, res) => {
   res.send(fullHtml);
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Real-Time Internal Team Messaging System (WebSockets + REST API)
+// ─────────────────────────────────────────────────────────────────────────────
+export interface StoredChatMessage {
+  id: string;
+  senderId: string;
+  senderName: string;
+  senderRole: 'OWNER' | 'DISPATCHER' | 'CLEANER';
+  recipientId: string | 'BROADCAST_ALL'; // 'BROADCAST_ALL' or target user id
+  recipientName?: string;
+  text: string;
+  timestamp: string;
+  ticketId?: string;
+  read?: boolean;
+}
+
+const storedChatHistory = loadStore()?.chatMessages;
+const chatMessages: StoredChatMessage[] = (storedChatHistory && storedChatHistory.length > 0)
+  ? storedChatHistory
+  : [
+  {
+    id: 'msg-seed-1',
+    senderId: 'user-owner',
+    senderName: 'Business Owner',
+    senderRole: 'OWNER',
+    recipientId: 'BROADCAST_ALL',
+    recipientName: 'All Team Members',
+    text: 'Welcome team! Great job on completing the move-out cleans this morning in Windermere and Chappelle. Remember to double-check oven degreasing before departure.',
+    timestamp: new Date(Date.now() - 3600000 * 3).toISOString(),
+    read: true,
+  },
+  {
+    id: 'msg-seed-2',
+    senderId: 'user-dispatcher',
+    senderName: 'Dominic Mancini',
+    senderRole: 'DISPATCHER',
+    recipientId: 'cleaner-1',
+    recipientName: 'Melissa Clarke',
+    text: 'Melissa, your second stop on Jasper Ave has been confirmed for 1:30 PM. Customer left key in lockbox code 4482.',
+    timestamp: new Date(Date.now() - 3600000 * 2).toISOString(),
+    read: true,
+  },
+  {
+    id: 'msg-seed-3',
+    senderId: 'cleaner-1',
+    senderName: 'Melissa Clarke',
+    senderRole: 'CLEANER',
+    recipientId: 'user-dispatcher',
+    recipientName: 'Dominic Mancini',
+    text: 'Got it, thank you! Van 1 is fully stocked with supplies and rolling out.',
+    timestamp: new Date(Date.now() - 3600000 * 1.5).toISOString(),
+    read: true,
+  },
+];
+
+// Connected WebSocket clients set
+const connectedChatClients = new Set<{ ws: WebSocket; userId?: string }>();
+
+function persistChatMessage(newMsg: StoredChatMessage) {
+  chatMessages.push(newMsg);
+  broadcastChatMessage(newMsg);
+  try {
+    const currentStore = loadStore();
+    if (currentStore) {
+      currentStore.chatMessages = chatMessages.slice(-200);
+      saveStore(currentStore);
+    }
+  } catch (err) {
+    console.warn("Could not persist chat message:", err);
+  }
+}
+
+function broadcastChatMessage(msg: StoredChatMessage) {
+  const payload = JSON.stringify({ type: 'NEW_CHAT_MESSAGE', message: msg });
+  for (const client of connectedChatClients) {
+    if (client.ws.readyState === WebSocket.OPEN) {
+      // Deliver if broadcast, or if client is the sender or recipient
+      if (
+        msg.recipientId === 'BROADCAST_ALL' ||
+        !client.userId ||
+        client.userId === msg.recipientId ||
+        client.userId === msg.senderId ||
+        client.userId === 'user-owner' ||
+        client.userId === 'user-dispatcher'
+      ) {
+        try {
+          client.ws.send(payload);
+        } catch (e) {
+          console.warn('Failed to send websocket chat message:', e);
+        }
+      }
+    }
+  }
+}
+
+// GET all messages accessible to a specific user
+app.get('/api/chat/messages', (req, res) => {
+  const userId = (req.query.userId as string) || '';
+  const role = (req.query.role as string) || '';
+
+  if (!userId) {
+    return res.json({ messages: chatMessages });
+  }
+
+  // Owner and Dispatcher can view all messages
+  if (role === 'OWNER' || role === 'DISPATCHER' || userId === 'user-owner' || userId === 'user-dispatcher') {
+    return res.json({ messages: chatMessages });
+  }
+
+  // Cleaners see broadcasts, messages sent to them, or messages they sent
+  const filtered = chatMessages.filter(
+    (m) =>
+      m.recipientId === 'BROADCAST_ALL' ||
+      m.recipientId === userId ||
+      m.senderId === userId
+  );
+
+  res.json({ messages: filtered });
+});
+
+// POST send new chat message
+app.post('/api/chat/messages', (req, res) => {
+  const { senderId, senderName, senderRole, recipientId, recipientName, text, ticketId } = req.body || {};
+
+  if (!senderId || !text || !text.trim()) {
+    return res.status(400).json({ error: 'senderId and text are required.' });
+  }
+
+  const newMsg: StoredChatMessage = {
+    id: `msg-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
+    senderId,
+    senderName: senderName || 'Team Member',
+    senderRole: senderRole || 'CLEANER',
+    recipientId: recipientId || 'BROADCAST_ALL',
+    recipientName: recipientName || (recipientId === 'BROADCAST_ALL' ? 'All Team Members' : 'Team Member'),
+    text: String(text).trim(),
+    timestamp: new Date().toISOString(),
+    ticketId: ticketId || undefined,
+    read: false,
+  };
+
+  persistChatMessage(newMsg);
+
+  res.json({ success: true, message: newMsg });
+});
+
 // Helper math and fallback route generators
 function generateServerFallbackAddress(lat: number, lng: number) {
   let city = 'Edmonton';
@@ -2169,10 +2317,60 @@ async function startServer() {
     });
   }
 
-  const server = app.listen(PORT, "0.0.0.0", () => {
+  const server = http.createServer(app);
+
+  // Attach WebSocket server for real-time internal messaging
+  const wss = new WebSocketServer({ server, path: "/ws/chat" });
+
+  wss.on("connection", (ws: WebSocket, req) => {
+    let clientEntry = { ws, userId: undefined as string | undefined };
+    connectedChatClients.add(clientEntry);
+
+    // Initial greeting / ack
+    ws.send(JSON.stringify({ type: "CONNECTED", count: chatMessages.length }));
+
+    ws.on("message", (data) => {
+      try {
+        const parsed = JSON.parse(data.toString());
+        if (parsed.type === "REGISTER_USER") {
+          clientEntry.userId = parsed.userId;
+        } else if (parsed.type === "SEND_MESSAGE") {
+          const { senderId, senderName, senderRole, recipientId, recipientName, text, ticketId } = parsed;
+          if (senderId && text) {
+            const newMsg: StoredChatMessage = {
+              id: `msg-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
+              senderId,
+              senderName: senderName || "Team Member",
+              senderRole: senderRole || "CLEANER",
+              recipientId: recipientId || "BROADCAST_ALL",
+              recipientName: recipientName || (recipientId === "BROADCAST_ALL" ? "All Team Members" : "Team Member"),
+              text: String(text).trim(),
+              timestamp: new Date().toISOString(),
+              ticketId: ticketId || undefined,
+              read: false,
+            };
+            persistChatMessage(newMsg);
+          }
+        }
+      } catch (e) {
+        console.warn("Error parsing websocket message:", e);
+      }
+    });
+
+    ws.on("close", () => {
+      connectedChatClients.delete(clientEntry);
+    });
+
+    ws.on("error", (e) => {
+      console.warn("WebSocket client error:", e);
+      connectedChatClients.delete(clientEntry);
+    });
+  });
+
+  server.listen(PORT, "0.0.0.0", () => {
     console.log(`\n  ➜  Local:   http://localhost:${PORT}/`);
     console.log(`  ➜  Network: http://0.0.0.0:${PORT}/`);
-    console.log(`  Dispatch Server ready on port ${PORT}\n`);
+    console.log(`  Dispatch Server ready on port ${PORT} (WebSocket at /ws/chat)\n`);
   });
 
   server.on("error", (err: NodeJS.ErrnoException) => {

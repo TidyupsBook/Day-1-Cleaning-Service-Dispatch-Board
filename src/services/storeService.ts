@@ -12,6 +12,7 @@ export interface AppPersistentStore {
   scheduledVisits: any[];
   quotes: any[];
   invoices: any[];
+  chatMessages?: any[];
   jobberConfig?: {
     isConnected: boolean;
     accountName: string;

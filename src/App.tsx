@@ -4,7 +4,9 @@ import {
   Technician, 
   ServiceTicket, 
   UrgencyLevel, 
-  AIRecommendation 
+  AIRecommendation,
+  TicketStatus,
+  TechnicianStatus
 } from './types/dispatch';
 import { INITIAL_TECHNICIANS, INITIAL_TICKETS } from './data/cleaningData';
 import { computeTechnicianRoute } from './services/routesApi';
@@ -21,9 +23,13 @@ import { QuotesView } from './components/QuotesView';
 import { InvoicesView } from './components/InvoicesView';
 import { LegalPagesView, LegalPageType } from './components/LegalPagesView';
 import { CustomerPortalView } from './components/CustomerPortalView';
+import { CleanerPortalView } from './components/CleanerPortalView';
+import { TeamChatDrawer } from './components/TeamChatDrawer';
+import { RoleSelectorModal } from './components/RoleSelectorModal';
 import { PWAInstallButton } from './components/PWAInstallButton';
 import { BookMyCleaningLogo } from './components/BookMyCleaningLogo';
 import { JobberQuote, JobberInvoice } from './services/jobberSyncModules';
+import { AppUser, APP_USERS, getRolePermissions } from './types/authAndChat';
 import { 
   Truck, 
   Clock, 
@@ -51,7 +57,10 @@ import {
   Map as MapIcon,
   HelpCircle,
   ShieldCheck,
-  Lock
+  Lock,
+  MessageSquare,
+  UserCheck,
+  Navigation,
 } from 'lucide-react';
 
 export function App() {
@@ -71,6 +80,28 @@ export function App() {
   const [isJobberModalOpen, setIsJobberModalOpen] = useState<boolean>(false);
   const [isPublicBookingModalOpen, setIsPublicBookingModalOpen] = useState<boolean>(false);
   const [isQuoModalOpen, setIsQuoModalOpen] = useState<boolean>(false);
+
+  // Multi-User RBAC & Real-Time Chat States
+  const [currentUser, setCurrentUser] = useState<AppUser>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const savedId = localStorage.getItem('bookmycleaning_active_user_id');
+        if (savedId) {
+          const found = APP_USERS.find((u) => u.id === savedId);
+          if (found) return found;
+        }
+      } catch (e) {
+        console.warn('localStorage error:', e);
+      }
+    }
+    return APP_USERS[0]; // Default to Owner / Director
+  });
+  const [isRoleModalOpen, setIsRoleModalOpen] = useState<boolean>(false);
+  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
+  const [chatRecipient, setChatRecipient] = useState<AppUser | null>(null);
+  const [cleanerShowMap, setCleanerShowMap] = useState<boolean>(false);
+
+  const permissions = getRolePermissions(currentUser.role);
 
   // Dedicated Top Bar Navigation Tabs: 'MAP' | 'CUSTOMER_PORTAL' | 'SCHEDULED_JOBS' | 'QUOTES' | 'INVOICES' | 'LEGAL'
   const [activeTopView, setActiveTopView] = useState<'MAP' | 'CUSTOMER_PORTAL' | 'SCHEDULED_JOBS' | 'QUOTES' | 'INVOICES' | 'LEGAL'>('MAP');
@@ -510,6 +541,44 @@ export function App() {
     []
   );
 
+  // Support clicking on any cleaner across the UI (TerritoryMap, DispatchKanban, Directory) to talk to them
+  const handleMessageTech = useCallback((tech: Technician) => {
+    const matchedUser = APP_USERS.find(
+      (u) => u.cleanerId === tech.id || u.email === tech.email || u.name === tech.name
+    );
+    if (matchedUser) {
+      setChatRecipient(matchedUser);
+      setIsChatOpen(true);
+    }
+  }, []);
+
+  const handleSelectUser = useCallback((user: AppUser) => {
+    setCurrentUser(user);
+    try {
+      localStorage.setItem('bookmycleaning_active_user_id', user.id);
+    } catch (e) {
+      console.warn('localStorage error:', e);
+    }
+    if (user.role === 'CLEANER') {
+      setSelectedTechId(user.cleanerId || null);
+      setCleanerShowMap(false);
+    }
+  }, []);
+
+  const handleUpdateTicketStatus = useCallback((ticketId: string, newStatus: TicketStatus) => {
+    setTickets((prev) => {
+      const updated = prev.map((t) => (t.id === ticketId ? { ...t, status: newStatus } : t));
+      saveStateToStore(updated);
+      return updated;
+    });
+  }, [saveStateToStore]);
+
+  const handleUpdateTechStatus = useCallback((techId: string, newStatus: TechnicianStatus) => {
+    setTechnicians((prev) =>
+      prev.map((t) => (t.id === techId ? { ...t, status: newStatus } : t))
+    );
+  }, []);
+
   // High-level KPI aggregations
   const totalEmergencyCount = tickets.filter(
     (t) => t.urgency === 'EMERGENCY' && t.status !== 'COMPLETED'
@@ -587,18 +656,54 @@ export function App() {
 
             {/* Dedicated Top Bar Primary Navigation Tabs */}
             <div className="flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl border border-slate-200/80 flex-shrink-0">
-              <button
-                id="nav-tab-map"
-                onClick={() => setActiveTopView('MAP')}
-                className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  activeTopView === 'MAP'
-                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                }`}
-              >
-                <MapIcon className={`w-3.5 h-3.5 ${activeTopView === 'MAP' ? 'text-white' : 'text-pink-600'}`} />
-                <span>Dispatch Map</span>
-              </button>
+              {currentUser.role === 'CLEANER' ? (
+                <>
+                  <button
+                    id="nav-tab-cleaner-jobs"
+                    onClick={() => {
+                      setCleanerShowMap(false);
+                      setActiveTopView('MAP');
+                    }}
+                    className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                      activeTopView === 'MAP' && !cleanerShowMap
+                        ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                    }`}
+                  >
+                    <Truck className="w-3.5 h-3.5" />
+                    <span>My Daily Stops</span>
+                  </button>
+
+                  <button
+                    id="nav-tab-cleaner-map"
+                    onClick={() => {
+                      setCleanerShowMap(true);
+                      setActiveTopView('MAP');
+                    }}
+                    className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                      activeTopView === 'MAP' && cleanerShowMap
+                        ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                    }`}
+                  >
+                    <Navigation className="w-3.5 h-3.5" />
+                    <span>My Route Map</span>
+                  </button>
+                </>
+              ) : (
+                <button
+                  id="nav-tab-map"
+                  onClick={() => setActiveTopView('MAP')}
+                  className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                    activeTopView === 'MAP'
+                      ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  <MapIcon className={`w-3.5 h-3.5 ${activeTopView === 'MAP' ? 'text-white' : 'text-pink-600'}`} />
+                  <span>Dispatch Map</span>
+                </button>
+              )}
 
               <button
                 id="nav-tab-customer-portal"
@@ -614,51 +719,59 @@ export function App() {
                 <span>Customer Booking Portal</span>
               </button>
 
-              <button
-                id="nav-tab-jobs"
-                onClick={() => setActiveTopView('SCHEDULED_JOBS')}
-                className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  activeTopView === 'SCHEDULED_JOBS'
-                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                }`}
-              >
-                <Calendar className={`w-3.5 h-3.5 ${activeTopView === 'SCHEDULED_JOBS' ? 'text-white' : 'text-purple-600'}`} />
-                <span>Scheduled Jobs</span>
-                {scheduledJobsList.length > 0 && (
-                  <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
-                    activeTopView === 'SCHEDULED_JOBS' ? 'bg-white/20 text-white' : 'bg-pink-100 text-pink-700'
-                  }`}>
-                    {scheduledJobsList.length}
-                  </span>
-                )}
-              </button>
+              {currentUser.role !== 'CLEANER' && (
+                <button
+                  id="nav-tab-jobs"
+                  onClick={() => setActiveTopView('SCHEDULED_JOBS')}
+                  className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                    activeTopView === 'SCHEDULED_JOBS'
+                      ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  <Calendar className={`w-3.5 h-3.5 ${activeTopView === 'SCHEDULED_JOBS' ? 'text-white' : 'text-purple-600'}`} />
+                  <span>Scheduled Jobs</span>
+                  {scheduledJobsList.length > 0 && (
+                    <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
+                      activeTopView === 'SCHEDULED_JOBS' ? 'bg-white/20 text-white' : 'bg-pink-100 text-pink-700'
+                    }`}>
+                      {scheduledJobsList.length}
+                    </span>
+                  )}
+                </button>
+              )}
 
-              <button
-                id="nav-tab-quotes"
-                onClick={() => setActiveTopView('QUOTES')}
-                className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  activeTopView === 'QUOTES'
-                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                }`}
-              >
-                <FileCheck className={`w-3.5 h-3.5 ${activeTopView === 'QUOTES' ? 'text-white' : 'text-amber-600'}`} />
-                <span>Quotes</span>
-              </button>
+              {/* Quotes Tab - Accessible to Owner and Dispatcher */}
+              {permissions.canAccessQuotesPipeline && (
+                <button
+                  id="nav-tab-quotes"
+                  onClick={() => setActiveTopView('QUOTES')}
+                  className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                    activeTopView === 'QUOTES'
+                      ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  <FileCheck className={`w-3.5 h-3.5 ${activeTopView === 'QUOTES' ? 'text-white' : 'text-amber-600'}`} />
+                  <span>Quotes</span>
+                </button>
+              )}
 
-              <button
-                id="nav-tab-invoices"
-                onClick={() => setActiveTopView('INVOICES')}
-                className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  activeTopView === 'INVOICES'
-                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                }`}
-              >
-                <Receipt className={`w-3.5 h-3.5 ${activeTopView === 'INVOICES' ? 'text-white' : 'text-emerald-600'}`} />
-                <span>Invoices</span>
-              </button>
+              {/* Invoices Tab - Accessible to Owner only */}
+              {permissions.canAccessBillingInvoices && (
+                <button
+                  id="nav-tab-invoices"
+                  onClick={() => setActiveTopView('INVOICES')}
+                  className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                    activeTopView === 'INVOICES'
+                      ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  <Receipt className={`w-3.5 h-3.5 ${activeTopView === 'INVOICES' ? 'text-white' : 'text-emerald-600'}`} />
+                  <span>Invoices</span>
+                </button>
+              )}
 
               <button
                 id="nav-tab-legal"
@@ -685,72 +798,112 @@ export function App() {
                 <p className="text-xs font-bold text-slate-800 font-mono leading-tight">{currentTime}</p>
               </div>
 
-              {/* Toggle Dispatch Board (Collapses side panel to give map 100% full width) */}
-              <button
-                id="topbar-toggle-board-btn"
-                onClick={() => {
-                  if (viewportMode.isMobileLandscape) {
-                    setIsLandscapeDrawerOpen((prev) => !prev);
-                  } else if (viewportMode.isMobilePortrait) {
-                    setMobileSheetState((s) => (s === 'collapsed' ? 'half' : 'collapsed'));
-                  } else {
-                    setIsBoardCollapsed((c) => !c);
-                  }
-                }}
-                className={`min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 landscape:max-md:py-1 rounded-xl border text-xs font-semibold flex items-center gap-1 sm:gap-1.5 shadow-2xs transition-colors cursor-pointer flex-shrink-0 ${
-                  (viewportMode.isMobileLandscape && !isLandscapeDrawerOpen) ||
+              {/* Toggle Dispatch Board - Only for Dispatcher and Owner */}
+              {currentUser.role !== 'CLEANER' && (
+                <button
+                  id="topbar-toggle-board-btn"
+                  onClick={() => {
+                    if (viewportMode.isMobileLandscape) {
+                      setIsLandscapeDrawerOpen((prev) => !prev);
+                    } else if (viewportMode.isMobilePortrait) {
+                      setMobileSheetState((s) => (s === 'collapsed' ? 'half' : 'collapsed'));
+                    } else {
+                      setIsBoardCollapsed((c) => !c);
+                    }
+                  }}
+                  className={`min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 landscape:max-md:py-1 rounded-xl border text-xs font-semibold flex items-center gap-1 sm:gap-1.5 shadow-2xs transition-colors cursor-pointer flex-shrink-0 ${
+                    (viewportMode.isMobileLandscape && !isLandscapeDrawerOpen) ||
+                    (viewportMode.isMobilePortrait && mobileSheetState === 'collapsed') ||
+                    (!viewportMode.isMobileLandscape && !viewportMode.isMobilePortrait && isBoardCollapsed)
+                      ? 'bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100'
+                      : 'bg-slate-50 hover:bg-slate-100 border-slate-200 text-slate-700'
+                  }`}
+                  title="Toggle Dispatch Board"
+                  aria-label="Toggle Dispatch Board"
+                >
+                  {(viewportMode.isMobileLandscape && !isLandscapeDrawerOpen) ||
                   (viewportMode.isMobilePortrait && mobileSheetState === 'collapsed') ||
-                  (!viewportMode.isMobileLandscape && !viewportMode.isMobilePortrait && isBoardCollapsed)
-                    ? 'bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100'
-                    : 'bg-slate-50 hover:bg-slate-100 border-slate-200 text-slate-700'
+                  (!viewportMode.isMobileLandscape && !viewportMode.isMobilePortrait && isBoardCollapsed) ? (
+                    <>
+                      <PanelRightOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0" />
+                      <span className="hidden md:inline landscape:max-md:hidden">Show Board</span>
+                      {unassignedCount > 0 && (
+                        <span className="min-w-[18px] h-4 px-1 rounded-full bg-red-600 text-white text-[10px] font-bold flex items-center justify-center font-mono leading-none">
+                          {unassignedCount}
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <PanelRightClose className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-600 shrink-0" />
+                      <span className="hidden md:inline landscape:max-md:hidden">Hide Board</span>
+                    </>
+                  )}
+                </button>
+              )}
+
+              {/* Full Screen Zen Map Focus Button (Only on large screens for Dispatcher and Owner) */}
+              {currentUser.role !== 'CLEANER' && (
+                <button
+                  id="topbar-zen-mode-btn"
+                  onClick={() => setIsZenMode(true)}
+                  className="hidden xl:flex min-h-[34px] sm:min-h-[36px] px-2.5 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold items-center gap-1 shadow-2xs transition-colors cursor-pointer flex-shrink-0"
+                  title="Full Screen Map Mode (hides all chrome and panels)"
+                  aria-label="Full screen map mode"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 text-slate-600" />
+                  <span>Full Map</span>
+                </button>
+              )}
+
+              {/* Team Real-Time Chat Trigger */}
+              <button
+                id="topbar-chat-btn"
+                onClick={() => setIsChatOpen((c) => !c)}
+                className={`min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs whitespace-nowrap cursor-pointer flex-shrink-0 ${
+                  isChatOpen
+                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white border-transparent'
+                    : 'bg-pink-50 hover:bg-pink-100 text-pink-900 border-pink-200'
                 }`}
-                title="Toggle Dispatch Board"
-                aria-label="Toggle Dispatch Board"
+                title="Internal Team Messaging: Chat with cleaners, dispatchers and owner"
+                aria-label="Open Team Chat"
               >
-                {(viewportMode.isMobileLandscape && !isLandscapeDrawerOpen) ||
-                (viewportMode.isMobilePortrait && mobileSheetState === 'collapsed') ||
-                (!viewportMode.isMobileLandscape && !viewportMode.isMobilePortrait && isBoardCollapsed) ? (
-                  <>
-                    <PanelRightOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0" />
-                    <span className="hidden md:inline landscape:max-md:hidden">Show Board</span>
-                    {unassignedCount > 0 && (
-                      <span className="min-w-[18px] h-4 px-1 rounded-full bg-red-600 text-white text-[10px] font-bold flex items-center justify-center font-mono leading-none">
-                        {unassignedCount}
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <PanelRightClose className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-600 shrink-0" />
-                    <span className="hidden md:inline landscape:max-md:hidden">Hide Board</span>
-                  </>
-                )}
+                <MessageSquare className={`w-3.5 h-3.5 ${isChatOpen ? 'text-white' : 'text-pink-600'}`} />
+                <span className="hidden sm:inline">Team Chat</span>
+                <span className="sm:hidden">Chat</span>
               </button>
 
-              {/* Full Screen Zen Map Focus Button (Only on large screens where space is plentiful) */}
+              {/* Active User Login / Role Switcher */}
               <button
-                id="topbar-zen-mode-btn"
-                onClick={() => setIsZenMode(true)}
-                className="hidden xl:flex min-h-[34px] sm:min-h-[36px] px-2.5 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold items-center gap-1 shadow-2xs transition-colors cursor-pointer flex-shrink-0"
-                title="Full Screen Map Mode (hides all chrome and panels)"
-                aria-label="Full screen map mode"
+                id="topbar-role-switcher-btn"
+                onClick={() => setIsRoleModalOpen(true)}
+                className="min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs whitespace-nowrap cursor-pointer flex-shrink-0"
+                title={`Active Login: ${currentUser.name} (${currentUser.role}). Click to switch role/account.`}
+                aria-label="Switch User or Role"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-slate-600" />
-                <span>Full Map</span>
+                <span className={`w-2 h-2 rounded-full ${
+                  currentUser.role === 'OWNER' ? 'bg-purple-600' : currentUser.role === 'DISPATCHER' ? 'bg-pink-600' : 'bg-emerald-600'
+                }`} />
+                <span className="hidden md:inline font-extrabold">{currentUser.name}</span>
+                <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-white text-slate-700 uppercase">
+                  {currentUser.role}
+                </span>
               </button>
 
               {/* Quo 5-Line Phone System Button */}
-              <button
-                id="topbar-quo-btn"
-                onClick={() => setIsQuoModalOpen(true)}
-                className="min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-800 border border-violet-300 text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs whitespace-nowrap cursor-pointer flex-shrink-0"
-                title="Quo (OpenPhone) 5-Line System: Call tracking and Sona voice transcription"
-                aria-label="Open Quo Phone Integration"
-              >
-                <PhoneCall className="w-3.5 h-3.5 text-violet-600 shrink-0" aria-hidden="true" />
-                <span className="hidden sm:inline">Quo (5 Lines)</span>
-                <span className="sm:hidden">Quo</span>
-              </button>
+              {permissions.canAccessQuoPhoneConfig && (
+                <button
+                  id="topbar-quo-btn"
+                  onClick={() => setIsQuoModalOpen(true)}
+                  className="min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-800 border border-violet-300 text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs whitespace-nowrap cursor-pointer flex-shrink-0"
+                  title="Quo (OpenPhone) 5-Line System: Call tracking and Sona voice transcription"
+                  aria-label="Open Quo Phone Integration"
+                >
+                  <PhoneCall className="w-3.5 h-3.5 text-violet-600 shrink-0" aria-hidden="true" />
+                  <span className="hidden sm:inline">Quo (5 Lines)</span>
+                  <span className="sm:hidden">Quo</span>
+                </button>
+              )}
 
               {/* PWA Mobile & Web App Installation Button */}
               <PWAInstallButton />
@@ -768,42 +921,48 @@ export function App() {
                 <span className="sm:hidden">Book</span>
               </button>
 
-              {/* Jobber Integration Hub Button */}
-              <button
-                id="topbar-jobber-btn"
-                onClick={() => setIsJobberModalOpen(true)}
-                className="min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs whitespace-nowrap cursor-pointer flex-shrink-0"
-                title="Jobber Integration: Sync clients, invoices, quotes & visits"
-                aria-label="Open Jobber Integration Hub"
-              >
-                <Database className="w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true" />
-                <span className="hidden sm:inline">Jobber Sync</span>
-                <span className="sm:hidden">Jobber</span>
-              </button>
+              {/* Jobber Integration Hub Button - Only Owner and Dispatcher */}
+              {permissions.canAccessJobberConfig && (
+                <button
+                  id="topbar-jobber-btn"
+                  onClick={() => setIsJobberModalOpen(true)}
+                  className="min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs whitespace-nowrap cursor-pointer flex-shrink-0"
+                  title="Jobber Integration: Sync clients, invoices, quotes & visits"
+                  aria-label="Open Jobber Integration Hub"
+                >
+                  <Database className="w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true" />
+                  <span className="hidden sm:inline">Jobber Sync</span>
+                  <span className="sm:hidden">Jobber</span>
+                </button>
+              )}
 
-              {/* Create Service Ticket Button */}
-              <button
-                id="topbar-new-ticket-btn"
-                onClick={() => setIsNewTicketModalOpen(true)}
-                className="min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 landscape:max-md:py-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-colors shadow-xs whitespace-nowrap cursor-pointer flex-shrink-0"
-                aria-label="Create New Service Ticket with Voice or Text"
-                title="Create New Service Ticket (Microphone Voice-to-Text Supported)"
-              >
-                <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-400 shrink-0" aria-hidden="true" />
-                <span>Ticket</span>
-              </button>
+              {/* Create Service Ticket Button - Accessible to Owner and Dispatcher */}
+              {permissions.canAssignTickets && (
+                <button
+                  id="topbar-new-ticket-btn"
+                  onClick={() => setIsNewTicketModalOpen(true)}
+                  className="min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 landscape:max-md:py-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-colors shadow-xs whitespace-nowrap cursor-pointer flex-shrink-0"
+                  aria-label="Create New Service Ticket with Voice or Text"
+                  title="Create New Service Ticket (Microphone Voice-to-Text Supported)"
+                >
+                  <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-400 shrink-0" aria-hidden="true" />
+                  <span>Ticket</span>
+                </button>
+              )}
 
-              {/* AI Dispatch Assistant Button - Always fully visible, never clipped or cut off */}
-              <button
-                id="topbar-ai-dispatcher-btn"
-                onClick={() => setIsAiModalOpen(true)}
-                className="min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2.5 sm:px-3 py-1 sm:py-1.5 landscape:max-md:py-1 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold flex items-center gap-1.5 shadow-xs active:scale-95 transition-all whitespace-nowrap cursor-pointer flex-shrink-0"
-                aria-label="Open AI Dispatch Assistant"
-                title="Open AI Dispatch Assistant"
-              >
-                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-200 shrink-0" aria-hidden="true" />
-                <span className="font-semibold">AI Dispatch</span>
-              </button>
+              {/* AI Dispatch Assistant Button - Only Owner and Dispatcher */}
+              {permissions.canAssignTickets && (
+                <button
+                  id="topbar-ai-dispatcher-btn"
+                  onClick={() => setIsAiModalOpen(true)}
+                  className="min-h-[34px] sm:min-h-[36px] landscape:max-md:min-h-[32px] px-2.5 sm:px-3 py-1 sm:py-1.5 landscape:max-md:py-1 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold flex items-center gap-1.5 shadow-xs active:scale-95 transition-all whitespace-nowrap cursor-pointer flex-shrink-0"
+                  aria-label="Open AI Dispatch Assistant"
+                  title="Open AI Dispatch Assistant"
+                >
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-200 shrink-0" aria-hidden="true" />
+                  <span className="font-semibold">AI Dispatch</span>
+                </button>
+              )}
             </div>
           </header>
         )}
@@ -876,6 +1035,19 @@ export function App() {
             initialTab={activeLegalTab}
             onBackToDispatch={() => setActiveTopView('MAP')}
           />
+        ) : currentUser.role === 'CLEANER' && !cleanerShowMap ? (
+          <CleanerPortalView
+            currentUser={currentUser}
+            tickets={tickets}
+            technicians={technicians}
+            onUpdateTicketStatus={handleUpdateTicketStatus}
+            onUpdateTechStatus={handleUpdateTechStatus}
+            onOpenChatWith={(targetUser) => {
+              setChatRecipient(targetUser);
+              setIsChatOpen(true);
+            }}
+            onViewMap={() => setCleanerShowMap(true)}
+          />
         ) : (
           /* Main Dashboard: Dedicated Full-Bleed Map Backdrop with Collapsible Layered Panes */
           <main id="main-split-dashboard" className="flex-1 relative overflow-hidden bg-slate-50 flex flex-col md:flex-row">
@@ -886,6 +1058,16 @@ export function App() {
             aria-label="Interactive Territory Map"
             className="flex-1 h-full w-full relative overflow-hidden bg-slate-100 z-0"
           >
+            {currentUser.role === 'CLEANER' && cleanerShowMap && (
+              <div className="absolute top-3 left-3 z-30 pointer-events-auto">
+                <button
+                  onClick={() => setCleanerShowMap(false)}
+                  className="px-3.5 py-2 rounded-xl bg-slate-900/95 hover:bg-slate-900 text-white text-xs font-black flex items-center gap-1.5 shadow-lg border border-slate-700 cursor-pointer"
+                >
+                  <span>← Back to My Daily Stops Checklist</span>
+                </button>
+              </div>
+            )}
             <TerritoryMap
               technicians={technicians}
               tickets={tickets}
@@ -896,6 +1078,7 @@ export function App() {
               urgencyFilter={urgencyFilter}
               onUrgencyFilterChange={setUrgencyFilter}
               onAssignTicketToTech={handleAssignTicket}
+              onMessageTech={handleMessageTech}
               isMapsAuthError={mapsAuthError}
               refererErrorUrl={refererErrorUrl}
             />
@@ -1068,6 +1251,7 @@ export function App() {
                 onOpenManifest={(tech) => setManifestTech(tech)}
                 onOpenNewTicketModal={() => setIsNewTicketModalOpen(true)}
                 onOpenJobberModal={() => setIsJobberModalOpen(true)}
+                onMessageTech={handleMessageTech}
                 activeTab={kanbanActiveTab}
                 onActiveTabChange={setKanbanActiveTab}
                 onClose={() => {
@@ -1184,6 +1368,23 @@ export function App() {
         <QuoModal
           isOpen={isQuoModalOpen}
           onClose={() => setIsQuoModalOpen(false)}
+        />
+
+        {/* Real-Time Team Internal Messaging Drawer */}
+        <TeamChatDrawer
+          isOpen={isChatOpen}
+          onClose={() => setIsChatOpen(false)}
+          currentUser={currentUser}
+          selectedRecipient={chatRecipient}
+          onSelectRecipient={setChatRecipient}
+        />
+
+        {/* Role Selector & Login Switcher Modal */}
+        <RoleSelectorModal
+          isOpen={isRoleModalOpen}
+          onClose={() => setIsRoleModalOpen(false)}
+          currentUser={currentUser}
+          onSelectUser={handleSelectUser}
         />
       </div>
     </APIProvider>

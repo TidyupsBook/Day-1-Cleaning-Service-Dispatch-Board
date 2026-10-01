@@ -1,9 +1,105 @@
 {
   "version": 1,
-  "lastSavedAt": "2026-09-30T23:30:00.000Z",
+  "lastSavedAt": "2026-10-01T09:35:22.360Z",
   "tickets": [],
   "cleanerOverrides": {},
   "scheduledVisits": [],
   "quotes": [],
-  "invoices": []
+  "invoices": [],
+  "quoConfig": {
+    "isConnected": true,
+    "apiKey": "b0eaf35a497d67c4648102b5446d1b0390a69c5db6c585372e2da5e821f21897",
+    "phoneNumbers": [
+      {
+        "id": "pn_yeg_1",
+        "name": "Main Dispatch Line",
+        "number": "+1 (780) 555-0101",
+        "status": "active",
+        "totalCallsToday": 14
+      },
+      {
+        "id": "pn_yeg_2",
+        "name": "Move-Out Urgent Line",
+        "number": "+1 (780) 555-0102",
+        "status": "ai_receptionist",
+        "totalCallsToday": 9
+      },
+      {
+        "id": "pn_yeg_3",
+        "name": "South Edmonton & Windermere",
+        "number": "+1 (780) 555-0103",
+        "status": "active",
+        "totalCallsToday": 6
+      },
+      {
+        "id": "pn_yeg_4",
+        "name": "Commercial & Turnover Line",
+        "number": "+1 (780) 555-0104",
+        "status": "active",
+        "totalCallsToday": 11
+      },
+      {
+        "id": "pn_yeg_5",
+        "name": "AI After-Hours Receptionist",
+        "number": "+1 (780) 555-0105",
+        "status": "ai_receptionist",
+        "totalCallsToday": 18
+      }
+    ]
+  },
+  "jobberConfig": {
+    "isConnected": true,
+    "accountName": "Clean YEG Operations (Jobber)",
+    "clientId": "27966135-e33e-4c2e-8dc3-ad7ba06dabb8",
+    "clientSecret": "65534ce762fe3ec20a5c1447794dabee0ac03f2caf1048c8686377d4e754a36a",
+    "accessToken": "eyJhbGci...iXcI",
+    "refreshToken": "77b4eaa5ee42bb6ad840df188e75f1c7",
+    "lastSyncedAt": "2026-10-01T08:21:54.358Z"
+  },
+  "chatMessages": [
+    {
+      "id": "msg-seed-1",
+      "senderId": "user-owner",
+      "senderName": "Business Owner",
+      "senderRole": "OWNER",
+      "recipientId": "BROADCAST_ALL",
+      "recipientName": "All Team Members",
+      "text": "Welcome team! Great job on completing the move-out cleans this morning in Windermere and Chappelle. Remember to double-check oven degreasing before departure.",
+      "timestamp": "2026-10-01T06:35:15.337Z",
+      "read": true
+    },
+    {
+      "id": "msg-seed-2",
+      "senderId": "user-dispatcher",
+      "senderName": "Dominic Mancini",
+      "senderRole": "DISPATCHER",
+      "recipientId": "cleaner-1",
+      "recipientName": "Melissa Clarke",
+      "text": "Melissa, your second stop on Jasper Ave has been confirmed for 1:30 PM. Customer left key in lockbox code 4482.",
+      "timestamp": "2026-10-01T07:35:15.337Z",
+      "read": true
+    },
+    {
+      "id": "msg-seed-3",
+      "senderId": "cleaner-1",
+      "senderName": "Melissa Clarke",
+      "senderRole": "CLEANER",
+      "recipientId": "user-dispatcher",
+      "recipientName": "Dominic Mancini",
+      "text": "Got it, thank you! Van 1 is fully stocked with supplies and rolling out.",
+      "timestamp": "2026-10-01T08:05:15.337Z",
+      "read": true
+    },
+    {
+      "id": "msg-mupc99mf-2scp",
+      "senderId": "cleaner-2",
+      "senderName": "Stacey Whitty",
+      "senderRole": "CLEANER",
+      "recipientId": "cleaner-1",
+      "recipientName": "Melissa Clarke",
+      "text": "Hey Melissa, do you have any extra hardwood floor cleaner in Van 1?",
+      "timestamp": "2026-10-01T09:35:22.359Z",
+      "read": false
+    }
+  ]
 }

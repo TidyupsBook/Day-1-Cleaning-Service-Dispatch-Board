@@ -26,7 +26,8 @@ import {
   ChevronUp,
   Layers,
   Copy,
-  Check
+  Check,
+  MessageSquare
 } from 'lucide-react';
 
 interface TerritoryMapProps {
@@ -39,6 +40,7 @@ interface TerritoryMapProps {
   urgencyFilter: 'ALL' | UrgencyLevel;
   onUrgencyFilterChange: (urgency: 'ALL' | UrgencyLevel) => void;
   onAssignTicketToTech?: (ticketId: string, techId: string) => void;
+  onMessageTech?: (tech: Technician) => void;
   isMapsAuthError?: boolean;
   refererErrorUrl?: string | null;
 }
@@ -370,6 +372,7 @@ export const TerritoryMap: React.FC<TerritoryMapProps> = ({
   urgencyFilter,
   onUrgencyFilterChange,
   onAssignTicketToTech,
+  onMessageTech,
   isMapsAuthError = false,
   refererErrorUrl = null,
 }) => {
@@ -861,14 +864,27 @@ export const TerritoryMap: React.FC<TerritoryMapProps> = ({
                 {selectedTech.assignedTicketIds.length} stops • {selectedTech.routeMetrics?.totalDistanceKm ?? Math.round((selectedTech.routeMetrics?.totalDistanceMiles || 0) * 1.60934 * 10) / 10} km
               </span>
             </div>
-            <button
-              onClick={() => onSelectTech(null)}
-              className="ml-1 min-h-[36px] min-w-[36px] text-slate-500 hover:text-slate-800 text-xs font-bold p-1 rounded-md flex items-center justify-center cursor-pointer shrink-0"
-              title="Clear route selection"
-              aria-label="Clear route selection"
-            >
-              ✕
-            </button>
+            <div className="flex items-center gap-2 shrink-0">
+              {onMessageTech && (
+                <button
+                  type="button"
+                  onClick={() => onMessageTech(selectedTech)}
+                  className="px-2.5 py-1 rounded-lg bg-pink-50 hover:bg-pink-100 text-pink-700 text-xs font-bold flex items-center gap-1 transition-all cursor-pointer border border-pink-200 shadow-2xs"
+                  title={`Send Direct Message to ${selectedTech.name}`}
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-pink-600" />
+                  <span className="hidden xs:inline">Message</span>
+                </button>
+              )}
+              <button
+                onClick={() => onSelectTech(null)}
+                className="min-h-[30px] min-w-[30px] text-slate-500 hover:text-slate-800 text-xs font-bold p-1 rounded-md flex items-center justify-center cursor-pointer"
+                title="Clear route selection"
+                aria-label="Clear route selection"
+              >
+                ✕
+              </button>
+            </div>
           </div>
         )}
       </div>
