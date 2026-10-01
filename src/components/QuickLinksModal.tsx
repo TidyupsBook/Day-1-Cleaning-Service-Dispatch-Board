@@ -15,7 +15,9 @@ import {
   Sparkles, 
   ChevronRight,
   ShieldCheck,
-  CheckCircle2
+  CheckCircle2,
+  Download,
+  GitBranch
 } from 'lucide-react';
 import { JOBBER_TEAM_MEMBERS } from '../data/jobberCalendarData';
 
