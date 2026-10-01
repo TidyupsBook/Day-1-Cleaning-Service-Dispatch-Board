@@ -21,6 +21,15 @@ export interface AppPersistentStore {
     refreshToken: string;
     lastSyncedAt: string;
   };
+  quoConfig?: {
+    isConnected: boolean;
+    apiKey: string;
+    phoneNumbers: any[];
+  };
+  apiKeys?: {
+    mapsApiKey?: string;
+    geminiApiKey?: string;
+  };
 }
 
 // Ensure data directory exists
@@ -52,14 +61,26 @@ export function loadStore(): AppPersistentStore | null {
  */
 export function saveStore(store: AppPersistentStore): boolean {
   try {
-    const json = JSON.stringify(
-      {
-        ...store,
-        lastSavedAt: new Date().toISOString(),
-      },
-      null,
-      2
-    );
+    let existing: Partial<AppPersistentStore> = {};
+    if (fs.existsSync(STORE_FILE)) {
+      try {
+        existing = JSON.parse(fs.readFileSync(STORE_FILE, "utf-8")) || {};
+      } catch {
+        // use empty if corrupt
+      }
+    }
+
+    const merged: AppPersistentStore = {
+      ...existing,
+      ...store,
+      // Ensure nested API configurations are never erased if not explicitly provided
+      jobberConfig: store.jobberConfig || existing.jobberConfig,
+      quoConfig: store.quoConfig || existing.quoConfig,
+      apiKeys: store.apiKeys || existing.apiKeys,
+      lastSavedAt: new Date().toISOString(),
+    };
+
+    const json = JSON.stringify(merged, null, 2);
     fs.writeFileSync(STORE_FILE, json, "utf-8");
     return true;
   } catch (err) {

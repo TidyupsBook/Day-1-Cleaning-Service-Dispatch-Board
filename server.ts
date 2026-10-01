@@ -806,6 +806,25 @@ function persistJobberConfigToDisk() {
       lastSyncedAt: jobberConfig.lastSyncedAt,
     },
   });
+
+  // Also sync to Cloud SQL PostgreSQL database asynchronously
+  try {
+    db.insert(dbSchema.jobberConfigs)
+      .values({
+        accountName: jobberConfig.accountName,
+        clientId: jobberConfig.clientId,
+        hasSecret: Boolean(jobberConfig.clientSecret),
+        redirectUri: `${getAppBaseUrl({ headers: {} } as any)}/api/jobber/oauth/callback`,
+        accessToken: jobberConfig.accessToken,
+        isConnected: jobberConfig.isConnected,
+        isDevSandbox: false,
+        lastSyncedAt: jobberConfig.lastSyncedAt,
+      })
+      .execute()
+      .catch((err) => console.warn("Notice: Cloud SQL async Jobber sync note:", err?.message || err));
+  } catch {
+    // Non-blocking
+  }
 }
 
 // GET Jobber connection status & settings
@@ -1387,9 +1406,9 @@ app.post("/api/public/book", async (req, res) => {
 // Quo (OpenPhone) 5-Line Phone System Integration
 // ─────────────────────────────────────────────────────────────────────────────
 let quoConfig = {
-  isConnected: Boolean(process.env.QUO_API_KEY),
-  apiKey: process.env.QUO_API_KEY || "",
-  phoneNumbers: [
+  isConnected: Boolean(initialStored?.quoConfig?.apiKey || process.env.QUO_API_KEY),
+  apiKey: initialStored?.quoConfig?.apiKey || process.env.QUO_API_KEY || "",
+  phoneNumbers: initialStored?.quoConfig?.phoneNumbers || [
     { id: "pn_yeg_1", name: "Main Dispatch Line", number: "+1 (780) 555-0101", status: "active", totalCallsToday: 14 },
     { id: "pn_yeg_2", name: "Move-Out Urgent Line", number: "+1 (780) 555-0102", status: "ai_receptionist", totalCallsToday: 9 },
     { id: "pn_yeg_3", name: "South Edmonton & Windermere", number: "+1 (780) 555-0103", status: "active", totalCallsToday: 6 },
@@ -1397,6 +1416,26 @@ let quoConfig = {
     { id: "pn_yeg_5", name: "AI After-Hours Receptionist", number: "+1 (780) 555-0105", status: "ai_receptionist", totalCallsToday: 18 },
   ],
 };
+
+function persistQuoConfigToDisk() {
+  const curStore = loadStore() || {
+    version: 1,
+    lastSavedAt: new Date().toISOString(),
+    tickets: INITIAL_TICKETS,
+    cleanerOverrides: {},
+    scheduledVisits: [],
+    quotes: [],
+    invoices: [],
+  };
+  saveStore({
+    ...curStore,
+    quoConfig: {
+      isConnected: quoConfig.isConnected,
+      apiKey: quoConfig.apiKey,
+      phoneNumbers: quoConfig.phoneNumbers,
+    },
+  });
+}
 
 app.get("/api/quo/config", (_req, res) => {
   res.json({
@@ -1414,6 +1453,7 @@ app.post("/api/quo/config", async (req, res) => {
 
   quoConfig.apiKey = String(apiKey).trim();
   quoConfig.isConnected = true;
+  persistQuoConfigToDisk();
 
   // In production with live Quo workspace:
   // Can query https://api.quo.com/v1/phone-numbers with header Authorization: apiKey (raw key)
