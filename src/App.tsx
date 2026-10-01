@@ -24,9 +24,7 @@ import { PWAInstallButton } from './components/PWAInstallButton';
 import { JobberQuote, JobberInvoice } from './services/jobberSyncModules';
 import { 
   Truck, 
-  Flame, 
   Clock, 
-  Wrench, 
   Sparkles, 
   Route, 
   Fuel, 
@@ -34,7 +32,6 @@ import {
   Layers, 
   RefreshCw,
   Zap,
-  Play,
   CheckCircle2,
   MapPin,
   Maximize2,
