@@ -12,6 +12,7 @@ import {
   syncJobberInvoices,
   pushBookingToJobber,
   runComprehensiveJobberSync,
+  setJobberTokenRefreshListener,
 } from "./src/services/jobberSyncModules";
 import {
   LEADS_SPREADSHEET_ID,
@@ -784,6 +785,24 @@ let jobberConfig = {
   environment: "Jobber GraphQL API (v2025-04-16)",
 };
 
+// Wire automatic token refresh persistence
+setJobberTokenRefreshListener((tokens) => {
+  jobberConfig.accessToken = tokens.accessToken;
+  if (tokens.refreshToken) jobberConfig.refreshToken = tokens.refreshToken;
+  jobberConfig.isConnected = true;
+  jobberConfig.lastSyncedAt = new Date().toISOString();
+  persistJobberConfigToDisk();
+  console.log("Jobber OAuth access token was automatically refreshed and saved to disk.");
+});
+
+function getJobberCreds() {
+  return {
+    clientId: jobberConfig.clientId,
+    clientSecret: jobberConfig.clientSecret,
+    refreshToken: jobberConfig.refreshToken,
+  };
+}
+
 function persistJobberConfigToDisk() {
   const curStore = loadStore() || {
     version: 1,
@@ -1084,8 +1103,8 @@ app.post("/api/jobber/disconnect", (_req, res) => {
 // POST Sync Visits & Calendar from Jobber API (GraphQL: developer.getjobber.com/docs)
 app.post("/api/jobber/sync-visits", async (_req, res) => {
   jobberConfig.lastSyncedAt = new Date().toISOString();
-  const calendarData = await syncJobberCalendar(jobberConfig.accessToken);
-  const clientData = await syncJobberClients(jobberConfig.accessToken);
+  const calendarData = await syncJobberCalendar(jobberConfig.accessToken, getJobberCreds());
+  const clientData = await syncJobberClients(jobberConfig.accessToken, getJobberCreds());
 
   res.json({
     success: true,
@@ -1102,28 +1121,28 @@ app.post("/api/jobber/sync-visits", async (_req, res) => {
 
 app.post("/api/jobber/sync-calendar", async (_req, res) => {
   jobberConfig.lastSyncedAt = new Date().toISOString();
-  const data = await syncJobberCalendar(jobberConfig.accessToken);
+  const data = await syncJobberCalendar(jobberConfig.accessToken, getJobberCreds());
   res.json({ success: true, ...data, lastSyncedAt: jobberConfig.lastSyncedAt });
 });
 
 // POST Sync Clients & Properties (jobberClientSync)
 app.post("/api/jobber/sync-clients", async (_req, res) => {
   jobberConfig.lastSyncedAt = new Date().toISOString();
-  const data = await syncJobberClients(jobberConfig.accessToken);
+  const data = await syncJobberClients(jobberConfig.accessToken, getJobberCreds());
   res.json({ success: true, ...data, lastSyncedAt: jobberConfig.lastSyncedAt });
 });
 
 // POST Sync Quotes & Approvals (jobberQuoteSync)
 app.post("/api/jobber/sync-quotes", async (_req, res) => {
   jobberConfig.lastSyncedAt = new Date().toISOString();
-  const data = await syncJobberQuotes(jobberConfig.accessToken);
+  const data = await syncJobberQuotes(jobberConfig.accessToken, getJobberCreds());
   res.json({ success: true, ...data, lastSyncedAt: jobberConfig.lastSyncedAt });
 });
 
 // POST Sync Invoices & Payments (jobberInvoiceSync)
 app.post("/api/jobber/sync-invoices", async (_req, res) => {
   jobberConfig.lastSyncedAt = new Date().toISOString();
-  const data = await syncJobberInvoices(jobberConfig.accessToken);
+  const data = await syncJobberInvoices(jobberConfig.accessToken, getJobberCreds());
   res.json({ success: true, ...data, lastSyncedAt: jobberConfig.lastSyncedAt });
 });
 
@@ -1160,9 +1179,9 @@ app.post("/api/jobber/sync-all-comprehensive", async (_req, res) => {
 app.get("/api/store", async (_req, res) => {
   let store = loadStore();
   if (!store) {
-    const calendar = await syncJobberCalendar(jobberConfig.accessToken);
-    const quotes = await syncJobberQuotes(jobberConfig.accessToken);
-    const invoices = await syncJobberInvoices(jobberConfig.accessToken);
+    const calendar = await syncJobberCalendar(jobberConfig.accessToken, getJobberCreds());
+    const quotes = await syncJobberQuotes(jobberConfig.accessToken, getJobberCreds());
+    const invoices = await syncJobberInvoices(jobberConfig.accessToken, getJobberCreds());
     store = {
       version: 1,
       lastSavedAt: new Date().toISOString(),

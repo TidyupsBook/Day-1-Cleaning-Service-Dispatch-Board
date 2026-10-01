@@ -8,21 +8,99 @@ export const JOBBER_GRAPHQL_URL = "https://api.getjobber.com/api/graphql";
 export const JOBBER_GRAPHQL_VERSION = "2025-04-16";
 const JOBBER_REQUEST_TIMEOUT_MS = 25_000;
 
+export interface JobberTokenRefreshResult {
+  accessToken: string;
+  refreshToken?: string;
+}
+
+// Token refresh callback to notify host server of refreshed credentials
+let onTokenRefreshedCallback: ((tokens: JobberTokenRefreshResult) => void) | null = null;
+export function setJobberTokenRefreshListener(cb: (tokens: JobberTokenRefreshResult) => void) {
+  onTokenRefreshedCallback = cb;
+}
+
+/**
+ * Attempts to refresh an expired Jobber OAuth access token using the stored refresh token.
+ */
+export async function refreshJobberAccessToken(
+  clientId: string,
+  clientSecret: string,
+  refreshToken: string
+): Promise<string | null> {
+  if (!clientId || !clientSecret || !refreshToken) return null;
+
+  try {
+    const res = await fetch("https://api.getjobber.com/api/oauth/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        client_id: clientId,
+        client_secret: clientSecret,
+        grant_type: "refresh_token",
+        refresh_token: refreshToken,
+      }),
+      signal: AbortSignal.timeout(15_000),
+    });
+
+    if (!res.ok) {
+      console.warn(`Jobber token refresh rejected (${res.status}) - authorization required.`);
+      return null;
+    }
+
+    const data = await res.json();
+    if (data.access_token) {
+      if (onTokenRefreshedCallback) {
+        onTokenRefreshedCallback({
+          accessToken: data.access_token,
+          refreshToken: data.refresh_token || refreshToken,
+        });
+      }
+      return data.access_token;
+    }
+  } catch (err: any) {
+    console.warn("Could not refresh Jobber token:", err.message);
+  }
+  return null;
+}
+
 export async function jobberGraphql<T>(
   accessToken: string,
   query: string,
-  variables?: Record<string, unknown>
+  variables?: Record<string, unknown>,
+  credentials?: { clientId?: string; clientSecret?: string; refreshToken?: string }
 ): Promise<T> {
-  const res = await fetch(JOBBER_GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "X-JOBBER-GRAPHQL-VERSION": JOBBER_GRAPHQL_VERSION,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query, variables }),
-    signal: AbortSignal.timeout(JOBBER_REQUEST_TIMEOUT_MS),
-  });
+  // If token is a dummy placeholder, do not send invalid request to Jobber API
+  if (!accessToken || accessToken === "eyJhbGci...iXcI" || accessToken.includes("...")) {
+    throw new Error("Jobber OAuth token requires 1-click authorization in Jobber Sync Hub.");
+  }
+
+  const doRequest = async (token: string) => {
+    return await fetch(JOBBER_GRAPHQL_URL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "X-JOBBER-GRAPHQL-VERSION": JOBBER_GRAPHQL_VERSION,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query, variables }),
+      signal: AbortSignal.timeout(JOBBER_REQUEST_TIMEOUT_MS),
+    });
+  };
+
+  let res = await doRequest(accessToken);
+
+  // If 401 Unauthorized, attempt automatic refresh if refresh token is available
+  if (res.status === 401 && credentials?.clientId && credentials?.clientSecret && credentials?.refreshToken) {
+    console.log("Jobber token expired (401). Attempting automatic refresh...");
+    const newAccessToken = await refreshJobberAccessToken(
+      credentials.clientId,
+      credentials.clientSecret,
+      credentials.refreshToken
+    );
+    if (newAccessToken) {
+      res = await doRequest(newAccessToken);
+    }
+  }
 
   const text = await res.text();
   if (!res.ok) {
@@ -137,10 +215,16 @@ export interface ComprehensiveSyncSummary {
   jobberAccount: string;
 }
 
+export interface JobberCredentials {
+  clientId?: string;
+  clientSecret?: string;
+  refreshToken?: string;
+}
+
 /**
  * 1. jobberCalendarSync: Pulls scheduled visits out of Jobber and maps them to our 2 cleaning crews
  */
-export async function syncJobberCalendar(accessToken?: string): Promise<{
+export async function syncJobberCalendar(accessToken?: string, credentials?: JobberCredentials): Promise<{
   visits: JobberVisit[];
   syncedVisitsCount: number;
   assignedToCrew1: number;
@@ -182,7 +266,7 @@ export async function syncJobberCalendar(accessToken?: string): Promise<{
           }
         }
       `;
-      const data = await jobberGraphql<any>(accessToken, query);
+      const data = await jobberGraphql<any>(accessToken, query, undefined, credentials);
       const nodes = data?.visits?.nodes || [];
 
       if (nodes.length > 0) {
@@ -243,7 +327,7 @@ export async function syncJobberCalendar(accessToken?: string): Promise<{
 /**
  * 2. jobberClientSync: Pulls and synchronizes clients and contact info
  */
-export async function syncJobberClients(accessToken?: string): Promise<{
+export async function syncJobberClients(accessToken?: string, credentials?: JobberCredentials): Promise<{
   clients: JobberClient[];
   syncedClientsCount: number;
   contactsVerified: number;
@@ -272,7 +356,7 @@ export async function syncJobberClients(accessToken?: string): Promise<{
           }
         }
       `;
-      const data = await jobberGraphql<any>(accessToken, query);
+      const data = await jobberGraphql<any>(accessToken, query, undefined, credentials);
       const nodes = data?.clients?.nodes || [];
       if (nodes.length > 0) {
         const mappedClients: JobberClient[] = nodes.map((node: any, idx: number) => ({
@@ -309,7 +393,7 @@ export async function syncJobberClients(accessToken?: string): Promise<{
 /**
  * 3. jobberQuoteSync: Pulls quotes and pipeline standings
  */
-export async function syncJobberQuotes(accessToken?: string): Promise<{
+export async function syncJobberQuotes(accessToken?: string, credentials?: JobberCredentials): Promise<{
   quotes: JobberQuote[];
   syncedQuotesCount: number;
   approvedCount: number;
@@ -336,7 +420,7 @@ export async function syncJobberQuotes(accessToken?: string): Promise<{
           }
         }
       `;
-      const data = await jobberGraphql<any>(accessToken, query);
+      const data = await jobberGraphql<any>(accessToken, query, undefined, credentials);
       const nodes = data?.quotes?.nodes || [];
       if (nodes.length > 0) {
         const mappedQuotes: JobberQuote[] = nodes.map((node: any) => ({
@@ -377,7 +461,7 @@ export async function syncJobberQuotes(accessToken?: string): Promise<{
 /**
  * 4. jobberInvoiceSync: Pulls invoice balances and payment status
  */
-export async function syncJobberInvoices(accessToken?: string): Promise<{
+export async function syncJobberInvoices(accessToken?: string, credentials?: JobberCredentials): Promise<{
   invoices: JobberInvoice[];
   syncedInvoicesCount: number;
   paidCount: number;
@@ -406,7 +490,7 @@ export async function syncJobberInvoices(accessToken?: string): Promise<{
           }
         }
       `;
-      const data = await jobberGraphql<any>(accessToken, query);
+      const data = await jobberGraphql<any>(accessToken, query, undefined, credentials);
       const nodes = data?.invoices?.nodes || [];
       if (nodes.length > 0) {
         const mappedInvoices: JobberInvoice[] = nodes.map((node: any) => ({
