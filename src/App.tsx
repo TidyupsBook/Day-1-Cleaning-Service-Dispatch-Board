@@ -493,12 +493,12 @@ export function App() {
     (t) => t.urgency === 'EMERGENCY' && t.status !== 'COMPLETED'
   ).length;
   const unassignedCount = tickets.filter((t) => !t.assignedTechId).length;
-  const totalFleetMiles = technicians.reduce(
-    (acc, t) => acc + (t.routeMetrics?.totalDistanceMiles || 0),
+  const totalFleetKm = technicians.reduce(
+    (acc, t) => acc + (t.routeMetrics?.totalDistanceKm || Math.round((t.routeMetrics?.totalDistanceMiles || 0) * 1.60934 * 10) / 10),
     0
   );
-  const totalEstimatedFuel = technicians.reduce(
-    (acc, t) => acc + (t.routeMetrics?.estimatedFuelGallons || 0),
+  const totalEstimatedFuelLiters = technicians.reduce(
+    (acc, t) => acc + (t.routeMetrics?.estimatedFuelLiters || Math.round((t.routeMetrics?.estimatedFuelGallons || 0) * 3.78541 * 10) / 10),
     0
   );
 
@@ -520,7 +520,7 @@ export function App() {
   return (
     <APIProvider 
       apiKey={apiKey}
-      region="US"
+      region="CA"
       language="en"
       solutionChannel="gmp_mcp_codeassist_v1_aistudio"
       onError={(err) => {

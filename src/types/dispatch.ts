@@ -62,8 +62,10 @@ export interface InventoryItem {
 
 export interface RouteMetrics {
   totalDistanceMiles: number;
+  totalDistanceKm: number;
   totalDriveMinutes: number;
   estimatedFuelGallons: number;
+  estimatedFuelLiters: number;
   stopCount: number;
   encodedPolyline?: string;
   legs?: Array<{

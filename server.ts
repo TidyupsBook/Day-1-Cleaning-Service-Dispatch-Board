@@ -22,6 +22,11 @@ import {
   generateTsvRows,
 } from "./src/services/leadSheetSync";
 import { loadStore, saveStore, AppPersistentStore } from "./src/services/storeService";
+import { db } from "./src/db/index.ts";
+import * as dbSchema from "./src/db/schema.ts";
+import { requireAuth, AuthRequest } from "./src/middleware/auth.ts";
+import { getOrCreateUser, getUserByUid } from "./src/db/users.ts";
+import { eq } from "drizzle-orm";
 
 dotenv.config();
 
@@ -161,6 +166,92 @@ app.get("/api/geocode/reverse", async (req, res) => {
   } catch (error: any) {
     const fallback = generateServerFallbackAddress(parseFloat(req.query.lat as string) || 53.5435, parseFloat(req.query.lng as string) || -113.4960);
     res.json(fallback);
+  }
+});
+
+// Proxy for Google Places Autocomplete API (Address autocomplete for Canada / Edmonton area)
+app.get("/api/places/autocomplete", async (req, res) => {
+  try {
+    const input = (req.query.input as string || "").trim();
+    if (!input || input.length < 2) {
+      return res.json({ predictions: [] });
+    }
+
+    const mapsKey = process.env.VITE_GOOGLE_MAPS_API_KEY;
+    if (mapsKey && !geocodeQuotaExhausted) {
+      // Prioritize Greater Edmonton Area & Canada
+      const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(
+        input
+      )}&components=country:ca&location=53.5461,-113.4938&radius=45000&strictbounds=false&key=${mapsKey}&solution_id=gmp_mcp_codeassist_v1_aistudio`;
+      
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.status === "OK" && Array.isArray(data.predictions)) {
+          return res.json({
+            predictions: data.predictions.map((p: any) => ({
+              description: p.description,
+              placeId: p.place_id,
+              mainText: p.structured_formatting?.main_text || p.description,
+              secondaryText: p.structured_formatting?.secondary_text || "",
+            })),
+          });
+        }
+      }
+    }
+
+    // Local Edmonton & Capital Region fuzzy autocomplete fallback (works offline or without quota)
+    const EDMONTON_CORRIDORS = [
+      { address: "10405 Jasper Ave NW, Edmonton, AB T5J 3S2", main: "10405 Jasper Ave NW", sub: "Edmonton, AB" },
+      { address: "10220 104 Ave NW, Edmonton, AB T5J 0H6", main: "10220 104 Ave NW", sub: "Downtown Edmonton, AB" },
+      { address: "8440 112 St NW, Edmonton, AB T6G 2B7", main: "8440 112 St NW", sub: "Old Strathcona / University, Edmonton, AB" },
+      { address: "8882 170 St NW, Edmonton, AB T5T 4J2", main: "8882 170 St NW", sub: "West Edmonton Mall Corridor, Edmonton, AB" },
+      { address: "2003 91 St SW, Edmonton, AB T6X 0W8", main: "2003 91 St SW", sub: "South Edmonton Common, Edmonton, AB" },
+      { address: "12420 102 Ave NW, Edmonton, AB T5N 0M1", main: "12420 102 Ave NW", sub: "124th Street / Oliver, Edmonton, AB" },
+      { address: "7221 Chivers Pl SW, Edmonton, AB T6W 4L4", main: "7221 Chivers Pl SW", sub: "Chappelle, Edmonton, AB" },
+      { address: "3624 1 Avenue SW, Edmonton, AB T6X 2W4", main: "3624 1 Avenue SW", sub: "Charlesworth, Edmonton, AB" },
+      { address: "574 Saddleback Rd NW, Edmonton, AB T6J 4Z3", main: "574 Saddleback Rd NW", sub: "Keheewin, Edmonton, AB" },
+      { address: "10231 120 St NW, Edmonton, AB T5K 2A4", main: "10231 120 St NW", sub: "Oliver / Downtown, Edmonton, AB" },
+      { address: "3751 139 Ave NW, Edmonton, AB T5Y 3J5", main: "3751 139 Ave NW", sub: "Clareview, Edmonton, AB" },
+      { address: "4044 Allan Dr SW, Edmonton, AB T6W 3G9", main: "4044 Allan Dr SW", sub: "Ambleside, Edmonton, AB" },
+      { address: "2408 34A Ave NW, Edmonton, AB T6T 1E9", main: "2408 34A Ave NW", sub: "Mill Woods / Silver Berry, Edmonton, AB" },
+      { address: "10715 111 Ave NW, Edmonton, AB T5G 0E8", main: "10715 111 Ave NW", sub: "Queen Mary Park, Edmonton, AB" },
+      { address: "9515 217 St NW, Edmonton, AB T5T 4X2", main: "9515 217 St NW", sub: "Secord, Edmonton, AB" },
+      { address: "6612 177 St NW, Edmonton, AB T5T 4K6", main: "6612 177 St NW", sub: "Callingwood, Edmonton, AB" },
+      { address: "5311 187 St NW, Edmonton, AB T5T 5G9", main: "5311 187 St NW", sub: "Dechene, Edmonton, AB" },
+      { address: "11910 106 St NW, Edmonton, AB T5G 2R3", main: "11910 106 St NW", sub: "Westwood, Edmonton, AB" },
+      { address: "10323 162 Ave NW, Edmonton, AB T5X 2W1", main: "10323 162 Ave NW", sub: "Lorelei / Castle Downs, Edmonton, AB" },
+      { address: "19918 62 Ave NW, Edmonton, AB T6M 0L2", main: "19918 62 Ave NW", sub: "The Hamptons, Edmonton, AB" },
+      { address: "8704 153 St NW, Edmonton, AB T5R 1R9", main: "8704 153 St NW", sub: "Jasper Park / Meadowlark, Edmonton, AB" },
+      { address: "2000 Premier Way, Sherwood Park, AB T8H 2G4", main: "2000 Premier Way", sub: "Sherwood Park, AB" },
+      { address: "201 Boudreau Rd, St. Albert, AB T8N 6C4", main: "201 Boudreau Rd", sub: "St. Albert, AB" },
+    ];
+
+    const q = input.toLowerCase();
+    const matched = EDMONTON_CORRIDORS.filter(
+      (c) => c.address.toLowerCase().includes(q) || c.main.toLowerCase().includes(q) || c.sub.toLowerCase().includes(q)
+    ).slice(0, 6);
+
+    // If typing custom street address, add smart formatted suggestion
+    const predictions = matched.map((m, idx) => ({
+      description: m.address,
+      placeId: `custom-yeg-${idx}`,
+      mainText: m.main,
+      secondaryText: m.sub,
+    }));
+
+    if (predictions.length === 0 && input.length >= 3) {
+      predictions.push({
+        description: `${input}, Edmonton, AB`,
+        placeId: "custom-input-edmonton",
+        mainText: input,
+        secondaryText: "Edmonton, AB, Canada",
+      });
+    }
+
+    res.json({ predictions });
+  } catch (err: any) {
+    res.json({ predictions: [] });
   }
 });
 
@@ -1094,6 +1185,57 @@ app.post("/api/store/save", (req, res) => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Cloud SQL PostgreSQL Database Endpoints & Synchronized Storage
+// ─────────────────────────────────────────────────────────────────────────────
+// Cloud SQL health check & status
+app.get("/api/db/health", async (_req, res) => {
+  try {
+    const testResult = await db.select().from(dbSchema.cleaners).limit(1);
+    res.json({
+      status: "connected",
+      database: process.env.SQL_DB_NAME || "cloudsql",
+      host: process.env.SQL_HOST ? "cloud_sql_proxy" : "unavailable",
+      cleanersTableCount: testResult.length,
+    });
+  } catch (error: any) {
+    console.error("Database health query error:", error?.message);
+    res.status(500).json({
+      status: "error",
+      message: "Database query failed. Please try again later.",
+    });
+  }
+});
+
+// Sync authenticated Firebase user to Cloud SQL database
+app.post("/api/auth/sync-user", requireAuth, async (req: AuthRequest, res) => {
+  try {
+    const user = req.user;
+    if (!user || !user.uid) {
+      return res.status(401).json({ error: "Missing authenticated user credentials" });
+    }
+    const dbUser = await getOrCreateUser(user.uid, user.email || `${user.uid}@auth.local`, user.name);
+    res.json({ success: true, user: dbUser });
+  } catch (err: any) {
+    console.error("User database sync failed:", err);
+    res.status(500).json({ error: "Failed to synchronize user to database" });
+  }
+});
+
+// Fetch current user profile from Cloud SQL
+app.get("/api/auth/me", requireAuth, async (req: AuthRequest, res) => {
+  try {
+    const user = req.user;
+    if (!user || !user.uid) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    const dbUser = await getUserByUid(user.uid);
+    res.json({ user: dbUser });
+  } catch (err: any) {
+    res.status(500).json({ error: "Failed to retrieve user profile" });
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Google Sheets Lead Sync Endpoints (Day-3 leadSheetWriter & ScrubbyBuilder Leads)
 // ─────────────────────────────────────────────────────────────────────────────
 let googleSheetsSyncState = {
@@ -1437,8 +1579,10 @@ app.all("/api/manifest/print", (req, res) => {
 
   const metrics = manifest?.metrics || {
     totalDistanceMiles: matchedTech.routeMetrics?.totalDistanceMiles || (tickets.length > 0 ? 54.5 : 0),
+    totalDistanceKm: matchedTech.routeMetrics?.totalDistanceKm || (tickets.length > 0 ? 87.7 : 0),
     totalDriveMinutes: matchedTech.routeMetrics?.totalDriveMinutes || (tickets.length > 0 ? 72 : 0),
     estimatedFuelGallons: matchedTech.routeMetrics?.estimatedFuelGallons || (tickets.length > 0 ? 3.8 : 0),
+    estimatedFuelLiters: matchedTech.routeMetrics?.estimatedFuelLiters || (tickets.length > 0 ? 14.4 : 0),
     stopCount: tickets.length,
   };
 
@@ -1657,7 +1801,7 @@ app.all("/api/manifest/print", (req, res) => {
       <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 14px; margin-top: 14px; font-size: 11px;">
         <div>
           <div style="color: #64748b; font-size: 10px; text-transform: uppercase; font-weight: 700;">Total Distance</div>
-          <div style="font-size: 14px; font-weight: 800; font-family: monospace; color: #0f172a;">${esc(metrics.totalDistanceMiles)} Miles</div>
+          <div style="font-size: 14px; font-weight: 800; font-family: monospace; color: #0f172a;">${esc(metrics.totalDistanceKm || Math.round(metrics.totalDistanceMiles * 1.60934 * 10) / 10)} KM</div>
         </div>
         <div>
           <div style="color: #64748b; font-size: 10px; text-transform: uppercase; font-weight: 700;">Est. Drive Time</div>
@@ -1665,7 +1809,7 @@ app.all("/api/manifest/print", (req, res) => {
         </div>
         <div>
           <div style="color: #64748b; font-size: 10px; text-transform: uppercase; font-weight: 700;">Fuel Allocation</div>
-          <div style="font-size: 14px; font-weight: 800; font-family: monospace; color: #059669;">~${esc(metrics.estimatedFuelGallons)} Gal</div>
+          <div style="font-size: 14px; font-weight: 800; font-family: monospace; color: #059669;">~${esc(metrics.estimatedFuelLiters || Math.round(metrics.estimatedFuelGallons * 3.78541 * 10) / 10)} Liters</div>
         </div>
         <div>
           <div style="color: #64748b; font-size: 10px; text-transform: uppercase; font-weight: 700;">Scheduled Stops</div>
@@ -1711,7 +1855,7 @@ app.all("/api/manifest/print", (req, res) => {
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; font-size: 11px; color: #334155;">
         <div>Start Odometer: ________________</div>
         <div>End Odometer: ________________</div>
-        <div>Total Vehicle KM / Miles: ___________</div>
+        <div>Total Vehicle Kilometers (KM): ___________</div>
       </div>
       <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-top: 12px; font-size: 11px; color: #334155;">
         <div>Technician Signature: ________________________________________________</div>

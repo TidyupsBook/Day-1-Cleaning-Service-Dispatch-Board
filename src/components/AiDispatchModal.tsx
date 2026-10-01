@@ -227,7 +227,7 @@ export const AiDispatchModal: React.FC<AiDispatchModalProps> = ({
                 Optimize {unassignedTickets.length} Pending Cleaning Service Bookings
               </h3>
               <p className="text-xs text-slate-600 mb-6 leading-relaxed">
-                The AI assistant will cross-reference live cleaning van GPS positions across Edmonton, service type requirements (Standard, Deep, Move-Out Cleaning), van supplies, and compute fuel-efficient stop sequences between your 2 vans.
+                The AI assistant will cross-reference live cleaning cleaner home hubs across Edmonton, service type requirements (Standard, Deep, Move-Out Cleaning), travel times, and compute fuel-efficient stop sequences in kilometers across your 15 cleaning units.
               </p>
 
               <button
@@ -313,7 +313,7 @@ export const AiDispatchModal: React.FC<AiDispatchModalProps> = ({
                     Recommended Ticket Assignments:
                   </h4>
                   <span className="text-[11px] text-slate-500">
-                    Calculated for zero deadhead miles
+                    Calculated for zero deadhead kilometers
                   </span>
                 </div>
 

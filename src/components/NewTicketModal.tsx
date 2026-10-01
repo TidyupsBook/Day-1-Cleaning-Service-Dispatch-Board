@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { EquipmentType, ServiceTicket, UrgencyLevel } from '../types/dispatch';
 import { parseLeadOrRawText, ParsedLeadData } from '../services/leadTextParser';
+import { AddressAutocompleteInput } from './AddressAutocompleteInput';
 import { 
   Flame, 
   Clock, 
@@ -1331,25 +1332,48 @@ export const NewTicketModal: React.FC<NewTicketModalProps> = ({
             </div>
           </div>
 
-          {/* Location Picker */}
-          <div>
-            <label htmlFor="ticket-preset-location" className="font-semibold text-slate-700 mb-1 block">Service Address / Corridor</label>
-            <select
-              id="ticket-preset-location"
-              value={selectedPresetIdx}
-              onChange={(e) => {
-                const idx = Number(e.target.value);
-                setSelectedPresetIdx(idx);
-                setCustomAddress(EDMONTON_PRESET_LOCATIONS[idx].address);
+          {/* Location Picker & Address Auto-Complete */}
+          <div className="space-y-2">
+            <label htmlFor="ticket-preset-location" className="font-semibold text-slate-700 block text-xs">
+              Service Address (Live Auto-Complete or Quick Corridor) *
+            </label>
+            
+            <AddressAutocompleteInput
+              id="ticket-custom-address"
+              value={customAddress}
+              onChange={(newAddr) => {
+                setCustomAddress(newAddr);
+                // Auto-match corridor if matches any known preset
+                const lower = newAddr.toLowerCase();
+                const matchedIdx = EDMONTON_PRESET_LOCATIONS.findIndex(
+                  (p) => lower.includes(p.city.toLowerCase()) || lower.includes(p.address.toLowerCase().slice(0, 10))
+                );
+                if (matchedIdx !== -1) {
+                  setSelectedPresetIdx(matchedIdx);
+                }
               }}
-              className="w-full min-h-[44px] px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white mb-1.5"
-            >
-              {EDMONTON_PRESET_LOCATIONS.map((loc, i) => (
-                <option key={i} value={i}>
-                  {loc.city}: {loc.address}
-                </option>
-              ))}
-            </select>
+              placeholder="Search Edmonton street address, postal code, or condo..."
+            />
+
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider shrink-0">Or Quick Select:</span>
+              <select
+                id="ticket-preset-location"
+                value={selectedPresetIdx}
+                onChange={(e) => {
+                  const idx = Number(e.target.value);
+                  setSelectedPresetIdx(idx);
+                  setCustomAddress(EDMONTON_PRESET_LOCATIONS[idx].address);
+                }}
+                className="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 text-xs focus:outline-none focus:border-blue-500 focus:bg-white"
+              >
+                {EDMONTON_PRESET_LOCATIONS.map((loc, i) => (
+                  <option key={i} value={i}>
+                    {loc.city}: {loc.address}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           {/* Cleaning Service Type & Property Details */}

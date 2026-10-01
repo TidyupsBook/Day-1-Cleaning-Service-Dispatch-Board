@@ -290,7 +290,7 @@ export const DispatchKanban: React.FC<DispatchKanbanProps> = ({
                 activeTab === 'BOARD' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-700 hover:text-slate-950'
               }`}
             >
-              2 Cleaning Vans (Crews)
+              All 15 Cleaning Units (Hubs)
             </button>
             <button
               id="tab-queue"
@@ -611,8 +611,10 @@ export const DispatchKanban: React.FC<DispatchKanbanProps> = ({
 
               const metrics = tech.routeMetrics || {
                 totalDistanceMiles: 0,
+                totalDistanceKm: 0,
                 totalDriveMinutes: 0,
                 estimatedFuelGallons: 0,
+                estimatedFuelLiters: 0,
                 stopCount: techTickets.length,
               };
 
@@ -649,7 +651,7 @@ export const DispatchKanban: React.FC<DispatchKanbanProps> = ({
 
                     <div className="flex items-center gap-2 shrink-0 text-xs font-mono">
                       <span className="text-slate-700 font-bold">{techTickets.length} stops</span>
-                      <span className="text-blue-600 font-semibold">{Math.round(metrics.totalDistanceMiles)} mi</span>
+                      <span className="text-blue-600 font-semibold">{Math.round(metrics.totalDistanceKm ?? (metrics.totalDistanceMiles * 1.60934))} km</span>
                       <span className="text-slate-500 text-[11px] hidden sm:inline">{capacityPercent}% cap</span>
                       <button
                         onClick={(e) => { e.stopPropagation(); onOpenManifest(tech); }}
@@ -734,10 +736,10 @@ export const DispatchKanban: React.FC<DispatchKanbanProps> = ({
                     <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                       <span className="text-blue-700 font-bold flex items-center gap-1">
                         <Route className="w-3.5 h-3.5" />
-                        {metrics.totalDistanceMiles} mi
+                        {metrics.totalDistanceKm ?? Math.round(metrics.totalDistanceMiles * 1.60934 * 10) / 10} km
                       </span>
                       <span className="text-slate-600">⏱️ {metrics.totalDriveMinutes}m drive</span>
-                      <span className="text-emerald-700 font-semibold hidden xs:inline">⛽ ~{metrics.estimatedFuelGallons} gal</span>
+                      <span className="text-emerald-700 font-semibold hidden xs:inline">⛽ ~{metrics.estimatedFuelLiters ?? Math.round(metrics.estimatedFuelGallons * 3.78541 * 10) / 10} L</span>
                     </div>
 
                     <div className="flex items-center gap-1.5 ml-auto sm:ml-0">

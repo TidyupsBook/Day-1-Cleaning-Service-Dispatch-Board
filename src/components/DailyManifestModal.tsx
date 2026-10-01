@@ -85,11 +85,19 @@ export const DailyManifestModal: React.FC<DailyManifestModalProps> = ({
     totalDistanceMiles: Number(
       technician?.routeMetrics?.totalDistanceMiles || (assignedTickets.length > 0 ? 54.5 : 0)
     ),
+    totalDistanceKm: Number(
+      technician?.routeMetrics?.totalDistanceKm ||
+        Math.round((technician?.routeMetrics?.totalDistanceMiles || (assignedTickets.length > 0 ? 54.5 : 0)) * 1.60934 * 10) / 10
+    ),
     totalDriveMinutes: Number(
       technician?.routeMetrics?.totalDriveMinutes || (assignedTickets.length > 0 ? 72 : 0)
     ),
     estimatedFuelGallons: Number(
       technician?.routeMetrics?.estimatedFuelGallons || (assignedTickets.length > 0 ? 3.8 : 0)
+    ),
+    estimatedFuelLiters: Number(
+      technician?.routeMetrics?.estimatedFuelLiters ||
+        Math.round((technician?.routeMetrics?.estimatedFuelGallons || (assignedTickets.length > 0 ? 3.8 : 0)) * 3.78541 * 10) / 10
     ),
     stopCount: assignedTickets.length,
   };
@@ -117,11 +125,19 @@ export const DailyManifestModal: React.FC<DailyManifestModalProps> = ({
         totalDistanceMiles: Number(
           technician.routeMetrics?.totalDistanceMiles || (assignedTickets.length > 0 ? 54.5 : 0)
         ),
+        totalDistanceKm: Number(
+          technician.routeMetrics?.totalDistanceKm ||
+            Math.round((technician.routeMetrics?.totalDistanceMiles || (assignedTickets.length > 0 ? 54.5 : 0)) * 1.60934 * 10) / 10
+        ),
         totalDriveMinutes: Number(
           technician.routeMetrics?.totalDriveMinutes || (assignedTickets.length > 0 ? 72 : 0)
         ),
         estimatedFuelGallons: Number(
           technician.routeMetrics?.estimatedFuelGallons || (assignedTickets.length > 0 ? 3.8 : 0)
+        ),
+        estimatedFuelLiters: Number(
+          technician.routeMetrics?.estimatedFuelLiters ||
+            Math.round((technician.routeMetrics?.estimatedFuelGallons || (assignedTickets.length > 0 ? 3.8 : 0)) * 3.78541 * 10) / 10
         ),
         stopCount: assignedTickets.length,
       },
@@ -375,7 +391,7 @@ export const DailyManifestModal: React.FC<DailyManifestModalProps> = ({
             <div className="grid grid-cols-4 gap-2 mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs">
               <div>
                 <div className="text-[10px] text-slate-500">Total Route Distance</div>
-                <div className="font-mono font-bold text-slate-900">{metrics.totalDistanceMiles} Miles</div>
+                <div className="font-mono font-bold text-slate-900">{metrics.totalDistanceKm} Kilometers</div>
               </div>
               <div>
                 <div className="text-[10px] text-slate-500">Estimated Drive Time</div>
@@ -383,7 +399,7 @@ export const DailyManifestModal: React.FC<DailyManifestModalProps> = ({
               </div>
               <div>
                 <div className="text-[10px] text-slate-500">Fuel Allocation</div>
-                <div className="font-mono font-bold text-emerald-700">~{metrics.estimatedFuelGallons} Gallons</div>
+                <div className="font-mono font-bold text-emerald-700">~{metrics.estimatedFuelLiters} Liters</div>
               </div>
               <div>
                 <div className="text-[10px] text-slate-500">Service Stops</div>

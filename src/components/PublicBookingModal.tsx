@@ -15,6 +15,7 @@ import {
   FileCheck
 } from 'lucide-react';
 import { ServiceTicket } from '../types/dispatch';
+import { AddressAutocompleteInput } from './AddressAutocompleteInput';
 
 interface PublicBookingModalProps {
   isOpen: boolean;
@@ -260,18 +261,23 @@ export const PublicBookingModal: React.FC<PublicBookingModalProps> = ({
                   </div>
 
                   <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Street Address *</label>
-                    <div className="relative">
-                      <MapPin className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
-                      <input
-                        type="text"
-                        required
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        placeholder="e.g. 10405 Jasper Ave NW, Apt 402"
-                        className="w-full pl-9 pr-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-emerald-500"
-                      />
-                    </div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">Street Address (Auto-Complete) *</label>
+                    <AddressAutocompleteInput
+                      required
+                      value={address}
+                      onChange={(newAddr) => {
+                        setAddress(newAddr);
+                        // Auto-populate city if recognized
+                        const lower = newAddr.toLowerCase();
+                        if (lower.includes('st. albert') || lower.includes('st albert')) setCity('St. Albert');
+                        else if (lower.includes('sherwood park')) setCity('Sherwood Park');
+                        else if (lower.includes('leduc')) setCity('Leduc');
+                        else if (lower.includes('spruce grove')) setCity('Spruce Grove');
+                        else if (lower.includes('fort saskatchewan')) setCity('Fort Saskatchewan');
+                        else if (lower.includes('edmonton')) setCity('Edmonton');
+                      }}
+                      placeholder="e.g. 10405 Jasper Ave NW, Apt 402"
+                    />
                   </div>
 
                   <div>

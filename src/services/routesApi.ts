@@ -87,8 +87,10 @@ export async function computeTechnicianRoute(
   if (assignedTickets.length === 0) {
     return {
       totalDistanceMiles: 0,
+      totalDistanceKm: 0,
       totalDriveMinutes: 0,
       estimatedFuelGallons: 0,
+      estimatedFuelLiters: 0,
       stopCount: 0,
       encodedPolyline: '',
       legs: [],
@@ -149,8 +151,10 @@ export async function computeTechnicianRoute(
     const durationSeconds = parseInt(totalDurationStr.replace('s', ''), 10) || 0;
 
     const totalDistanceMiles = Math.round((totalMeters / 1609.34) * 10) / 10;
+    const totalDistanceKm = Math.round((totalMeters / 1000) * 10) / 10;
     const totalDriveMinutes = Math.round(durationSeconds / 60);
-    // Standard mobile cleaning service van (Ford Transit / Sprinter 2500) gets ~14.5 MPG in regional urban service
+    // Canadian mobile cleaning service van gets ~16.2 L/100km (~14.5 MPG)
+    const estimatedFuelLiters = Math.round(((totalDistanceKm * 16.2) / 100) * 10) / 10;
     const estimatedFuelGallons = Math.round((totalDistanceMiles / 14.5) * 10) / 10;
 
     const legs = (route.legs || []).map((leg: any, idx: number) => {
@@ -166,8 +170,10 @@ export async function computeTechnicianRoute(
 
     return {
       totalDistanceMiles,
+      totalDistanceKm,
       totalDriveMinutes,
       estimatedFuelGallons,
+      estimatedFuelLiters,
       stopCount: assignedTickets.length,
       encodedPolyline: route.polyline?.encodedPolyline || '',
       legs,
@@ -192,7 +198,7 @@ function fallbackCalculateRoute(
     technician.depotLocation,
   ];
 
-  let totalMiles = 0;
+  let totalKm = 0;
   const legs = [];
 
   for (let i = 0; i < points.length - 1; i++) {
@@ -207,26 +213,31 @@ function fallbackCalculateRoute(
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const legMiles = Math.round(3958.8 * c * 1.28 * 10) / 10;
-    const legSeconds = Math.round((legMiles / 32) * 3600);
+    // 6371 km radius with 1.28 urban winding factor
+    const legKm = Math.round(6371 * c * 1.28 * 10) / 10;
+    const legSeconds = Math.round((legKm / 50) * 3600); // 50 km/h average Edmonton urban speed
 
-    totalMiles += legMiles;
+    totalKm += legKm;
     legs.push({
-      distanceMeters: Math.round(legMiles * 1609.34),
+      distanceMeters: Math.round(legKm * 1000),
       durationSeconds: legSeconds,
       fromAddress: p1.address || 'Origin',
       toAddress: p2.address || 'Destination',
     });
   }
 
-  const totalDistanceMiles = Math.round(totalMiles * 10) / 10;
-  const totalDriveMinutes = Math.round((totalMiles / 30) * 60);
+  const totalDistanceKm = Math.round(totalKm * 10) / 10;
+  const totalDistanceMiles = Math.round((totalDistanceKm * 0.621371) * 10) / 10;
+  const totalDriveMinutes = Math.round((totalDistanceKm / 48) * 60);
+  const estimatedFuelLiters = Math.round(((totalDistanceKm * 16.2) / 100) * 10) / 10;
   const estimatedFuelGallons = Math.round((totalDistanceMiles / 14.5) * 10) / 10;
 
   return {
     totalDistanceMiles,
+    totalDistanceKm,
     totalDriveMinutes,
     estimatedFuelGallons,
+    estimatedFuelLiters,
     stopCount: assignedTickets.length,
     encodedPolyline: '',
     legs,

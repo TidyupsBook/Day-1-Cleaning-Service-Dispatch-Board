@@ -858,7 +858,7 @@ export const TerritoryMap: React.FC<TerritoryMapProps> = ({
               <span className="font-bold whitespace-nowrap">{selectedTech.vanNumber}</span>
               <span className="text-slate-600 truncate hidden xs:inline">({selectedTech.name})</span>
               <span className="text-blue-600 font-mono font-semibold whitespace-nowrap text-[11px] sm:text-xs">
-                {selectedTech.assignedTicketIds.length} stops • {selectedTech.routeMetrics?.totalDistanceMiles || 0} mi
+                {selectedTech.assignedTicketIds.length} stops • {selectedTech.routeMetrics?.totalDistanceKm ?? Math.round((selectedTech.routeMetrics?.totalDistanceMiles || 0) * 1.60934 * 10) / 10} km
               </span>
             </div>
             <button

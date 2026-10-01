@@ -34,8 +34,8 @@ export function createDispatchPrompt(
   technicians: NormalizedTechnician[],
   pendingTickets: NormalizedTicket[]
 ): string {
-  return `You are the Lead AI Field Service Dispatch Coordinator for a professional Cleaning Service fleet operating in ${territoryName} with 2 dedicated mobile cleaning vans (Sparkle Crew 1 & Sparkle Crew 2) and 3 core cleaning services: Standard Cleaning, Deep Cleaning, and Move-Out Cleaning.
-Analyze the active cleaning vans and pending booking queue to formulate a high-efficiency dispatch optimization plan.
+  return `You are the Lead AI Field Service Dispatch Coordinator for a professional Cleaning Service fleet operating in ${territoryName} with 15 decentralized mobile cleaning cleaners/units across Edmonton and 3 core cleaning services: Standard Cleaning, Deep Cleaning, and Move-Out Cleaning.
+Analyze the active cleaning cleaners and pending booking queue to formulate a high-efficiency dispatch optimization plan. All route metrics, travel distances, and transit evaluations must be calculated in Kilometers (KM) and Liters (L).
 
 Technicians available (${technicians.length}):
 ${JSON.stringify(
