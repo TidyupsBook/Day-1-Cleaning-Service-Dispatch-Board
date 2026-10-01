@@ -10,6 +10,7 @@ export interface AppPersistentStore {
   tickets: any[];
   cleanerOverrides: Record<string, any>;
   scheduledVisits: any[];
+  unscheduledJobs?: any[];
   quotes: any[];
   invoices: any[];
   chatMessages?: any[];

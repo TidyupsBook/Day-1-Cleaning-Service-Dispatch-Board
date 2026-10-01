@@ -19,6 +19,12 @@ import { JobberSyncModal } from './components/JobberSyncModal';
 import { PublicBookingModal } from './components/PublicBookingModal';
 import { QuoModal } from './components/QuoModal';
 import { ScheduledJobsView, ScheduledJobItem } from './components/ScheduledJobsView';
+import { QuickLinksModal } from './components/QuickLinksModal';
+import { 
+  generateHistoricAndFutureVisits, 
+  INITIAL_UNSCHEDULED_JOBS, 
+  UnscheduledJobItem 
+} from './data/jobberCalendarData';
 import { QuotesView } from './components/QuotesView';
 import { InvoicesView } from './components/InvoicesView';
 import { LegalPagesView, LegalPageType } from './components/LegalPagesView';
@@ -54,6 +60,7 @@ import {
   Calendar,
   FileCheck,
   Receipt,
+  AlertCircle,
   Map as MapIcon,
   HelpCircle,
   ShieldCheck,
@@ -106,11 +113,14 @@ export function App() {
   // Dedicated Top Bar Navigation Tabs: 'MAP' | 'CUSTOMER_PORTAL' | 'SCHEDULED_JOBS' | 'QUOTES' | 'INVOICES' | 'LEGAL'
   const [activeTopView, setActiveTopView] = useState<'MAP' | 'CUSTOMER_PORTAL' | 'SCHEDULED_JOBS' | 'QUOTES' | 'INVOICES' | 'LEGAL'>('MAP');
   const [activeLegalTab, setActiveLegalTab] = useState<LegalPageType>('SUPPORT');
-  const [scheduledJobsList, setScheduledJobsList] = useState<ScheduledJobItem[]>([]);
+  const [scheduledJobsList, setScheduledJobsList] = useState<ScheduledJobItem[]>(() => generateHistoricAndFutureVisits());
+  const [unscheduledJobsList, setUnscheduledJobsList] = useState<UnscheduledJobItem[]>(() => INITIAL_UNSCHEDULED_JOBS);
+  const [isQuickLinksOpen, setIsQuickLinksOpen] = useState<boolean>(false);
+  const [scheduledJobsSubTab, setScheduledJobsSubTab] = useState<'CALENDAR' | 'LIST' | 'UNSCHEDULED'>('CALENDAR');
   const [quotesList, setQuotesList] = useState<JobberQuote[]>([]);
   const [invoicesList, setInvoicesList] = useState<JobberInvoice[]>([]);
 
-  // Load persistent store on mount & handle direct URL deep linking (/book, /support, /quotes, /invoices)
+  // Load persistent store on mount & handle direct URL deep linking (/book, /support, /quotes, /invoices, /unscheduled)
   useEffect(() => {
     // Check initial path or hash
     if (typeof window !== 'undefined') {
@@ -124,6 +134,10 @@ export function App() {
         setActiveTopView('INVOICES');
       } else if (path === '/jobs' || hash === '#jobs') {
         setActiveTopView('SCHEDULED_JOBS');
+        setScheduledJobsSubTab('CALENDAR');
+      } else if (path === '/unscheduled' || hash === '#unscheduled') {
+        setActiveTopView('SCHEDULED_JOBS');
+        setScheduledJobsSubTab('UNSCHEDULED');
       } else if (path === '/support' || path === '/t&c' || path === '/privacy-policy') {
         if (path === '/t&c') setActiveLegalTab('TERMS');
         else if (path === '/privacy-policy') setActiveLegalTab('PRIVACY');
@@ -146,16 +160,20 @@ export function App() {
                 clientName: v.clientName || 'Jobber Client',
                 clientPhone: v.clientPhone || '(780) 555-0100',
                 serviceAddress: v.serviceAddress || '10405 Jasper Ave NW, Edmonton, AB',
-                lat: 53.5412 + (idx % 3) * 0.02 - 0.01,
-                lng: -113.4988 + (idx % 4) * 0.03 - 0.015,
+                lat: v.lat || 53.5412 + (idx % 3) * 0.02 - 0.01,
+                lng: v.lng || -113.4988 + (idx % 4) * 0.03 - 0.015,
                 startAt: v.startAt || new Date().toISOString(),
                 endAt: v.endAt || new Date(Date.now() + 3600000).toISOString(),
                 assignedCleaners: v.assignedCleaners || ['Melissa Clarke', 'Joel Mbatchou'],
                 serviceType: v.serviceType || 'Standard Cleaning',
                 status: v.status || 'SCHEDULED',
                 jobberWebUri: v.jobberWebUri || 'https://secure.getjobber.com',
+                notes: v.notes,
               }))
             );
+          }
+          if (data.unscheduledJobs && data.unscheduledJobs.length > 0) {
+            setUnscheduledJobsList(data.unscheduledJobs);
           }
           if (data.quotes && data.quotes.length > 0) setQuotesList(data.quotes);
           if (data.invoices && data.invoices.length > 0) setInvoicesList(data.invoices);
@@ -705,6 +723,24 @@ export function App() {
                 </button>
               )}
 
+              {/* Quick Links Button */}
+              {currentUser.role !== 'CLEANER' && (
+                <button
+                  id="nav-quick-links"
+                  onClick={() => setIsQuickLinksOpen(true)}
+                  className="min-h-[34px] px-3 py-1 rounded-lg text-xs font-extrabold flex items-center gap-1.5 transition-all cursor-pointer bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-xs active:scale-95"
+                  title="Quick Links & Jobber Shortcuts"
+                >
+                  <Zap className="w-3.5 h-3.5 fill-white" />
+                  <span>Quick Links</span>
+                  {unscheduledJobsList.length > 0 && (
+                    <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-white text-orange-700 font-bold">
+                      {unscheduledJobsList.length}
+                    </span>
+                  )}
+                </button>
+              )}
+
               <button
                 id="nav-tab-customer-portal"
                 onClick={() => setActiveTopView('CUSTOMER_PORTAL')}
@@ -720,25 +756,54 @@ export function App() {
               </button>
 
               {currentUser.role !== 'CLEANER' && (
-                <button
-                  id="nav-tab-jobs"
-                  onClick={() => setActiveTopView('SCHEDULED_JOBS')}
-                  className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                    activeTopView === 'SCHEDULED_JOBS'
-                      ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                  }`}
-                >
-                  <Calendar className={`w-3.5 h-3.5 ${activeTopView === 'SCHEDULED_JOBS' ? 'text-white' : 'text-purple-600'}`} />
-                  <span>Scheduled Jobs</span>
-                  {scheduledJobsList.length > 0 && (
-                    <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
-                      activeTopView === 'SCHEDULED_JOBS' ? 'bg-white/20 text-white' : 'bg-pink-100 text-pink-700'
-                    }`}>
-                      {scheduledJobsList.length}
-                    </span>
-                  )}
-                </button>
+                <>
+                  <button
+                    id="nav-tab-jobs"
+                    onClick={() => {
+                      setActiveTopView('SCHEDULED_JOBS');
+                      setScheduledJobsSubTab('CALENDAR');
+                    }}
+                    className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                      activeTopView === 'SCHEDULED_JOBS' && scheduledJobsSubTab === 'CALENDAR'
+                        ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                    }`}
+                  >
+                    <Calendar className={`w-3.5 h-3.5 ${activeTopView === 'SCHEDULED_JOBS' && scheduledJobsSubTab === 'CALENDAR' ? 'text-white' : 'text-purple-600'}`} />
+                    <span>Scheduled Jobs</span>
+                    {scheduledJobsList.length > 0 && (
+                      <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
+                        activeTopView === 'SCHEDULED_JOBS' && scheduledJobsSubTab === 'CALENDAR' ? 'bg-white/20 text-white' : 'bg-pink-100 text-pink-700'
+                      }`}>
+                        {scheduledJobsList.length}
+                      </span>
+                    )}
+                  </button>
+
+                  <button
+                    id="nav-tab-unscheduled"
+                    onClick={() => {
+                      setActiveTopView('SCHEDULED_JOBS');
+                      setScheduledJobsSubTab('UNSCHEDULED');
+                    }}
+                    className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                      activeTopView === 'SCHEDULED_JOBS' && scheduledJobsSubTab === 'UNSCHEDULED'
+                        ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                    }`}
+                    title="Unscheduled Jobs from Jobber"
+                  >
+                    <AlertCircle className={`w-3.5 h-3.5 ${activeTopView === 'SCHEDULED_JOBS' && scheduledJobsSubTab === 'UNSCHEDULED' ? 'text-white' : 'text-amber-500'}`} />
+                    <span>Unscheduled</span>
+                    {unscheduledJobsList.length > 0 && (
+                      <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
+                        activeTopView === 'SCHEDULED_JOBS' && scheduledJobsSubTab === 'UNSCHEDULED' ? 'bg-white/20 text-white' : 'bg-amber-100 text-amber-800'
+                      }`}>
+                        {unscheduledJobsList.length}
+                      </span>
+                    )}
+                  </button>
+                </>
               )}
 
               {/* Quotes Tab - Accessible to Owner and Dispatcher */}
@@ -981,29 +1046,41 @@ export function App() {
           <ScheduledJobsView
             jobs={scheduledJobsList}
             technicians={technicians}
-            onRefreshJobs={() => {
-              fetch('/api/jobber/sync-calendar', { method: 'POST' })
+            unscheduledJobs={unscheduledJobsList}
+            initialTab={scheduledJobsSubTab}
+            onUpdateJobAssignment={(jobId, assignedCleaners) => {
+              setScheduledJobsList((prev) =>
+                prev.map((job) =>
+                  job.id === jobId ? { ...job, assignedCleaners } : job
+                )
+              );
+            }}
+            onApproveUnscheduledJob={(jobId) => {
+              setUnscheduledJobsList((prev) =>
+                prev.map((j) => (j.id === jobId ? { ...j, status: 'APPROVED' } : j))
+              );
+            }}
+            onScheduleUnscheduledJob={(params) => {
+              setUnscheduledJobsList((prev) =>
+                prev.map((j) => (j.id === params.jobId ? { ...j, status: 'SCHEDULED' } : j))
+              );
+              // Trigger reload from store
+              fetch('/api/store')
                 .then((r) => r.json())
                 .then((data) => {
-                  if (data.visits) {
-                    setScheduledJobsList(
-                      data.visits.map((v: any, idx: number) => ({
-                        id: v.id || `visit-${idx}`,
-                        visitNumber: v.visitNumber || `VISIT-${4000 + idx}`,
-                        title: v.title || 'Cleaning Service Visit',
-                        clientName: v.clientName || 'Jobber Client',
-                        clientPhone: v.clientPhone || '(780) 555-0100',
-                        serviceAddress: v.serviceAddress || '10405 Jasper Ave NW, Edmonton, AB',
-                        lat: 53.5412 + (idx % 3) * 0.02 - 0.01,
-                        lng: -113.4988 + (idx % 4) * 0.03 - 0.015,
-                        startAt: v.startAt || new Date().toISOString(),
-                        endAt: v.endAt || new Date(Date.now() + 3600000).toISOString(),
-                        assignedCleaners: v.assignedCleaners || ['Melissa Clarke', 'Joel Mbatchou'],
-                        serviceType: v.serviceType || 'Standard Cleaning',
-                        status: v.status || 'SCHEDULED',
-                        jobberWebUri: v.jobberWebUri || 'https://secure.getjobber.com',
-                      }))
-                    );
+                  if (data?.scheduledVisits) setScheduledJobsList(data.scheduledVisits);
+                  if (data?.unscheduledJobs) setUnscheduledJobsList(data.unscheduledJobs);
+                });
+            }}
+            onRefreshJobs={() => {
+              fetch('/api/store')
+                .then((r) => r.json())
+                .then((data) => {
+                  if (data?.scheduledVisits && data.scheduledVisits.length > 0) {
+                    setScheduledJobsList(data.scheduledVisits);
+                  }
+                  if (data?.unscheduledJobs && data.unscheduledJobs.length > 0) {
+                    setUnscheduledJobsList(data.unscheduledJobs);
                   }
                 });
             }}
@@ -1368,6 +1445,23 @@ export function App() {
         <QuoModal
           isOpen={isQuoModalOpen}
           onClose={() => setIsQuoModalOpen(false)}
+        />
+
+        {/* Quick Links & Shortcuts Modal */}
+        <QuickLinksModal
+          isOpen={isQuickLinksOpen}
+          onClose={() => setIsQuickLinksOpen(false)}
+          onNavigateTo={(view, subTab) => {
+            setActiveTopView(view);
+            if (subTab && (subTab === 'CALENDAR' || subTab === 'LIST' || subTab === 'UNSCHEDULED')) {
+              setScheduledJobsSubTab(subTab as any);
+            }
+          }}
+          onOpenNewTicket={() => setIsNewTicketModalOpen(true)}
+          onOpenTeamChat={() => setIsChatOpen(true)}
+          onOpenQuoPhone={() => setIsQuoModalOpen(true)}
+          scheduledJobsCount={scheduledJobsList.length}
+          unscheduledJobsCount={unscheduledJobsList.length}
         />
 
         {/* Real-Time Team Internal Messaging Drawer */}

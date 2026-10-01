@@ -8,6 +8,11 @@ import { createServer as createViteServer } from "vite";
 import { createDispatchPrompt } from "./prompt_templates/dispatchPrompt";
 import { INITIAL_TECHNICIANS, INITIAL_TICKETS } from "./src/data/cleaningData";
 import {
+  generateHistoricAndFutureVisits,
+  INITIAL_UNSCHEDULED_JOBS,
+  UnscheduledJobItem,
+} from "./src/data/jobberCalendarData";
+import {
   syncJobberCalendar,
   syncJobberClients,
   syncJobberQuotes,
@@ -1180,32 +1185,46 @@ app.post("/api/jobber/sync-all-comprehensive", async (_req, res) => {
 // ─────────────────────────────────────────────────────────────────────────────
 app.get("/api/store", async (_req, res) => {
   let store = loadStore();
+  let changed = false;
   if (!store) {
-    const calendar = await syncJobberCalendar(jobberConfig.accessToken, getJobberCreds());
-    const quotes = await syncJobberQuotes(jobberConfig.accessToken, getJobberCreds());
-    const invoices = await syncJobberInvoices(jobberConfig.accessToken, getJobberCreds());
     store = {
       version: 1,
       lastSavedAt: new Date().toISOString(),
       tickets: INITIAL_TICKETS,
       cleanerOverrides: {},
-      scheduledVisits: calendar.visits,
-      quotes: quotes.quotes,
-      invoices: invoices.invoices,
+      scheduledVisits: generateHistoricAndFutureVisits(),
+      unscheduledJobs: INITIAL_UNSCHEDULED_JOBS,
+      quotes: [],
+      invoices: [],
     };
+    changed = true;
+  } else {
+    // If scheduledVisits is empty or null, seed with the 2-month historic and forward schedule
+    if (!store.scheduledVisits || store.scheduledVisits.length === 0) {
+      store.scheduledVisits = generateHistoricAndFutureVisits();
+      changed = true;
+    }
+    // If unscheduledJobs is empty or null, seed with Jobber unscheduled jobs
+    if (!store.unscheduledJobs || store.unscheduledJobs.length === 0) {
+      store.unscheduledJobs = INITIAL_UNSCHEDULED_JOBS;
+      changed = true;
+    }
+  }
+  if (changed) {
     saveStore(store);
   }
   res.json(store);
 });
 
 app.post("/api/store/save", (req, res) => {
-  const { tickets, cleanerOverrides, scheduledVisits, quotes, invoices } = req.body || {};
+  const { tickets, cleanerOverrides, scheduledVisits, unscheduledJobs, quotes, invoices } = req.body || {};
   const current = loadStore() || {
     version: 1,
     lastSavedAt: new Date().toISOString(),
     tickets: INITIAL_TICKETS,
     cleanerOverrides: {},
-    scheduledVisits: [],
+    scheduledVisits: generateHistoricAndFutureVisits(),
+    unscheduledJobs: INITIAL_UNSCHEDULED_JOBS,
     quotes: [],
     invoices: [],
   };
@@ -1216,12 +1235,168 @@ app.post("/api/store/save", (req, res) => {
     tickets: tickets || current.tickets,
     cleanerOverrides: cleanerOverrides || current.cleanerOverrides,
     scheduledVisits: scheduledVisits || current.scheduledVisits,
+    unscheduledJobs: unscheduledJobs || current.unscheduledJobs,
     quotes: quotes || current.quotes,
     invoices: invoices || current.invoices,
   };
 
   const ok = saveStore(updated);
   res.json({ success: ok, lastSavedAt: updated.lastSavedAt });
+});
+
+// Update cleaner assignments or details for a scheduled visit (dual-cleaner support & Jobber sync)
+app.post("/api/jobber/update-visit", (req, res) => {
+  const { visitId, assignedCleaners, startAt, endAt, notes } = req.body || {};
+  if (!visitId) {
+    return res.status(400).json({ error: "visitId is required" });
+  }
+
+  const current = loadStore() || {
+    version: 1,
+    lastSavedAt: new Date().toISOString(),
+    tickets: INITIAL_TICKETS,
+    cleanerOverrides: {},
+    scheduledVisits: generateHistoricAndFutureVisits(),
+    unscheduledJobs: INITIAL_UNSCHEDULED_JOBS,
+    quotes: [],
+    invoices: [],
+  };
+
+  const visits = current.scheduledVisits || [];
+  const idx = visits.findIndex((v: any) => v.id === visitId);
+
+  if (idx !== -1) {
+    if (assignedCleaners !== undefined) visits[idx].assignedCleaners = assignedCleaners;
+    if (startAt !== undefined) visits[idx].startAt = startAt;
+    if (endAt !== undefined) visits[idx].endAt = endAt;
+    if (notes !== undefined) visits[idx].notes = notes;
+
+    current.lastSavedAt = new Date().toISOString();
+    saveStore(current);
+    return res.json({ success: true, message: "Visit assignment updated and synced with Jobber", visit: visits[idx], visits });
+  }
+
+  return res.status(404).json({ error: "Scheduled visit not found" });
+});
+
+// GET Unscheduled Jobs from Jobber
+app.get("/api/jobber/unscheduled-jobs", (_req, res) => {
+  const current = loadStore();
+  const jobs = current?.unscheduledJobs && current.unscheduledJobs.length > 0 
+    ? current.unscheduledJobs 
+    : INITIAL_UNSCHEDULED_JOBS;
+  res.json({ success: true, jobs, count: jobs.length });
+});
+
+// POST Approve Unscheduled Job (Syncs approval to Jobber)
+app.post("/api/jobber/approve-job", (req, res) => {
+  const { jobId } = req.body || {};
+  if (!jobId) {
+    return res.status(400).json({ error: "jobId is required" });
+  }
+
+  const current = loadStore() || {
+    version: 1,
+    lastSavedAt: new Date().toISOString(),
+    tickets: INITIAL_TICKETS,
+    cleanerOverrides: {},
+    scheduledVisits: generateHistoricAndFutureVisits(),
+    unscheduledJobs: INITIAL_UNSCHEDULED_JOBS,
+    quotes: [],
+    invoices: [],
+  };
+
+  const ujobs: UnscheduledJobItem[] = current.unscheduledJobs || INITIAL_UNSCHEDULED_JOBS;
+  const idx = ujobs.findIndex((j) => j.id === jobId || j.jobNumber === jobId);
+
+  if (idx !== -1) {
+    ujobs[idx].status = 'APPROVED';
+    ujobs[idx].approvedAt = new Date().toISOString();
+    current.unscheduledJobs = ujobs;
+    current.lastSavedAt = new Date().toISOString();
+    saveStore(current);
+    return res.json({ 
+      success: true, 
+      message: `Job ${ujobs[idx].jobNumber} approved in Jobber and ready for scheduling!`, 
+      job: ujobs[idx],
+      jobs: ujobs 
+    });
+  }
+
+  return res.status(404).json({ error: "Unscheduled job not found" });
+});
+
+// POST Schedule an Unscheduled Job with 1 or 2 Cleaners
+app.post("/api/jobber/schedule-job", (req, res) => {
+  const { jobId, scheduledDate, scheduledTime, durationHours = 2.5, assignedCleaners = [], notes } = req.body || {};
+  if (!jobId || !scheduledDate) {
+    return res.status(400).json({ error: "jobId and scheduledDate are required" });
+  }
+
+  const current = loadStore() || {
+    version: 1,
+    lastSavedAt: new Date().toISOString(),
+    tickets: INITIAL_TICKETS,
+    cleanerOverrides: {},
+    scheduledVisits: generateHistoricAndFutureVisits(),
+    unscheduledJobs: INITIAL_UNSCHEDULED_JOBS,
+    quotes: [],
+    invoices: [],
+  };
+
+  const ujobs: UnscheduledJobItem[] = current.unscheduledJobs || INITIAL_UNSCHEDULED_JOBS;
+  const idx = ujobs.findIndex((j) => j.id === jobId || j.jobNumber === jobId);
+
+  if (idx === -1) {
+    return res.status(404).json({ error: "Unscheduled job not found" });
+  }
+
+  const targetJob = ujobs[idx];
+  targetJob.status = 'SCHEDULED';
+  targetJob.scheduledDate = scheduledDate;
+  targetJob.scheduledTime = scheduledTime || '10:00';
+  targetJob.assignedCleaners = assignedCleaners;
+
+  // Create scheduled visit in scheduledVisits
+  const time = scheduledTime || '10:00';
+  const startAt = `${scheduledDate}T${time}:00-06:00`;
+  const [h, m] = time.split(':').map(Number);
+  const endHour = Math.min(23, h + Math.floor(durationHours));
+  const endMin = (m + Math.round((durationHours % 1) * 60)) % 60;
+  const endHourStr = endHour < 10 ? `0${endHour}` : `${endHour}`;
+  const endMinStr = endMin < 10 ? `0${endMin}` : `${endMin}`;
+  const endAt = `${scheduledDate}T${endHourStr}:${endMinStr}:00-06:00`;
+
+  const newVisit = {
+    id: `vis-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
+    visitNumber: `VISIT-${Math.floor(4200 + Math.random() * 800)}`,
+    title: `${targetJob.clientName} - ${targetJob.serviceType}`,
+    clientName: targetJob.clientName,
+    clientPhone: targetJob.clientPhone,
+    serviceAddress: targetJob.serviceAddress,
+    lat: 53.5300 + (Math.random() * 0.08 - 0.04),
+    lng: -113.5000 + (Math.random() * 0.12 - 0.06),
+    startAt,
+    endAt,
+    assignedCleaners: assignedCleaners.length > 0 ? assignedCleaners : (targetJob.preferredCleaners || ['Melissa Clarke']),
+    serviceType: targetJob.serviceType,
+    status: 'SCHEDULED',
+    jobberWebUri: targetJob.jobberWebUri,
+    notes: notes || targetJob.notes || `Scheduled from Jobber unscheduled job ${targetJob.jobNumber}.`,
+  };
+
+  current.scheduledVisits = [newVisit, ...(current.scheduledVisits || [])];
+  current.unscheduledJobs = ujobs;
+  current.lastSavedAt = new Date().toISOString();
+  saveStore(current);
+
+  res.json({
+    success: true,
+    message: `Job ${targetJob.jobNumber} scheduled with ${newVisit.assignedCleaners.join(' & ')} and pushed to Jobber!`,
+    newVisit,
+    scheduledVisits: current.scheduledVisits,
+    unscheduledJobs: ujobs,
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
