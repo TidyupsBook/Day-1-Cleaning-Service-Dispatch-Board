@@ -119,21 +119,23 @@ export const ScheduledJobsView: React.FC<ScheduledJobsViewProps> = ({
       {/* Left List & Filters Column */}
       <div className="w-full md:w-96 lg:w-[420px] bg-white border-r border-slate-200 flex flex-col flex-shrink-0 h-full overflow-hidden">
         {/* Header */}
-        <div className="p-3.5 border-b border-slate-200 bg-slate-50 space-y-2.5 flex-shrink-0">
+        <div className="p-3.5 border-b border-slate-200 bg-white space-y-2.5 flex-shrink-0">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                <CalendarIcon className="w-4 h-4 text-blue-600" />
+              <h2 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                <span className="w-6 h-6 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-white shadow-xs">
+                  <CalendarIcon className="w-3.5 h-3.5 text-white" />
+                </span>
                 <span>Scheduled Jobs ({filteredJobs.length})</span>
               </h2>
-              <p className="text-[11px] text-slate-500">Synced two-way with Jobber visits</p>
+              <p className="text-[11px] text-slate-500">Live synchronized with Jobber calendar visits</p>
             </div>
             {onRefreshJobs && (
               <button
                 onClick={onRefreshJobs}
-                className="px-2.5 py-1 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors cursor-pointer"
+                className="px-2.5 py-1 text-xs font-bold text-white bg-gradient-to-r from-pink-600 to-purple-600 hover:opacity-95 rounded-lg transition-all shadow-xs cursor-pointer active:scale-95"
               >
-                Refresh
+                Sync Jobs
               </button>
             )}
           </div>

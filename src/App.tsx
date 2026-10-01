@@ -20,7 +20,9 @@ import { ScheduledJobsView, ScheduledJobItem } from './components/ScheduledJobsV
 import { QuotesView } from './components/QuotesView';
 import { InvoicesView } from './components/InvoicesView';
 import { LegalPagesView, LegalPageType } from './components/LegalPagesView';
+import { CustomerPortalView } from './components/CustomerPortalView';
 import { PWAInstallButton } from './components/PWAInstallButton';
+import { BookMyCleaningLogo } from './components/BookMyCleaningLogo';
 import { JobberQuote, JobberInvoice } from './services/jobberSyncModules';
 import { 
   Truck, 
@@ -70,15 +72,35 @@ export function App() {
   const [isPublicBookingModalOpen, setIsPublicBookingModalOpen] = useState<boolean>(false);
   const [isQuoModalOpen, setIsQuoModalOpen] = useState<boolean>(false);
 
-  // Dedicated Top Bar Navigation Tabs: 'MAP' | 'SCHEDULED_JOBS' | 'QUOTES' | 'INVOICES' | 'LEGAL'
-  const [activeTopView, setActiveTopView] = useState<'MAP' | 'SCHEDULED_JOBS' | 'QUOTES' | 'INVOICES' | 'LEGAL'>('MAP');
+  // Dedicated Top Bar Navigation Tabs: 'MAP' | 'CUSTOMER_PORTAL' | 'SCHEDULED_JOBS' | 'QUOTES' | 'INVOICES' | 'LEGAL'
+  const [activeTopView, setActiveTopView] = useState<'MAP' | 'CUSTOMER_PORTAL' | 'SCHEDULED_JOBS' | 'QUOTES' | 'INVOICES' | 'LEGAL'>('MAP');
   const [activeLegalTab, setActiveLegalTab] = useState<LegalPageType>('SUPPORT');
   const [scheduledJobsList, setScheduledJobsList] = useState<ScheduledJobItem[]>([]);
   const [quotesList, setQuotesList] = useState<JobberQuote[]>([]);
   const [invoicesList, setInvoicesList] = useState<JobberInvoice[]>([]);
 
-  // Load persistent store on mount
+  // Load persistent store on mount & handle direct URL deep linking (/book, /support, /quotes, /invoices)
   useEffect(() => {
+    // Check initial path or hash
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname.toLowerCase();
+      const hash = window.location.hash.toLowerCase();
+      if (path === '/book' || hash === '#book' || path.startsWith('/book/')) {
+        setActiveTopView('CUSTOMER_PORTAL');
+      } else if (path === '/quotes' || hash === '#quotes') {
+        setActiveTopView('QUOTES');
+      } else if (path === '/invoices' || hash === '#invoices') {
+        setActiveTopView('INVOICES');
+      } else if (path === '/jobs' || hash === '#jobs') {
+        setActiveTopView('SCHEDULED_JOBS');
+      } else if (path === '/support' || path === '/t&c' || path === '/privacy-policy') {
+        if (path === '/t&c') setActiveLegalTab('TERMS');
+        else if (path === '/privacy-policy') setActiveLegalTab('PRIVACY');
+        else setActiveLegalTab('SUPPORT');
+        setActiveTopView('LEGAL');
+      }
+    }
+
     fetch('/api/store')
       .then((r) => r.json())
       .then((data) => {
@@ -559,39 +581,37 @@ export function App() {
             className="h-14 min-h-[56px] landscape:max-md:h-11 landscape:max-md:min-h-[44px] px-2 sm:px-3 md:px-4 lg:px-5 bg-white border-b border-slate-200 flex items-center justify-between flex-shrink-0 z-20 shadow-xs gap-1.5 sm:gap-2.5 md:gap-3 overflow-x-auto no-scrollbar"
           >
             {/* Brand & Identity */}
-            <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0 flex-shrink">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-xs flex-shrink-0">
-                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
-              </div>
-              <div className="flex flex-col justify-center min-w-0">
-                <div className="flex items-center gap-1.5 whitespace-nowrap">
-                  <h1 className="text-xs sm:text-sm md:text-base font-bold tracking-tight text-slate-800 leading-tight truncate">
-                    <span className="hidden sm:inline">Cleaning Dispatch Pro</span>
-                    <span className="sm:hidden">Clean Dispatch</span>
-                  </h1>
-                  <span className="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold text-[9px] uppercase tracking-wider leading-none hidden sm:inline-block">
-                    Edmonton, AB Canada
-                  </span>
-                </div>
-                <p className="text-[10px] text-slate-500 leading-tight whitespace-nowrap hidden 2xl:block">
-                  15 Decentralized Home Hubs • 3 Core Services • Jobber Sync
-                </p>
-              </div>
+            <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0 flex-shrink cursor-pointer" onClick={() => setActiveTopView('MAP')}>
+              <BookMyCleaningLogo size={36} withText={true} />
             </div>
 
             {/* Dedicated Top Bar Primary Navigation Tabs */}
-            <div className="flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl border border-slate-200 flex-shrink-0">
+            <div className="flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl border border-slate-200/80 flex-shrink-0">
               <button
                 id="nav-tab-map"
                 onClick={() => setActiveTopView('MAP')}
                 className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                   activeTopView === 'MAP'
-                    ? 'bg-white text-blue-700 shadow-2xs border border-slate-200'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
                 }`}
               >
-                <MapIcon className="w-3.5 h-3.5 text-blue-600" />
+                <MapIcon className={`w-3.5 h-3.5 ${activeTopView === 'MAP' ? 'text-white' : 'text-pink-600'}`} />
                 <span>Dispatch Map</span>
+              </button>
+
+              <button
+                id="nav-tab-customer-portal"
+                onClick={() => setActiveTopView('CUSTOMER_PORTAL')}
+                className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  activeTopView === 'CUSTOMER_PORTAL'
+                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                }`}
+                title="Customer Booking & Services Portal (/book)"
+              >
+                <Sparkles className={`w-3.5 h-3.5 ${activeTopView === 'CUSTOMER_PORTAL' ? 'text-white' : 'text-fuchsia-600'}`} />
+                <span>Customer Booking Portal</span>
               </button>
 
               <button
@@ -599,14 +619,16 @@ export function App() {
                 onClick={() => setActiveTopView('SCHEDULED_JOBS')}
                 className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                   activeTopView === 'SCHEDULED_JOBS'
-                    ? 'bg-white text-blue-700 shadow-2xs border border-slate-200'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
                 }`}
               >
-                <Calendar className="w-3.5 h-3.5 text-indigo-600" />
+                <Calendar className={`w-3.5 h-3.5 ${activeTopView === 'SCHEDULED_JOBS' ? 'text-white' : 'text-purple-600'}`} />
                 <span>Scheduled Jobs</span>
                 {scheduledJobsList.length > 0 && (
-                  <span className="px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-800 text-[10px] font-mono">
+                  <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
+                    activeTopView === 'SCHEDULED_JOBS' ? 'bg-white/20 text-white' : 'bg-pink-100 text-pink-700'
+                  }`}>
                     {scheduledJobsList.length}
                   </span>
                 )}
@@ -617,11 +639,11 @@ export function App() {
                 onClick={() => setActiveTopView('QUOTES')}
                 className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                   activeTopView === 'QUOTES'
-                    ? 'bg-white text-amber-800 shadow-2xs border border-slate-200'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
                 }`}
               >
-                <FileCheck className="w-3.5 h-3.5 text-amber-600" />
+                <FileCheck className={`w-3.5 h-3.5 ${activeTopView === 'QUOTES' ? 'text-white' : 'text-amber-600'}`} />
                 <span>Quotes</span>
               </button>
 
@@ -630,11 +652,11 @@ export function App() {
                 onClick={() => setActiveTopView('INVOICES')}
                 className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                   activeTopView === 'INVOICES'
-                    ? 'bg-white text-emerald-800 shadow-2xs border border-slate-200'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
                 }`}
               >
-                <Receipt className="w-3.5 h-3.5 text-emerald-600" />
+                <Receipt className={`w-3.5 h-3.5 ${activeTopView === 'INVOICES' ? 'text-white' : 'text-emerald-600'}`} />
                 <span>Invoices</span>
               </button>
 
@@ -646,12 +668,12 @@ export function App() {
                 }}
                 className={`min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                   activeTopView === 'LEGAL'
-                    ? 'bg-white text-purple-800 shadow-2xs border border-slate-200'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs font-extrabold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
                 }`}
                 title="Support desk, Terms & Conditions, and Privacy Policy (/support, /T&C, /privacy-policy)"
               >
-                <HelpCircle className="w-3.5 h-3.5 text-purple-600" />
+                <HelpCircle className={`w-3.5 h-3.5 ${activeTopView === 'LEGAL' ? 'text-white' : 'text-fuchsia-600'}`} />
                 <span>Support &amp; Policies</span>
               </button>
             </div>
@@ -786,8 +808,17 @@ export function App() {
           </header>
         )}
 
-        {/* View Switching: Scheduled Jobs, Quotes, Invoices, or Main Dispatch Map */}
-        {activeTopView === 'SCHEDULED_JOBS' ? (
+        {/* View Switching: Customer Portal, Scheduled Jobs, Quotes, Invoices, or Main Dispatch Map */}
+        {activeTopView === 'CUSTOMER_PORTAL' ? (
+          <CustomerPortalView
+            onBookingSubmitted={(ticket) => {
+              setTickets((prev) => [ticket, ...prev]);
+              saveStateToStore([ticket, ...tickets]);
+            }}
+            onNavigateToMap={() => setActiveTopView('MAP')}
+            onOpenPhoneModal={() => setIsQuoModalOpen(true)}
+          />
+        ) : activeTopView === 'SCHEDULED_JOBS' ? (
           <ScheduledJobsView
             jobs={scheduledJobsList}
             technicians={technicians}

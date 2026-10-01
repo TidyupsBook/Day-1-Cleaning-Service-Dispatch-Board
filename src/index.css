@@ -1,16 +1,26 @@
 @import "tailwindcss";
 
-/* Safe area support for iOS WebKit devices */
+/* Book My Cleaning / Tidyups Signature Theme Variables */
 :root {
   --sat: env(safe-area-inset-top, 0px);
   --sab: env(safe-area-inset-bottom, 0px);
   --sal: env(safe-area-inset-left, 0px);
   --sar: env(safe-area-inset-right, 0px);
+
+  /* Book My Cleaning Palette */
+  --bmc-dark-bg: #0d0a12;
+  --bmc-card-bg: #15101d;
+  --bmc-border: #281d38;
+  --bmc-coral: #FF7B54;
+  --bmc-pink: #ec4899;
+  --bmc-magenta: #ef3ecf;
+  --bmc-purple: #a855f7;
+  --bmc-violet: #8b5cf6;
 }
 
 /* Accessible focus ring indicators for keyboard navigation (WCAG 2.4.7 / 2.4.11) */
 *:focus-visible {
-  outline: 2px solid #2563eb !important;
+  outline: 2px solid #ec4899 !important;
   outline-offset: 2px !important;
 }
 

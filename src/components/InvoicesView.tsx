@@ -56,30 +56,32 @@ export const InvoicesView: React.FC<InvoicesViewProps> = ({
   };
 
   return (
-    <div className="flex-1 h-full flex flex-col overflow-hidden bg-slate-50 font-sans p-4 sm:p-6">
+    <div className="flex-1 h-full flex flex-col overflow-hidden bg-slate-50/70 font-sans p-4 sm:p-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 bg-white p-4.5 rounded-2xl border border-slate-200 shadow-2xs">
         <div>
-          <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <Receipt className="w-5 h-5 text-emerald-600" />
+          <h2 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+            <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-white shadow-xs">
+              <Receipt className="w-4 h-4 text-white" />
+            </span>
             <span>Jobber Invoices &amp; Payments ({filteredInvoices.length})</span>
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-slate-500 mt-1">
             Real-time billing, payments, and balances directly from your Jobber ledger
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <div className="px-3 py-1.5 bg-emerald-50 text-emerald-900 border border-emerald-200 rounded-xl font-mono text-xs font-bold">
+        <div className="flex items-center gap-2.5">
+          <div className="px-3.5 py-1.5 bg-emerald-50 text-emerald-900 border border-emerald-200 rounded-xl font-mono text-xs font-bold shadow-2xs">
             Collected: ${totalPaid.toLocaleString()}
           </div>
-          <div className="px-3 py-1.5 bg-amber-50 text-amber-900 border border-amber-200 rounded-xl font-mono text-xs font-bold">
-            Due: ${totalOutstanding.toLocaleString()}
+          <div className="px-3.5 py-1.5 bg-gradient-to-r from-pink-50 to-purple-50 text-purple-900 border border-purple-200/80 rounded-xl font-mono text-xs font-bold shadow-2xs">
+            Due: <span className="text-pink-600 font-extrabold">${totalOutstanding.toLocaleString()}</span>
           </div>
           {onRefreshInvoices && (
             <button
               onClick={onRefreshInvoices}
-              className="px-3 py-1.5 text-xs font-semibold text-emerald-800 bg-emerald-100 hover:bg-emerald-200 rounded-xl transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-pink-600 to-purple-600 hover:opacity-95 rounded-xl transition-all shadow-xs cursor-pointer active:scale-95"
             >
               Sync Billing
             </button>

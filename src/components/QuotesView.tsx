@@ -52,27 +52,29 @@ export const QuotesView: React.FC<QuotesViewProps> = ({
   };
 
   return (
-    <div className="flex-1 h-full flex flex-col overflow-hidden bg-slate-50 font-sans p-4 sm:p-6">
+    <div className="flex-1 h-full flex flex-col overflow-hidden bg-slate-50/70 font-sans p-4 sm:p-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 bg-white p-4.5 rounded-2xl border border-slate-200 shadow-2xs">
         <div>
-          <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <FileCheck className="w-5 h-5 text-amber-600" />
+          <h2 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+            <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-white shadow-xs">
+              <FileCheck className="w-4 h-4 text-white" />
+            </span>
             <span>Jobber Quotes Pipeline ({filteredQuotes.length})</span>
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Active quotes for Standard, Deep, and Move-Out cleans in Greater Edmonton
+          <p className="text-xs text-slate-500 mt-1">
+            Standard, Deep, and Move-Out cleaning proposals synced live with Jobber API
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <div className="px-3 py-1.5 bg-amber-50 text-amber-900 border border-amber-200 rounded-xl font-mono text-xs font-bold">
-            Total Pipeline: ${totalValue.toLocaleString()}
+        <div className="flex items-center gap-2.5">
+          <div className="px-3.5 py-1.5 bg-gradient-to-r from-pink-50 to-purple-50 text-purple-900 border border-purple-200/80 rounded-xl font-mono text-xs font-bold shadow-2xs">
+            Total Pipeline: <span className="text-pink-600 font-extrabold">${totalValue.toLocaleString()}</span>
           </div>
           {onRefreshQuotes && (
             <button
               onClick={onRefreshQuotes}
-              className="px-3 py-1.5 text-xs font-semibold text-amber-800 bg-amber-100 hover:bg-amber-200 rounded-xl transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-pink-600 to-purple-600 hover:opacity-95 rounded-xl transition-all shadow-xs cursor-pointer active:scale-95"
             >
               Sync Quotes
             </button>

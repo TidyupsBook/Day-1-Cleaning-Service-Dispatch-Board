@@ -1,39 +1,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="tidyBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2563EB" />
-      <stop offset="100%" stop-color="#1D4ED8" />
+    <!-- Book My Cleaning / Tidyups Signature Electric Brand Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e0a14"/>
+      <stop offset="100%" stop-color="#1e1329"/>
     </linearGradient>
-    <linearGradient id="sparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FDE047" />
-      <stop offset="100%" stop-color="#F59E0B" />
+
+    <!-- Coral to Fuchsia to Royal Violet Sparkle Flare -->
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7B54" />
+      <stop offset="45%" stop-color="#ec4899" />
+      <stop offset="75%" stop-color="#ef3ecf" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.2" />
     </linearGradient>
   </defs>
 
-  <!-- Full-bleed background with rounded squircle -->
-  <rect width="512" height="512" rx="108" fill="url(#tidyBg)" />
+  <!-- Deep Velvet Charcoal Squircle Icon Background -->
+  <rect width="512" height="512" rx="116" fill="url(#bgGrad)"/>
+  <rect width="508" height="508" x="2" y="2" rx="114" fill="none" stroke="url(#ringGrad)" stroke-width="4"/>
 
-  <!-- Shield/Sparkle Clean Symbol in Central Safe Zone -->
-  <g transform="translate(106, 96)">
-    <!-- Shield Outline -->
-    <path d="M150 10 L270 50 C270 170, 200 260, 150 290 C100 260, 30 170, 30 50 Z" 
-          fill="#1E40AF" stroke="#60A5FA" stroke-width="12" stroke-linejoin="round" />
-    
-    <!-- Sparkle Stars -->
-    <!-- Large Central Sparkle -->
-    <path d="M150 70 Q150 130 90 130 Q150 130 150 190 Q150 130 210 130 Q150 130 150 70 Z" 
-          fill="url(#sparkleGrad)" />
-    
-    <!-- Small Top-Right Sparkle -->
-    <path d="M225 60 Q225 90 195 90 Q225 90 225 120 Q225 90 255 90 Q225 90 225 60 Z" 
-          fill="#FFFFFF" />
+  <!-- Glowing Aura -->
+  <circle cx="256" cy="256" r="140" fill="#ec4899" opacity="0.16" filter="blur(30px)"/>
 
-    <!-- Small Bottom-Left Sparkle -->
-    <path d="M85 160 Q85 185 60 185 Q85 185 85 210 Q85 185 110 185 Q85 185 85 160 Z" 
-          fill="#93C5FD" />
+  <!-- Book My Cleaning Signature 4-Pointed Starburst Motif -->
+  <g transform="translate(256, 256) scale(1.4) translate(-100, -100)">
+    <!-- Primary Flare -->
+    <path d="M100 20 C100 68 68 100 20 100 C68 100 100 132 100 180 C100 132 132 100 180 100 C132 100 100 68 100 20 Z" fill="url(#brandGrad)"/>
+    
+    <!-- Crisp Central Inner Clean Core -->
+    <path d="M100 52 C100 80 80 100 52 100 C80 100 100 120 100 148 C100 120 120 100 148 100 C120 100 100 80 100 52 Z" fill="#ffffff" opacity="0.95"/>
+    
+    <!-- Playful Sparkle Accents -->
+    <circle cx="152" cy="48" r="14" fill="#FF7B54" opacity="0.9"/>
+    <circle cx="48" cy="152" r="11" fill="#ec4899" opacity="0.85"/>
+    <circle cx="154" cy="154" r="9" fill="#a855f7" opacity="0.8"/>
+    <circle cx="46" cy="46" r="7" fill="#ffffff" opacity="0.8"/>
   </g>
-
-  <!-- Bottom Brand Ribbon Text -->
-  <text x="256" y="440" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="44" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">TIDYUPS</text>
-  <text x="256" y="475" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="20" fill="#93C5FD" text-anchor="middle" letter-spacing="4">DISPATCH &amp; BOOKING</text>
 </svg>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BookMyCleaningLogo } from './BookMyCleaningLogo';
 import { 
   ShieldCheck, 
   HelpCircle, 
@@ -56,19 +57,17 @@ export const LegalPagesView: React.FC<LegalPagesViewProps> = ({
         {/* Top Header Card */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-xs shrink-0">
-              <Sparkles className="w-5 h-5 text-white" />
-            </div>
+            <BookMyCleaningLogo size={42} withText={false} />
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-lg font-bold text-slate-900 leading-tight">TidyUps Cleaning Service Inc.</h1>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">
-                  Verified
+                <h1 className="text-lg font-extrabold text-slate-900 leading-tight">Book My Cleaning - Tidyups</h1>
+                <span className="px-2 py-0.5 rounded-full bg-pink-50 text-pink-700 border border-pink-200 text-[10px] font-bold">
+                  Verified Platform
                 </span>
               </div>
               <p className="text-xs text-slate-500 mt-0.5 flex items-center gap-2 flex-wrap">
-                <span className="flex items-center gap-1 font-mono text-blue-700">
-                  <Globe className="w-3 h-3" /> https://tidyupsbooking.com
+                <span className="flex items-center gap-1 font-mono text-purple-700 font-semibold">
+                  <Globe className="w-3 h-3 text-pink-600" /> https://bookmycleaning.net
                 </span>
                 <span>•</span>
                 <span>Edmonton &amp; Greater Area, Alberta</span>
@@ -82,7 +81,7 @@ export const LegalPagesView: React.FC<LegalPagesViewProps> = ({
               onClick={() => setActiveTab('SUPPORT')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                 activeTab === 'SUPPORT'
-                  ? 'bg-white text-blue-700 shadow-xs border border-slate-200'
+                  ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -94,7 +93,7 @@ export const LegalPagesView: React.FC<LegalPagesViewProps> = ({
               onClick={() => setActiveTab('TERMS')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                 activeTab === 'TERMS'
-                  ? 'bg-white text-blue-700 shadow-xs border border-slate-200'
+                  ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -106,7 +105,7 @@ export const LegalPagesView: React.FC<LegalPagesViewProps> = ({
               onClick={() => setActiveTab('PRIVACY')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                 activeTab === 'PRIVACY'
-                  ? 'bg-white text-blue-700 shadow-xs border border-slate-200'
+                  ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >

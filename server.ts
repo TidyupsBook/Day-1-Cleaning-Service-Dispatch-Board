@@ -1389,6 +1389,15 @@ app.post("/api/public/book", async (req, res) => {
     googleSheetsSyncState.syncedRowsCount += 1;
     googleSheetsSyncState.lastSyncedAt = new Date().toISOString();
 
+    // Auto-save to persistent store
+    const curStore = loadStore();
+    if (curStore) {
+      saveStore({
+        ...curStore,
+        tickets: [newTicket, ...(curStore.tickets || [])],
+      });
+    }
+
     res.json({
       success: true,
       ticket: newTicket,
