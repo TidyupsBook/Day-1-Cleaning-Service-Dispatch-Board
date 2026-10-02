@@ -20,6 +20,12 @@ import { PublicBookingModal } from './components/PublicBookingModal';
 import { QuoModal } from './components/QuoModal';
 import { ScheduledJobsView, ScheduledJobItem } from './components/ScheduledJobsView';
 import { QuickLinksModal } from './components/QuickLinksModal';
+import { StaffRosterModal } from './components/StaffRosterModal';
+import { 
+  JobberStaffMember, 
+  CANONICAL_JOBBER_STAFF, 
+  staffMemberToTechnician 
+} from './services/staffRosterService';
 import { 
   generateHistoricAndFutureVisits, 
   INITIAL_UNSCHEDULED_JOBS, 
@@ -60,6 +66,7 @@ import {
   Calendar,
   FileCheck,
   Receipt,
+  FileSpreadsheet,
   AlertCircle,
   Map as MapIcon,
   HelpCircle,
@@ -115,12 +122,21 @@ export function App() {
   const [activeLegalTab, setActiveLegalTab] = useState<LegalPageType>('SUPPORT');
   const [scheduledJobsList, setScheduledJobsList] = useState<ScheduledJobItem[]>(() => generateHistoricAndFutureVisits());
   const [unscheduledJobsList, setUnscheduledJobsList] = useState<UnscheduledJobItem[]>(() => INITIAL_UNSCHEDULED_JOBS);
+  const [staffList, setStaffList] = useState<JobberStaffMember[]>(() => CANONICAL_JOBBER_STAFF);
+  const [isStaffModalOpen, setIsStaffModalOpen] = useState<boolean>(false);
   const [isQuickLinksOpen, setIsQuickLinksOpen] = useState<boolean>(false);
   const [scheduledJobsSubTab, setScheduledJobsSubTab] = useState<'CALENDAR' | 'LIST' | 'UNSCHEDULED'>('CALENDAR');
   const [quotesList, setQuotesList] = useState<JobberQuote[]>([]);
   const [invoicesList, setInvoicesList] = useState<JobberInvoice[]>([]);
 
-  // Load persistent store on mount & handle direct URL deep linking (/book, /support, /quotes, /invoices, /unscheduled)
+  // Update staff roster and automatically synchronize technicians across map and kanban
+  const handleUpdateStaffList = useCallback((updatedStaff: JobberStaffMember[]) => {
+    setStaffList(updatedStaff);
+    const updatedTechs = updatedStaff.map((s, idx) => staffMemberToTechnician(s, idx));
+    setTechnicians(updatedTechs);
+  }, []);
+
+  // Load persistent store on mount & handle direct URL deep linking (/book, /support, /quotes, /invoices, /unscheduled, /staff)
   useEffect(() => {
     // Check initial path or hash
     if (typeof window !== 'undefined') {
@@ -138,6 +154,8 @@ export function App() {
       } else if (path === '/unscheduled' || hash === '#unscheduled') {
         setActiveTopView('SCHEDULED_JOBS');
         setScheduledJobsSubTab('UNSCHEDULED');
+      } else if (path === '/staff' || hash === '#staff') {
+        setIsStaffModalOpen(true);
       } else if (path === '/support' || path === '/t&c' || path === '/privacy-policy') {
         if (path === '/t&c') setActiveLegalTab('TERMS');
         else if (path === '/privacy-policy') setActiveLegalTab('PRIVACY');
@@ -174,6 +192,10 @@ export function App() {
           }
           if (data.unscheduledJobs && data.unscheduledJobs.length > 0) {
             setUnscheduledJobsList(data.unscheduledJobs);
+          }
+          if (data.staffRoster && data.staffRoster.length > 0) {
+            setStaffList(data.staffRoster);
+            setTechnicians(data.staffRoster.map((s: JobberStaffMember, idx: number) => staffMemberToTechnician(s, idx)));
           }
           if (data.quotes && data.quotes.length > 0) setQuotesList(data.quotes);
           if (data.invoices && data.invoices.length > 0) setInvoicesList(data.invoices);
@@ -802,6 +824,19 @@ export function App() {
                         {unscheduledJobsList.length}
                       </span>
                     )}
+                  </button>
+
+                  <button
+                    id="nav-tab-staff-roster"
+                    onClick={() => setIsStaffModalOpen(true)}
+                    className="min-h-[34px] px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                    title="Jobber Staff Roster & Spreadsheet Sync"
+                  >
+                    <FileSpreadsheet className="w-3.5 h-3.5 text-purple-600" />
+                    <span>Staff Roster</span>
+                    <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-purple-100 text-purple-800 font-bold">
+                      {staffList.length}
+                    </span>
                   </button>
                 </>
               )}
@@ -1460,8 +1495,18 @@ export function App() {
           onOpenNewTicket={() => setIsNewTicketModalOpen(true)}
           onOpenTeamChat={() => setIsChatOpen(true)}
           onOpenQuoPhone={() => setIsQuoModalOpen(true)}
+          onOpenStaffRoster={() => setIsStaffModalOpen(true)}
+          staffCount={staffList.length}
           scheduledJobsCount={scheduledJobsList.length}
           unscheduledJobsCount={unscheduledJobsList.length}
+        />
+
+        {/* Staff Roster & Spreadsheet Sync Modal */}
+        <StaffRosterModal
+          isOpen={isStaffModalOpen}
+          onClose={() => setIsStaffModalOpen(false)}
+          staffList={staffList}
+          onUpdateStaffList={handleUpdateStaffList}
         />
 
         {/* Real-Time Team Internal Messaging Drawer */}

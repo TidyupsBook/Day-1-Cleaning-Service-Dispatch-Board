@@ -85,6 +85,7 @@ export interface Technician {
   role?: string;
   homeAddress?: string;
   color: string;
+  active?: boolean;
   status: TechnicianStatus;
   rating: number;
   skills: string[];

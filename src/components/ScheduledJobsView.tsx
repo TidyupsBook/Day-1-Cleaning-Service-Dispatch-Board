@@ -130,6 +130,31 @@ export const ScheduledJobsView: React.FC<ScheduledJobsViewProps> = ({
   const [scheduleNotes, setScheduleNotes] = useState<string>('');
   const [scheduleNotice, setScheduleNotice] = useState<string | null>(null);
 
+  // Dynamic cleaners synchronized from staff roster / technicians
+  const dynamicCleaners = useMemo(() => {
+    if (technicians && technicians.length > 0) {
+      return technicians.map((t) => ({
+        id: t.id,
+        name: t.name,
+        color: t.color || getCleanerColor(t.name),
+        phone: t.phone,
+        vanUnit: t.vanNumber,
+        active: t.active !== false && t.status !== 'OFF_DUTY',
+      }));
+    }
+    return JOBBER_TEAM_MEMBERS.map((t) => ({ ...t, active: true }));
+  }, [technicians]);
+
+  // Cleaners actively working and available for new dispatch
+  const activeCleaners = useMemo(() => {
+    return dynamicCleaners.filter((c) => c.active);
+  }, [dynamicCleaners]);
+
+  // Cleaners archived or no longer working
+  const archivedCleaners = useMemo(() => {
+    return dynamicCleaners.filter((c) => !c.active);
+  }, [dynamicCleaners]);
+
   // Month navigation handlers
   const handlePrevMonth = () => {
     if (currentMonth === 0) {
@@ -496,11 +521,11 @@ export const ScheduledJobsView: React.FC<ScheduledJobsViewProps> = ({
         </div>
       </div>
 
-      {/* 20-Cleaner Color Legend & Filter Strip */}
+      {/* Cleaner Color Legend & Filter Strip */}
       <div className="bg-slate-50 border-b border-slate-200/80 px-4 py-2 shrink-0 overflow-x-auto scrollbar-none flex items-center gap-2">
         <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0 flex items-center gap-1">
           <Users className="w-3.5 h-3.5 text-slate-400" />
-          <span>Cleaners (20):</span>
+          <span>Active Cleaners ({activeCleaners.length}):</span>
         </span>
 
         <button
@@ -514,7 +539,7 @@ export const ScheduledJobsView: React.FC<ScheduledJobsViewProps> = ({
           All Cleaners
         </button>
 
-        {JOBBER_TEAM_MEMBERS.map((tm) => {
+        {dynamicCleaners.map((tm) => {
           const isSelected = selectedCleanerFilter === tm.name;
           const assignedCount = jobsInCurrentMonth.filter((j) =>
             j.assignedCleaners.some((c) => c.toLowerCase().includes(tm.name.toLowerCase()))
@@ -528,14 +553,21 @@ export const ScheduledJobsView: React.FC<ScheduledJobsViewProps> = ({
                 isSelected
                   ? 'bg-white shadow-xs ring-2 ring-blue-500 border-transparent font-bold'
                   : 'bg-white hover:bg-slate-100 border-slate-200 text-slate-700'
-              }`}
-              title={`${tm.name} (${tm.vanUnit || 'Cleaner'}) - Click to filter schedule`}
+              } ${!tm.active ? 'opacity-60 bg-slate-100' : ''}`}
+              title={`${tm.name} (${tm.vanUnit || 'Cleaner'}) ${!tm.active ? '• Archived / Off-Duty' : ''}`}
             >
               <span
-                className="w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs"
+                className={`w-2.5 h-2.5 rounded-full shrink-0 shadow-2xs ${!tm.active ? 'grayscale' : ''}`}
                 style={{ backgroundColor: tm.color }}
               />
-              <span className="truncate max-w-[120px]">{tm.name}</span>
+              <span className={`truncate max-w-[120px] ${!tm.active ? 'line-through text-slate-500' : ''}`}>
+                {tm.name}
+              </span>
+              {!tm.active && (
+                <span className="text-[9px] px-1 py-0.2 rounded bg-amber-100 text-amber-800 font-mono">
+                  Off
+                </span>
+              )}
               {assignedCount > 0 && (
                 <span
                   className="px-1.5 py-0.2 rounded text-[10px] font-mono font-bold text-white shrink-0"
@@ -764,12 +796,23 @@ export const ScheduledJobsView: React.FC<ScheduledJobsViewProps> = ({
                   onChange={(e) => setSelectedCleanerFilter(e.target.value)}
                   className="px-2 py-1 bg-white border border-slate-300 rounded-lg text-slate-700 text-xs focus:outline-none"
                 >
-                  <option value="ALL">All Cleaners (20)</option>
-                  {JOBBER_TEAM_MEMBERS.map((t) => (
-                    <option key={t.id} value={t.name}>
-                      {t.name}
-                    </option>
-                  ))}
+                  <option value="ALL">All Cleaners ({activeCleaners.length})</option>
+                  <optgroup label="Active Working Cleaners">
+                    {activeCleaners.map((t) => (
+                      <option key={t.id} value={t.name}>
+                        {t.name}
+                      </option>
+                    ))}
+                  </optgroup>
+                  {archivedCleaners.length > 0 && (
+                    <optgroup label="Archived / Not Working">
+                      {archivedCleaners.map((t) => (
+                        <option key={t.id} value={t.name}>
+                          {t.name} (Archived)
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
                 </select>
 
                 <select
@@ -1198,7 +1241,7 @@ export const ScheduledJobsView: React.FC<ScheduledJobsViewProps> = ({
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {JOBBER_TEAM_MEMBERS.map((tm) => {
+                {activeCleaners.map((tm) => {
                   const isChecked = tempAssignedCleaners.includes(tm.name);
 
                   return (
@@ -1235,6 +1278,21 @@ export const ScheduledJobsView: React.FC<ScheduledJobsViewProps> = ({
                   );
                 })}
               </div>
+
+              {/* Archived Cleaners Notice & Reassignment Guidance */}
+              {archivedCleaners.some((ac) => tempAssignedCleaners.includes(ac.name)) && (
+                <div className="p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-start gap-2">
+                  <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold">Former cleaner assigned: </span>
+                    <span>
+                      This job is currently assigned to an archived cleaner (
+                      {archivedCleaners.filter((ac) => tempAssignedCleaners.includes(ac.name)).map((ac) => ac.name).join(', ')}
+                      ). Select an active cleaner above to reassign this visit.
+                    </span>
+                  </div>
+                </div>
+              )}
 
               {assignmentNotice && (
                 <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-bold text-center border border-emerald-200">
@@ -1339,7 +1397,7 @@ export const ScheduledJobsView: React.FC<ScheduledJobsViewProps> = ({
                   Attach Cleaners ({scheduleCleaners.length} selected)
                 </label>
                 <div className="grid grid-cols-2 gap-1.5 max-h-48 overflow-y-auto p-1 border border-slate-200 rounded-xl">
-                  {JOBBER_TEAM_MEMBERS.map((tm) => {
+                  {activeCleaners.map((tm) => {
                     const isChecked = scheduleCleaners.includes(tm.name);
                     return (
                       <div

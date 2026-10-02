@@ -17,7 +17,8 @@ import {
   ShieldCheck,
   CheckCircle2,
   Download,
-  GitBranch
+  GitBranch,
+  FileSpreadsheet
 } from 'lucide-react';
 import { JOBBER_TEAM_MEMBERS } from '../data/jobberCalendarData';
 
@@ -28,6 +29,8 @@ interface QuickLinksModalProps {
   onOpenNewTicket?: () => void;
   onOpenTeamChat?: () => void;
   onOpenQuoPhone?: () => void;
+  onOpenStaffRoster?: () => void;
+  staffCount?: number;
   unscheduledJobsCount?: number;
   scheduledJobsCount?: number;
 }
@@ -39,6 +42,8 @@ export const QuickLinksModal: React.FC<QuickLinksModalProps> = ({
   onOpenNewTicket,
   onOpenTeamChat,
   onOpenQuoPhone,
+  onOpenStaffRoster,
+  staffCount = 24,
   unscheduledJobsCount = 6,
   scheduledJobsCount = 192,
 }) => {
@@ -255,8 +260,20 @@ export const QuickLinksModal: React.FC<QuickLinksModalProps> = ({
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
                 <Users className="w-3.5 h-3.5 text-slate-400" />
-                <span>Jobber Team Roster &amp; Color Legend (20 Staff)</span>
+                <span>Jobber Team Roster ({staffCount} Staff)</span>
               </h3>
+              {onOpenStaffRoster && (
+                <button
+                  onClick={() => {
+                    onOpenStaffRoster();
+                    onClose();
+                  }}
+                  className="px-2.5 py-1 bg-purple-100 hover:bg-purple-200 text-purple-800 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer transition-colors shadow-2xs"
+                >
+                  <FileSpreadsheet className="w-3 h-3 text-purple-700" />
+                  <span>Sync Spreadsheet (CSV)</span>
+                </button>
+              )}
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 max-h-36 overflow-y-auto p-2 border border-slate-200 rounded-2xl bg-slate-50/50">

@@ -14,6 +14,12 @@ import {
   UnscheduledJobItem,
 } from "./src/data/jobberCalendarData";
 import {
+  JobberStaffMember,
+  CANONICAL_JOBBER_STAFF,
+  parseStaffCsv,
+  generateStaffCsv,
+} from "./src/services/staffRosterService";
+import {
   syncJobberCalendar,
   syncJobberClients,
   syncJobberQuotes,
@@ -1210,6 +1216,17 @@ app.get("/api/store", async (_req, res) => {
       store.unscheduledJobs = INITIAL_UNSCHEDULED_JOBS;
       changed = true;
     }
+    // If staffRoster is empty or null, seed with Jobber staff roster
+    if (!store.staffRoster || store.staffRoster.length === 0) {
+      const csvPath = path.join(process.cwd(), "data", "jobber_staff_roster.csv");
+      if (fs.existsSync(csvPath)) {
+        const rawCsv = fs.readFileSync(csvPath, "utf-8");
+        store.staffRoster = parseStaffCsv(rawCsv);
+      } else {
+        store.staffRoster = CANONICAL_JOBBER_STAFF;
+      }
+      changed = true;
+    }
   }
   if (changed) {
     saveStore(store);
@@ -1218,7 +1235,7 @@ app.get("/api/store", async (_req, res) => {
 });
 
 app.post("/api/store/save", (req, res) => {
-  const { tickets, cleanerOverrides, scheduledVisits, unscheduledJobs, quotes, invoices } = req.body || {};
+  const { tickets, cleanerOverrides, scheduledVisits, unscheduledJobs, staffRoster, quotes, invoices } = req.body || {};
   const current = loadStore() || {
     version: 1,
     lastSavedAt: new Date().toISOString(),
@@ -1226,6 +1243,7 @@ app.post("/api/store/save", (req, res) => {
     cleanerOverrides: {},
     scheduledVisits: generateHistoricAndFutureVisits(),
     unscheduledJobs: INITIAL_UNSCHEDULED_JOBS,
+    staffRoster: CANONICAL_JOBBER_STAFF,
     quotes: [],
     invoices: [],
   };
@@ -1237,12 +1255,149 @@ app.post("/api/store/save", (req, res) => {
     cleanerOverrides: cleanerOverrides || current.cleanerOverrides,
     scheduledVisits: scheduledVisits || current.scheduledVisits,
     unscheduledJobs: unscheduledJobs || current.unscheduledJobs,
+    staffRoster: staffRoster || current.staffRoster,
     quotes: quotes || current.quotes,
     invoices: invoices || current.invoices,
   };
 
   const ok = saveStore(updated);
   res.json({ success: ok, lastSavedAt: updated.lastSavedAt });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Jobber Staff & Cleaners Roster Sync API Endpoints
+// ─────────────────────────────────────────────────────────────────────────────
+
+// GET current staff roster and CSV format
+app.get("/api/staff", (_req, res) => {
+  const store = loadStore();
+  let staff = store?.staffRoster;
+  if (!staff || staff.length === 0) {
+    const csvPath = path.join(process.cwd(), "data", "jobber_staff_roster.csv");
+    if (fs.existsSync(csvPath)) {
+      const rawCsv = fs.readFileSync(csvPath, "utf-8");
+      staff = parseStaffCsv(rawCsv);
+    } else {
+      staff = CANONICAL_JOBBER_STAFF;
+    }
+  }
+
+  const csv = generateStaffCsv(staff);
+  res.json({ success: true, count: staff.length, staff, csv });
+});
+
+// POST synchronize staff roster from CSV text
+app.post("/api/staff/sync-csv", (req, res) => {
+  const { csvText, staff } = req.body || {};
+  let updatedStaff: JobberStaffMember[] = [];
+
+  if (csvText && typeof csvText === "string") {
+    updatedStaff = parseStaffCsv(csvText);
+    const csvPath = path.join(process.cwd(), "data", "jobber_staff_roster.csv");
+    fs.writeFileSync(csvPath, csvText, "utf-8");
+  } else if (Array.isArray(staff) && staff.length > 0) {
+    updatedStaff = staff;
+    const csvPath = path.join(process.cwd(), "data", "jobber_staff_roster.csv");
+    fs.writeFileSync(csvPath, generateStaffCsv(updatedStaff), "utf-8");
+  } else {
+    return res.status(400).json({ error: "csvText or staff array is required" });
+  }
+
+  const current = loadStore() || {
+    version: 1,
+    lastSavedAt: new Date().toISOString(),
+    tickets: INITIAL_TICKETS,
+    cleanerOverrides: {},
+    scheduledVisits: generateHistoricAndFutureVisits(),
+    unscheduledJobs: INITIAL_UNSCHEDULED_JOBS,
+    staffRoster: updatedStaff,
+    quotes: [],
+    invoices: [],
+  };
+
+  current.staffRoster = updatedStaff;
+  current.lastSavedAt = new Date().toISOString();
+  saveStore(current);
+
+  res.json({
+    success: true,
+    message: `Synchronized ${updatedStaff.length} staff members with Jobber spreadsheet!`,
+    count: updatedStaff.length,
+    staff: updatedStaff,
+    csv: generateStaffCsv(updatedStaff),
+  });
+});
+
+// POST Archive / Deactivate or Reactivate a staff member
+app.post("/api/staff/archive", (req, res) => {
+  const { id, active } = req.body || {};
+  if (!id) {
+    return res.status(400).json({ error: "Staff id is required" });
+  }
+
+  const current = loadStore();
+  if (!current || !current.staffRoster) {
+    return res.status(404).json({ error: "Staff roster not found in store" });
+  }
+
+  const idx = current.staffRoster.findIndex((s: JobberStaffMember) => s.id === id);
+  if (idx === -1) {
+    return res.status(404).json({ error: "Staff member not found" });
+  }
+
+  // Toggle or set active
+  const newActive = active !== undefined ? Boolean(active) : !current.staffRoster[idx].active;
+  current.staffRoster[idx].active = newActive;
+  current.lastSavedAt = new Date().toISOString();
+
+  // Save to CSV file
+  const csvPath = path.join(process.cwd(), "data", "jobber_staff_roster.csv");
+  fs.writeFileSync(csvPath, generateStaffCsv(current.staffRoster), "utf-8");
+
+  saveStore(current);
+
+  res.json({
+    success: true,
+    message: `Staff member ${current.staffRoster[idx].name} is now ${newActive ? 'Active' : 'Archived / Inactive'}.`,
+    staffMember: current.staffRoster[idx],
+    staff: current.staffRoster,
+  });
+});
+
+// POST Delete a staff member permanently from roster
+app.post("/api/staff/delete", (req, res) => {
+  const { id } = req.body || {};
+  if (!id) {
+    return res.status(400).json({ error: "Staff id is required" });
+  }
+
+  const current = loadStore();
+  if (!current || !current.staffRoster) {
+    return res.status(404).json({ error: "Staff roster not found in store" });
+  }
+
+  const existing = current.staffRoster.find((s: JobberStaffMember) => s.id === id);
+  if (!existing) {
+    return res.status(404).json({ error: "Staff member not found" });
+  }
+
+  const updatedStaff = current.staffRoster.filter((s: JobberStaffMember) => s.id !== id);
+  current.staffRoster = updatedStaff;
+  current.lastSavedAt = new Date().toISOString();
+
+  // Save to CSV file
+  const csvPath = path.join(process.cwd(), "data", "jobber_staff_roster.csv");
+  fs.writeFileSync(csvPath, generateStaffCsv(updatedStaff), "utf-8");
+
+  saveStore(current);
+
+  res.json({
+    success: true,
+    message: `Staff member ${existing.name} has been removed from Jobber staff roster.`,
+    deletedStaff: existing,
+    count: updatedStaff.length,
+    staff: updatedStaff,
+  });
 });
 
 // Update cleaner assignments or details for a scheduled visit (dual-cleaner support & Jobber sync)
@@ -1401,7 +1556,7 @@ app.post("/api/jobber/schedule-job", (req, res) => {
 });
 
 // Download full repository archive with Git history & tags for SourceTree
-app.get("/api/download-repo", (_req, res) => {
+app.get(["/api/download-repo", "/api/download-zip", "/api/backup/download-zip"], (_req, res) => {
   const zipPath = path.join(process.cwd(), "public", "bookmycleaning-dispatch-jobber-synced.zip");
   if (fs.existsSync(zipPath)) {
     res.setHeader("Content-Disposition", 'attachment; filename="bookmycleaning-dispatch-jobber-synced.zip"');

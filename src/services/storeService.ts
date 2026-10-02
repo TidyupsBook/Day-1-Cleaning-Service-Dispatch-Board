@@ -11,6 +11,7 @@ export interface AppPersistentStore {
   cleanerOverrides: Record<string, any>;
   scheduledVisits: any[];
   unscheduledJobs?: any[];
+  staffRoster?: any[];
   quotes: any[];
   invoices: any[];
   chatMessages?: any[];
