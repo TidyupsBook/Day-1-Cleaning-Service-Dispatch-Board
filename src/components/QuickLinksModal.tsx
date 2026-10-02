@@ -297,6 +297,35 @@ export const QuickLinksModal: React.FC<QuickLinksModalProps> = ({
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
+
+          {/* Download Repository ZIP for SourceTree / Git */}
+          <div className="p-3.5 rounded-2xl bg-indigo-50 border border-indigo-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                <GitBranch className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <p className="font-extrabold text-indigo-950 flex items-center gap-1.5">
+                  <span>SourceTree / Git Checkpoint Archive (.ZIP)</span>
+                  <span className="px-1.5 py-0.2 rounded text-[9px] font-mono bg-indigo-200 text-indigo-900 font-bold">
+                    dispatchers-and-jobber-synced
+                  </span>
+                </p>
+                <p className="text-[11px] text-indigo-700 mt-0.5">
+                  Full git history, tagged checkpoint, 20 cleaners, and synced Jobber schedule. Ready to open directly in SourceTree.
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="/api/download-repo"
+              download="bookmycleaning-dispatch-jobber-synced.zip"
+              className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold flex items-center gap-1.5 shadow-xs transition-all cursor-pointer shrink-0 active:scale-95"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download ZIP</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

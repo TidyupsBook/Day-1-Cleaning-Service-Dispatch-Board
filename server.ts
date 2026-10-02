@@ -1,6 +1,7 @@
 import express from "express";
 import http from "http";
 import path from "path";
+import fs from "fs";
 import dotenv from "dotenv";
 import { WebSocketServer, WebSocket } from "ws";
 import { GoogleGenAI, Type } from "@google/genai";
@@ -1397,6 +1398,18 @@ app.post("/api/jobber/schedule-job", (req, res) => {
     scheduledVisits: current.scheduledVisits,
     unscheduledJobs: ujobs,
   });
+});
+
+// Download full repository archive with Git history & tags for SourceTree
+app.get("/api/download-repo", (_req, res) => {
+  const zipPath = path.join(process.cwd(), "public", "bookmycleaning-dispatch-jobber-synced.zip");
+  if (fs.existsSync(zipPath)) {
+    res.setHeader("Content-Disposition", 'attachment; filename="bookmycleaning-dispatch-jobber-synced.zip"');
+    res.setHeader("Content-Type", "application/zip");
+    res.sendFile(zipPath);
+  } else {
+    res.status(404).send("Repository ZIP archive is generating. Please try again in a few moments.");
+  }
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
