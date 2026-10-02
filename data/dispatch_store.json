@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastSavedAt": "2026-10-02T07:34:30.380Z",
+  "lastSavedAt": "2026-10-02T17:15:23.882Z",
   "tickets": [],
   "cleanerOverrides": {},
   "scheduledVisits": [
@@ -52,7 +52,7 @@
       "startAt": "2026-09-28T17:00:00-06:00",
       "endAt": "2026-09-28T19:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Melissa Clarke"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
@@ -131,26 +131,6 @@
       "jobberWebUri": "https://secure.getjobber.com/visits/4034"
     },
     {
-      "id": "vis-oct-01a",
-      "visitNumber": "VISIT-4035",
-      "title": "Jan Perrin - Move In Clean",
-      "clientName": "Jan Perrin",
-      "clientPhone": "(780) 555-0120",
-      "serviceAddress": "11303 76 Ave NW, Edmonton, AB",
-      "lat": 53.513,
-      "lng": -113.523,
-      "startAt": "2026-10-01T10:00:00-06:00",
-      "endAt": "2026-10-01T12:30:00-06:00",
-      "assignedCleaners": [
-        "Jan Perrin",
-        "Jasmin Kunin"
-      ],
-      "serviceType": "Move-Out Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4035",
-      "notes": "Customer quoted in MDT. 2 Cleaners requested for 2-hour turnover turnaround."
-    },
-    {
       "id": "vis-oct-01b",
       "visitNumber": "VISIT-4036",
       "title": "Jacqueline Ares - 2 Cleaners Tandem Deep Scrub",
@@ -169,42 +149,6 @@
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4036",
       "notes": "Assigned to Joel MBATCHOU and Sergine Ngongang wetie. Focus on master bath grout and oven interior."
-    },
-    {
-      "id": "vis-oct-02a",
-      "visitNumber": "VISIT-4037",
-      "title": "Danielle Pettipas - Standard Residential",
-      "clientName": "Danielle Pettipas",
-      "clientPhone": "(780) 555-0116",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
-      "lat": 53.522,
-      "lng": -113.591,
-      "startAt": "2026-10-02T10:00:00-06:00",
-      "endAt": "2026-10-02T12:30:00-06:00",
-      "assignedCleaners": [
-        "Danielle Pettipas"
-      ],
-      "serviceType": "Standard Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4037"
-    },
-    {
-      "id": "vis-oct-02b",
-      "visitNumber": "VISIT-4038",
-      "title": "Scott Chambers - Deep Clean",
-      "clientName": "Scott Chambers",
-      "clientPhone": "(780) 555-0117",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
-      "lat": 53.518,
-      "lng": -113.51,
-      "startAt": "2026-10-02T10:00:00-06:00",
-      "endAt": "2026-10-02T12:30:00-06:00",
-      "assignedCleaners": [
-        "Scott Chambers"
-      ],
-      "serviceType": "Deep Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4038"
     },
     {
       "id": "vis-oct-02c",
@@ -327,7 +271,7 @@
       "startAt": "2026-10-07T10:00:00-06:00",
       "endAt": "2026-10-07T12:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Robyn Adele"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
@@ -350,24 +294,6 @@
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4046"
-    },
-    {
-      "id": "vis-oct-08a",
-      "visitNumber": "VISIT-4047",
-      "title": "Samantha Smits - Standard Home",
-      "clientName": "Samantha Smits",
-      "clientPhone": "(780) 555-0118",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
-      "lat": 53.5285,
-      "lng": -113.568,
-      "startAt": "2026-10-08T09:00:00-06:00",
-      "endAt": "2026-10-08T11:30:00-06:00",
-      "assignedCleaners": [
-        "Samantha Smits"
-      ],
-      "serviceType": "Standard Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4047"
     },
     {
       "id": "vis-oct-08b",
@@ -406,24 +332,6 @@
       "jobberWebUri": "https://secure.getjobber.com/visits/4049"
     },
     {
-      "id": "vis-oct-09a",
-      "visitNumber": "VISIT-4050",
-      "title": "Mike Brown - 2bed Condo Clean",
-      "clientName": "Mike Brown",
-      "clientPhone": "(780) 555-0119",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
-      "lat": 53.565,
-      "lng": -113.421,
-      "startAt": "2026-10-09T09:00:00-06:00",
-      "endAt": "2026-10-09T11:30:00-06:00",
-      "assignedCleaners": [
-        "Mike Brown"
-      ],
-      "serviceType": "Standard Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4050"
-    },
-    {
       "id": "vis-oct-12a",
       "visitNumber": "VISIT-4051",
       "title": "Owa & Alex Isegh - Standard Clean",
@@ -435,7 +343,7 @@
       "startAt": "2026-10-12T11:00:00-06:00",
       "endAt": "2026-10-12T13:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
@@ -453,7 +361,7 @@
       "startAt": "2026-10-12T17:00:00-06:00",
       "endAt": "2026-10-12T19:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Melissa Clarke"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
@@ -476,24 +384,6 @@
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4053"
-    },
-    {
-      "id": "vis-oct-14a",
-      "visitNumber": "VISIT-4054",
-      "title": "Samantha Smits - Deep Clean",
-      "clientName": "Samantha Smits",
-      "clientPhone": "(780) 555-0118",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
-      "lat": 53.5285,
-      "lng": -113.568,
-      "startAt": "2026-10-14T09:00:00-06:00",
-      "endAt": "2026-10-14T11:30:00-06:00",
-      "assignedCleaners": [
-        "Samantha Smits"
-      ],
-      "serviceType": "Deep Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4054"
     },
     {
       "id": "vis-oct-14b",
@@ -525,7 +415,7 @@
       "startAt": "2026-10-14T10:00:00-06:00",
       "endAt": "2026-10-14T12:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Robyn Adele"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
@@ -551,24 +441,6 @@
       "jobberWebUri": "https://secure.getjobber.com/visits/4057"
     },
     {
-      "id": "vis-oct-16a",
-      "visitNumber": "VISIT-4058",
-      "title": "Danielle Pettipas - Bi-weekly",
-      "clientName": "Danielle Pettipas",
-      "clientPhone": "(780) 555-0116",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
-      "lat": 53.522,
-      "lng": -113.591,
-      "startAt": "2026-10-16T10:00:00-06:00",
-      "endAt": "2026-10-16T12:30:00-06:00",
-      "assignedCleaners": [
-        "Danielle Pettipas"
-      ],
-      "serviceType": "Standard Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4058"
-    },
-    {
       "id": "vis-oct-19a",
       "visitNumber": "VISIT-4059",
       "title": "Owa & Alex Isegh - Standard Clean",
@@ -580,7 +452,7 @@
       "startAt": "2026-10-19T11:00:00-06:00",
       "endAt": "2026-10-19T13:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
@@ -598,7 +470,7 @@
       "startAt": "2026-10-19T17:00:00-06:00",
       "endAt": "2026-10-19T19:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Melissa Clarke"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
@@ -634,7 +506,7 @@
       "startAt": "2026-10-21T10:00:00-06:00",
       "endAt": "2026-10-21T12:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Robyn Adele"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
@@ -659,24 +531,6 @@
       "jobberWebUri": "https://secure.getjobber.com/visits/4063"
     },
     {
-      "id": "vis-oct-22a",
-      "visitNumber": "VISIT-4064",
-      "title": "Scott Chambers - Deep Clean",
-      "clientName": "Scott Chambers",
-      "clientPhone": "(780) 555-0117",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
-      "lat": 53.518,
-      "lng": -113.51,
-      "startAt": "2026-10-22T09:00:00-06:00",
-      "endAt": "2026-10-22T11:30:00-06:00",
-      "assignedCleaners": [
-        "Scott Chambers"
-      ],
-      "serviceType": "Deep Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4064"
-    },
-    {
       "id": "vis-oct-22b",
       "visitNumber": "VISIT-4065",
       "title": "Clare Gibson - Bi-weekly Detail",
@@ -695,24 +549,6 @@
       "jobberWebUri": "https://secure.getjobber.com/visits/4065"
     },
     {
-      "id": "vis-oct-23a",
-      "visitNumber": "VISIT-4066",
-      "title": "Mike Brown - 2bed Condo Clean",
-      "clientName": "Mike Brown",
-      "clientPhone": "(780) 555-0119",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
-      "lat": 53.565,
-      "lng": -113.421,
-      "startAt": "2026-10-23T09:00:00-06:00",
-      "endAt": "2026-10-23T11:30:00-06:00",
-      "assignedCleaners": [
-        "Mike Brown"
-      ],
-      "serviceType": "Standard Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4066"
-    },
-    {
       "id": "vis-oct-23b",
       "visitNumber": "VISIT-4067",
       "title": "Kati Luknowsky - Move-Out Detail",
@@ -724,8 +560,8 @@
       "startAt": "2026-10-23T10:00:00-06:00",
       "endAt": "2026-10-23T13:00:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas",
-        "Scott Chambers"
+        "Joel MBATCHOU",
+        "Sergine Ngongang wetie"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
@@ -761,7 +597,7 @@
       "startAt": "2026-10-26T11:00:00-06:00",
       "endAt": "2026-10-26T13:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
@@ -786,24 +622,6 @@
       "jobberWebUri": "https://secure.getjobber.com/visits/4070"
     },
     {
-      "id": "vis-oct-28d",
-      "visitNumber": "VISIT-4071",
-      "title": "Samantha Smits - Deep Clean",
-      "clientName": "Samantha Smits",
-      "clientPhone": "(780) 555-0118",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
-      "lat": 53.5285,
-      "lng": -113.568,
-      "startAt": "2026-10-28T09:00:00-06:00",
-      "endAt": "2026-10-28T11:30:00-06:00",
-      "assignedCleaners": [
-        "Samantha Smits"
-      ],
-      "serviceType": "Deep Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4071"
-    },
-    {
       "id": "vis-oct-29b",
       "visitNumber": "VISIT-4072",
       "title": "Jacqueline Ares - Tandem Home Detail",
@@ -823,117 +641,99 @@
       "jobberWebUri": "https://secure.getjobber.com/visits/4072"
     },
     {
-      "id": "vis-oct-30d",
-      "visitNumber": "VISIT-4073",
-      "title": "Danielle Pettipas - Bi-weekly",
-      "clientName": "Danielle Pettipas",
-      "clientPhone": "(780) 555-0116",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
-      "lat": 53.522,
-      "lng": -113.591,
-      "startAt": "2026-10-30T10:00:00-06:00",
-      "endAt": "2026-10-30T12:30:00-06:00",
-      "assignedCleaners": [
-        "Danielle Pettipas"
-      ],
-      "serviceType": "Standard Cleaning",
-      "status": "SCHEDULED",
-      "jobberWebUri": "https://secure.getjobber.com/visits/4073"
-    },
-    {
       "id": "vis-2026-08-03-0",
       "visitNumber": "VISIT-4100",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.55,
       "startAt": "2026-08-03T09:00:00-06:00",
       "endAt": "2026-08-03T11:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4101",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-08-03-1",
       "visitNumber": "VISIT-4101",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.53,
       "startAt": "2026-08-03T11:00:00-06:00",
       "endAt": "2026-08-03T13:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4102",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-08-05-0",
       "visitNumber": "VISIT-4102",
-      "title": "Mike Brown - Scheduled Clean",
-      "clientName": "Mike Brown",
+      "title": "Suchi Jobanputra - Scheduled Clean",
+      "clientName": "Suchi Jobanputra",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "4310 114a St NW, Edmonton, AB",
       "lat": 53.52,
       "lng": -113.55,
       "startAt": "2026-08-05T09:00:00-06:00",
       "endAt": "2026-08-05T11:30:00-06:00",
       "assignedCleaners": [
-        "Mike Brown"
+        "Kilab"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4103",
-      "notes": "Synced from Jobber. Team assignment: Mike Brown"
+      "notes": "Synced from Jobber. Team assignment: Kilab"
     },
     {
       "id": "vis-2026-08-05-1",
       "visitNumber": "VISIT-4103",
-      "title": "Matthew Penkala - Scheduled Clean",
-      "clientName": "Matthew Penkala",
+      "title": "Sarge & Regan - Scheduled Clean",
+      "clientName": "Sarge & Regan",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
+      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
       "lat": 53.52,
       "lng": -113.53,
       "startAt": "2026-08-05T11:00:00-06:00",
       "endAt": "2026-08-05T13:30:00-06:00",
       "assignedCleaners": [
-        "Joseph Juma"
+        "Neth & Carmen"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4104",
-      "notes": "Synced from Jobber. Team assignment: Joseph Juma"
+      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
     },
     {
       "id": "vis-2026-08-05-2",
       "visitNumber": "VISIT-4104",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.52,
       "lng": -113.50999999999999,
       "startAt": "2026-08-05T13:00:00-06:00",
       "endAt": "2026-08-05T15:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4105",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-08-05-3",
@@ -947,167 +747,165 @@
       "startAt": "2026-08-05T15:00:00-06:00",
       "endAt": "2026-08-05T17:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4106",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-08-07-0",
       "visitNumber": "VISIT-4106",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.55,
       "startAt": "2026-08-07T09:00:00-06:00",
       "endAt": "2026-08-07T11:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4107",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-08-07-1",
       "visitNumber": "VISIT-4107",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.53,
       "startAt": "2026-08-07T11:00:00-06:00",
       "endAt": "2026-08-07T13:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4108",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-08-07-2",
       "visitNumber": "VISIT-4108",
-      "title": "Sarge & Regan - Scheduled Clean",
-      "clientName": "Sarge & Regan",
+      "title": "Darcy - Scheduled Clean",
+      "clientName": "Darcy",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
+      "serviceAddress": "9812 144 St NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.50999999999999,
       "startAt": "2026-08-07T13:00:00-06:00",
       "endAt": "2026-08-07T15:30:00-06:00",
       "assignedCleaners": [
-        "Neth & Carmen"
+        "Asanti Sayida"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4109",
-      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
+      "notes": "Synced from Jobber. Team assignment: Asanti Sayida"
     },
     {
       "id": "vis-2026-08-10-0",
       "visitNumber": "VISIT-4109",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.470000000000006,
       "lng": -113.55,
       "startAt": "2026-08-10T09:00:00-06:00",
       "endAt": "2026-08-10T11:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4110",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-08-10-1",
       "visitNumber": "VISIT-4110",
-      "title": "Sarge & Regan - Scheduled Clean",
-      "clientName": "Sarge & Regan",
+      "title": "Darcy - Scheduled Clean",
+      "clientName": "Darcy",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
+      "serviceAddress": "9812 144 St NW, Edmonton, AB",
       "lat": 53.470000000000006,
       "lng": -113.53,
       "startAt": "2026-08-10T11:00:00-06:00",
       "endAt": "2026-08-10T13:30:00-06:00",
       "assignedCleaners": [
-        "Neth & Carmen"
+        "Asanti Sayida"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4111",
-      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
+      "notes": "Synced from Jobber. Team assignment: Asanti Sayida"
     },
     {
       "id": "vis-2026-08-10-2",
       "visitNumber": "VISIT-4111",
-      "title": "Jacqueline Ares - Scheduled Clean",
-      "clientName": "Jacqueline Ares",
+      "title": "Brett & Ellie Kanuk - Scheduled Clean",
+      "clientName": "Brett & Ellie Kanuk",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
+      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
       "lat": 53.470000000000006,
       "lng": -113.50999999999999,
       "startAt": "2026-08-10T13:00:00-06:00",
       "endAt": "2026-08-10T15:30:00-06:00",
       "assignedCleaners": [
-        "Joel MBATCHOU",
-        "Sergine Ngongang wetie"
+        "Jen & Bryan Cabugon"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4112",
-      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
+      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
     },
     {
       "id": "vis-2026-08-12-0",
       "visitNumber": "VISIT-4112",
-      "title": "Adam Joly - Scheduled Clean",
-      "clientName": "Adam Joly",
+      "title": "Brenda Lee - Scheduled Clean",
+      "clientName": "Brenda Lee",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "5110 122 St NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.55,
       "startAt": "2026-08-12T09:00:00-06:00",
       "endAt": "2026-08-12T11:30:00-06:00",
       "assignedCleaners": [
-        "Stacey Whitty"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4113",
-      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-08-12-1",
       "visitNumber": "VISIT-4113",
-      "title": "Jan Perrin - Scheduled Clean",
-      "clientName": "Jan Perrin",
+      "title": "Jacqueline Ares - Scheduled Clean",
+      "clientName": "Jacqueline Ares",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "11303 76 Ave NW, Edmonton, AB",
+      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.53,
       "startAt": "2026-08-12T11:00:00-06:00",
       "endAt": "2026-08-12T13:30:00-06:00",
       "assignedCleaners": [
-        "Jan Perrin",
-        "Jasmin Kunin"
+        "Joel MBATCHOU",
+        "Sergine Ngongang wetie"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4114",
-      "notes": "Synced from Jobber. Team assignment: Jan Perrin & Jasmin Kunin"
+      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
     },
     {
       "id": "vis-2026-08-14-0",
@@ -1121,356 +919,355 @@
       "startAt": "2026-08-14T09:00:00-06:00",
       "endAt": "2026-08-14T11:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4115",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-08-14-1",
       "visitNumber": "VISIT-4115",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.53,
       "startAt": "2026-08-14T11:00:00-06:00",
       "endAt": "2026-08-14T13:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4116",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-08-14-2",
       "visitNumber": "VISIT-4116",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.50999999999999,
       "startAt": "2026-08-14T13:00:00-06:00",
       "endAt": "2026-08-14T15:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4117",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-08-14-3",
       "visitNumber": "VISIT-4117",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.49,
       "startAt": "2026-08-14T15:00:00-06:00",
       "endAt": "2026-08-14T17:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4118",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-08-17-0",
       "visitNumber": "VISIT-4118",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.55,
       "startAt": "2026-08-17T09:00:00-06:00",
       "endAt": "2026-08-17T11:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4119",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-08-17-1",
       "visitNumber": "VISIT-4119",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.53,
       "startAt": "2026-08-17T11:00:00-06:00",
       "endAt": "2026-08-17T13:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4120",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-08-17-2",
       "visitNumber": "VISIT-4120",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.50999999999999,
       "startAt": "2026-08-17T13:00:00-06:00",
       "endAt": "2026-08-17T15:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4121",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-08-17-3",
       "visitNumber": "VISIT-4121",
-      "title": "Adam Joly - Scheduled Clean",
-      "clientName": "Adam Joly",
+      "title": "Brenda Lee - Scheduled Clean",
+      "clientName": "Brenda Lee",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "5110 122 St NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.49,
       "startAt": "2026-08-17T15:00:00-06:00",
       "endAt": "2026-08-17T17:30:00-06:00",
       "assignedCleaners": [
-        "Stacey Whitty"
+        "Cindy Guay"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4122",
-      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-08-19-0",
       "visitNumber": "VISIT-4122",
-      "title": "Mike Brown - Scheduled Clean",
-      "clientName": "Mike Brown",
+      "title": "Suchi Jobanputra - Scheduled Clean",
+      "clientName": "Suchi Jobanputra",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "4310 114a St NW, Edmonton, AB",
       "lat": 53.56000000000001,
       "lng": -113.55,
       "startAt": "2026-08-19T09:00:00-06:00",
       "endAt": "2026-08-19T11:30:00-06:00",
       "assignedCleaners": [
-        "Mike Brown"
+        "Kilab"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4123",
-      "notes": "Synced from Jobber. Team assignment: Mike Brown"
+      "notes": "Synced from Jobber. Team assignment: Kilab"
     },
     {
       "id": "vis-2026-08-19-1",
       "visitNumber": "VISIT-4123",
-      "title": "Matthew Penkala - Scheduled Clean",
-      "clientName": "Matthew Penkala",
+      "title": "Sarge & Regan - Scheduled Clean",
+      "clientName": "Sarge & Regan",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
+      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
       "lat": 53.56000000000001,
       "lng": -113.53,
       "startAt": "2026-08-19T11:00:00-06:00",
       "endAt": "2026-08-19T13:30:00-06:00",
       "assignedCleaners": [
-        "Joseph Juma"
+        "Neth & Carmen"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4124",
-      "notes": "Synced from Jobber. Team assignment: Joseph Juma"
+      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
     },
     {
       "id": "vis-2026-08-19-2",
       "visitNumber": "VISIT-4124",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.56000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-08-19T13:00:00-06:00",
       "endAt": "2026-08-19T15:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4125",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-08-21-0",
       "visitNumber": "VISIT-4125",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.55,
       "startAt": "2026-08-21T09:00:00-06:00",
       "endAt": "2026-08-21T11:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4126",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-08-21-1",
       "visitNumber": "VISIT-4126",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.53,
       "startAt": "2026-08-21T11:00:00-06:00",
       "endAt": "2026-08-21T13:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4127",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-08-24-0",
       "visitNumber": "VISIT-4127",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.55,
       "startAt": "2026-08-24T09:00:00-06:00",
       "endAt": "2026-08-24T11:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4128",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-08-24-1",
       "visitNumber": "VISIT-4128",
-      "title": "Sarge & Regan - Scheduled Clean",
-      "clientName": "Sarge & Regan",
+      "title": "Darcy - Scheduled Clean",
+      "clientName": "Darcy",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
+      "serviceAddress": "9812 144 St NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.53,
       "startAt": "2026-08-24T11:00:00-06:00",
       "endAt": "2026-08-24T13:30:00-06:00",
       "assignedCleaners": [
-        "Neth & Carmen"
+        "Asanti Sayida"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4129",
-      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
+      "notes": "Synced from Jobber. Team assignment: Asanti Sayida"
     },
     {
       "id": "vis-2026-08-26-0",
       "visitNumber": "VISIT-4129",
-      "title": "Adam Joly - Scheduled Clean",
-      "clientName": "Adam Joly",
+      "title": "Brenda Lee - Scheduled Clean",
+      "clientName": "Brenda Lee",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "5110 122 St NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.55,
       "startAt": "2026-08-26T09:00:00-06:00",
       "endAt": "2026-08-26T11:30:00-06:00",
       "assignedCleaners": [
-        "Stacey Whitty"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4130",
-      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-08-26-1",
       "visitNumber": "VISIT-4130",
-      "title": "Jan Perrin - Scheduled Clean",
-      "clientName": "Jan Perrin",
+      "title": "Jacqueline Ares - Scheduled Clean",
+      "clientName": "Jacqueline Ares",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "11303 76 Ave NW, Edmonton, AB",
+      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.53,
       "startAt": "2026-08-26T11:00:00-06:00",
       "endAt": "2026-08-26T13:30:00-06:00",
       "assignedCleaners": [
-        "Jan Perrin",
-        "Jasmin Kunin"
+        "Joel MBATCHOU",
+        "Sergine Ngongang wetie"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4131",
-      "notes": "Synced from Jobber. Team assignment: Jan Perrin & Jasmin Kunin"
+      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
     },
     {
       "id": "vis-2026-08-26-2",
       "visitNumber": "VISIT-4131",
-      "title": "Samantha Smits - Scheduled Clean",
-      "clientName": "Samantha Smits",
+      "title": "Clare Gibson - Scheduled Clean",
+      "clientName": "Clare Gibson",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
+      "serviceAddress": "8910 148 St NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-08-26T13:00:00-06:00",
       "endAt": "2026-08-26T15:30:00-06:00",
       "assignedCleaners": [
-        "Samantha Smits"
+        "Melissa Clarke"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4132",
-      "notes": "Synced from Jobber. Team assignment: Samantha Smits"
+      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
     },
     {
       "id": "vis-2026-08-26-3",
       "visitNumber": "VISIT-4132",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.49,
       "startAt": "2026-08-26T15:00:00-06:00",
       "endAt": "2026-08-26T17:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4133",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-08-28-0",
@@ -1484,299 +1281,297 @@
       "startAt": "2026-08-28T09:00:00-06:00",
       "endAt": "2026-08-28T11:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4134",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-08-28-1",
       "visitNumber": "VISIT-4134",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.53,
       "startAt": "2026-08-28T11:00:00-06:00",
       "endAt": "2026-08-28T13:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4135",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-08-28-2",
       "visitNumber": "VISIT-4135",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.50999999999999,
       "startAt": "2026-08-28T13:00:00-06:00",
       "endAt": "2026-08-28T15:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4136",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-09-02-0",
       "visitNumber": "VISIT-4136",
-      "title": "Jacqueline Ares - Scheduled Clean",
-      "clientName": "Jacqueline Ares",
+      "title": "Brett & Ellie Kanuk - Scheduled Clean",
+      "clientName": "Brett & Ellie Kanuk",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
+      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.55,
       "startAt": "2026-09-02T09:00:00-06:00",
       "endAt": "2026-09-02T11:30:00-06:00",
       "assignedCleaners": [
-        "Joel MBATCHOU",
-        "Sergine Ngongang wetie"
+        "Jen & Bryan Cabugon"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4137",
-      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
+      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
     },
     {
       "id": "vis-2026-09-02-1",
       "visitNumber": "VISIT-4137",
-      "title": "Mike Brown - Scheduled Clean",
-      "clientName": "Mike Brown",
+      "title": "Suchi Jobanputra - Scheduled Clean",
+      "clientName": "Suchi Jobanputra",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "4310 114a St NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.53,
       "startAt": "2026-09-02T11:00:00-06:00",
       "endAt": "2026-09-02T13:30:00-06:00",
       "assignedCleaners": [
-        "Mike Brown"
+        "Kilab"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4138",
-      "notes": "Synced from Jobber. Team assignment: Mike Brown"
+      "notes": "Synced from Jobber. Team assignment: Kilab"
     },
     {
       "id": "vis-2026-09-02-2",
       "visitNumber": "VISIT-4138",
-      "title": "Matthew Penkala - Scheduled Clean",
-      "clientName": "Matthew Penkala",
+      "title": "Sarge & Regan - Scheduled Clean",
+      "clientName": "Sarge & Regan",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
+      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-09-02T13:00:00-06:00",
       "endAt": "2026-09-02T15:30:00-06:00",
       "assignedCleaners": [
-        "Joseph Juma"
+        "Neth & Carmen"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4139",
-      "notes": "Synced from Jobber. Team assignment: Joseph Juma"
+      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
     },
     {
       "id": "vis-2026-09-02-3",
       "visitNumber": "VISIT-4139",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.49,
       "startAt": "2026-09-02T15:00:00-06:00",
       "endAt": "2026-09-02T17:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4140",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-09-04-0",
       "visitNumber": "VISIT-4140",
-      "title": "Samantha Smits - Scheduled Clean",
-      "clientName": "Samantha Smits",
+      "title": "Clare Gibson - Scheduled Clean",
+      "clientName": "Clare Gibson",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
+      "serviceAddress": "8910 148 St NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.55,
       "startAt": "2026-09-04T09:00:00-06:00",
       "endAt": "2026-09-04T11:30:00-06:00",
       "assignedCleaners": [
-        "Samantha Smits"
+        "Melissa Clarke"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4141",
-      "notes": "Synced from Jobber. Team assignment: Samantha Smits"
+      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
     },
     {
       "id": "vis-2026-09-04-1",
       "visitNumber": "VISIT-4141",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.53,
       "startAt": "2026-09-04T11:00:00-06:00",
       "endAt": "2026-09-04T13:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4142",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-09-04-2",
       "visitNumber": "VISIT-4142",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.50999999999999,
       "startAt": "2026-09-04T13:00:00-06:00",
       "endAt": "2026-09-04T15:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4143",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-09-07-0",
       "visitNumber": "VISIT-4143",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.55,
       "startAt": "2026-09-07T09:00:00-06:00",
       "endAt": "2026-09-07T11:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4144",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-09-07-1",
       "visitNumber": "VISIT-4144",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.53,
       "startAt": "2026-09-07T11:00:00-06:00",
       "endAt": "2026-09-07T13:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4145",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-09-07-2",
       "visitNumber": "VISIT-4145",
-      "title": "Sarge & Regan - Scheduled Clean",
-      "clientName": "Sarge & Regan",
+      "title": "Darcy - Scheduled Clean",
+      "clientName": "Darcy",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
+      "serviceAddress": "9812 144 St NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.50999999999999,
       "startAt": "2026-09-07T13:00:00-06:00",
       "endAt": "2026-09-07T15:30:00-06:00",
       "assignedCleaners": [
-        "Neth & Carmen"
+        "Asanti Sayida"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4146",
-      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
+      "notes": "Synced from Jobber. Team assignment: Asanti Sayida"
     },
     {
       "id": "vis-2026-09-09-0",
       "visitNumber": "VISIT-4146",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.56000000000001,
       "lng": -113.55,
       "startAt": "2026-09-09T09:00:00-06:00",
       "endAt": "2026-09-09T11:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4147",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-09-09-1",
       "visitNumber": "VISIT-4147",
-      "title": "Adam Joly - Scheduled Clean",
-      "clientName": "Adam Joly",
+      "title": "Brenda Lee - Scheduled Clean",
+      "clientName": "Brenda Lee",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "5110 122 St NW, Edmonton, AB",
       "lat": 53.56000000000001,
       "lng": -113.53,
       "startAt": "2026-09-09T11:00:00-06:00",
       "endAt": "2026-09-09T13:30:00-06:00",
       "assignedCleaners": [
-        "Stacey Whitty"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4148",
-      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-09-11-0",
       "visitNumber": "VISIT-4148",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.55,
       "startAt": "2026-09-11T09:00:00-06:00",
       "endAt": "2026-09-11T11:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4149",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-09-11-1",
@@ -1790,51 +1585,50 @@
       "startAt": "2026-09-11T11:00:00-06:00",
       "endAt": "2026-09-11T13:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4150",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-09-11-2",
       "visitNumber": "VISIT-4150",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.50999999999999,
       "startAt": "2026-09-11T13:00:00-06:00",
       "endAt": "2026-09-11T15:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4151",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-09-11-3",
       "visitNumber": "VISIT-4151",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.49,
       "startAt": "2026-09-11T15:00:00-06:00",
       "endAt": "2026-09-11T17:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4152",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-09-14-0",
@@ -1848,300 +1642,298 @@
       "startAt": "2026-09-14T09:00:00-06:00",
       "endAt": "2026-09-14T11:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4153",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-09-14-1",
       "visitNumber": "VISIT-4153",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.53,
       "startAt": "2026-09-14T11:00:00-06:00",
       "endAt": "2026-09-14T13:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4154",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-09-14-2",
       "visitNumber": "VISIT-4154",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.50999999999999,
       "startAt": "2026-09-14T13:00:00-06:00",
       "endAt": "2026-09-14T15:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4155",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-09-14-3",
       "visitNumber": "VISIT-4155",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.49,
       "startAt": "2026-09-14T15:00:00-06:00",
       "endAt": "2026-09-14T17:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4156",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-09-16-0",
       "visitNumber": "VISIT-4156",
-      "title": "Jacqueline Ares - Scheduled Clean",
-      "clientName": "Jacqueline Ares",
+      "title": "Brett & Ellie Kanuk - Scheduled Clean",
+      "clientName": "Brett & Ellie Kanuk",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
+      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.55,
       "startAt": "2026-09-16T09:00:00-06:00",
       "endAt": "2026-09-16T11:30:00-06:00",
       "assignedCleaners": [
-        "Joel MBATCHOU",
-        "Sergine Ngongang wetie"
+        "Jen & Bryan Cabugon"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4157",
-      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
+      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
     },
     {
       "id": "vis-2026-09-16-1",
       "visitNumber": "VISIT-4157",
-      "title": "Mike Brown - Scheduled Clean",
-      "clientName": "Mike Brown",
+      "title": "Suchi Jobanputra - Scheduled Clean",
+      "clientName": "Suchi Jobanputra",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "4310 114a St NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.53,
       "startAt": "2026-09-16T11:00:00-06:00",
       "endAt": "2026-09-16T13:30:00-06:00",
       "assignedCleaners": [
-        "Mike Brown"
+        "Kilab"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4158",
-      "notes": "Synced from Jobber. Team assignment: Mike Brown"
+      "notes": "Synced from Jobber. Team assignment: Kilab"
     },
     {
       "id": "vis-2026-09-16-2",
       "visitNumber": "VISIT-4158",
-      "title": "Matthew Penkala - Scheduled Clean",
-      "clientName": "Matthew Penkala",
+      "title": "Sarge & Regan - Scheduled Clean",
+      "clientName": "Sarge & Regan",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
+      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-09-16T13:00:00-06:00",
       "endAt": "2026-09-16T15:30:00-06:00",
       "assignedCleaners": [
-        "Joseph Juma"
+        "Neth & Carmen"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4159",
-      "notes": "Synced from Jobber. Team assignment: Joseph Juma"
+      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
     },
     {
       "id": "vis-2026-09-18-0",
       "visitNumber": "VISIT-4159",
-      "title": "Samantha Smits - Scheduled Clean",
-      "clientName": "Samantha Smits",
+      "title": "Clare Gibson - Scheduled Clean",
+      "clientName": "Clare Gibson",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
+      "serviceAddress": "8910 148 St NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.55,
       "startAt": "2026-09-18T09:00:00-06:00",
       "endAt": "2026-09-18T11:30:00-06:00",
       "assignedCleaners": [
-        "Samantha Smits"
+        "Melissa Clarke"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4160",
-      "notes": "Synced from Jobber. Team assignment: Samantha Smits"
+      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
     },
     {
       "id": "vis-2026-09-18-1",
       "visitNumber": "VISIT-4160",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.53,
       "startAt": "2026-09-18T11:00:00-06:00",
       "endAt": "2026-09-18T13:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4161",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-09-21-0",
       "visitNumber": "VISIT-4161",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.55,
       "startAt": "2026-09-21T09:00:00-06:00",
       "endAt": "2026-09-21T11:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4162",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-09-21-1",
       "visitNumber": "VISIT-4162",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.53,
       "startAt": "2026-09-21T11:00:00-06:00",
       "endAt": "2026-09-21T13:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4163",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-09-23-0",
       "visitNumber": "VISIT-4163",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.55,
       "startAt": "2026-09-23T09:00:00-06:00",
       "endAt": "2026-09-23T11:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4164",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-09-23-1",
       "visitNumber": "VISIT-4164",
-      "title": "Adam Joly - Scheduled Clean",
-      "clientName": "Adam Joly",
+      "title": "Brenda Lee - Scheduled Clean",
+      "clientName": "Brenda Lee",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "5110 122 St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.53,
       "startAt": "2026-09-23T11:00:00-06:00",
       "endAt": "2026-09-23T13:30:00-06:00",
       "assignedCleaners": [
-        "Stacey Whitty"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4165",
-      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-09-23-2",
       "visitNumber": "VISIT-4165",
-      "title": "Jan Perrin - Scheduled Clean",
-      "clientName": "Jan Perrin",
+      "title": "Jacqueline Ares - Scheduled Clean",
+      "clientName": "Jacqueline Ares",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "11303 76 Ave NW, Edmonton, AB",
+      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-09-23T13:00:00-06:00",
       "endAt": "2026-09-23T15:30:00-06:00",
       "assignedCleaners": [
-        "Jan Perrin",
-        "Jasmin Kunin"
+        "Joel MBATCHOU",
+        "Sergine Ngongang wetie"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4166",
-      "notes": "Synced from Jobber. Team assignment: Jan Perrin & Jasmin Kunin"
+      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
     },
     {
       "id": "vis-2026-09-23-3",
       "visitNumber": "VISIT-4166",
-      "title": "Samantha Smits - Scheduled Clean",
-      "clientName": "Samantha Smits",
+      "title": "Clare Gibson - Scheduled Clean",
+      "clientName": "Clare Gibson",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
+      "serviceAddress": "8910 148 St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.49,
       "startAt": "2026-09-23T15:00:00-06:00",
       "endAt": "2026-09-23T17:30:00-06:00",
       "assignedCleaners": [
-        "Samantha Smits"
+        "Melissa Clarke"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4167",
-      "notes": "Synced from Jobber. Team assignment: Samantha Smits"
+      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
     },
     {
       "id": "vis-2026-09-25-0",
       "visitNumber": "VISIT-4167",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.52,
       "lng": -113.55,
       "startAt": "2026-09-25T09:00:00-06:00",
       "endAt": "2026-09-25T11:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4168",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-09-25-1",
@@ -2155,32 +1947,31 @@
       "startAt": "2026-09-25T11:00:00-06:00",
       "endAt": "2026-09-25T13:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4169",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-09-25-2",
       "visitNumber": "VISIT-4169",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.52,
       "lng": -113.50999999999999,
       "startAt": "2026-09-25T13:00:00-06:00",
       "endAt": "2026-09-25T15:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4170",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-09-28-0",
@@ -2194,280 +1985,278 @@
       "startAt": "2026-09-28T09:00:00-06:00",
       "endAt": "2026-09-28T11:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4171",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-09-28-1",
       "visitNumber": "VISIT-4171",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.53,
       "startAt": "2026-09-28T11:00:00-06:00",
       "endAt": "2026-09-28T13:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Deep Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4172",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-09-28-2",
       "visitNumber": "VISIT-4172",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.50999999999999,
       "startAt": "2026-09-28T13:00:00-06:00",
       "endAt": "2026-09-28T15:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "COMPLETED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4173",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-11-02-0",
       "visitNumber": "VISIT-4173",
-      "title": "Jacqueline Ares - Scheduled Clean",
-      "clientName": "Jacqueline Ares",
+      "title": "Brett & Ellie Kanuk - Scheduled Clean",
+      "clientName": "Brett & Ellie Kanuk",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
+      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.55,
       "startAt": "2026-11-02T09:00:00-06:00",
       "endAt": "2026-11-02T11:30:00-06:00",
       "assignedCleaners": [
-        "Joel MBATCHOU",
-        "Sergine Ngongang wetie"
+        "Jen & Bryan Cabugon"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4174",
-      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
+      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
     },
     {
       "id": "vis-2026-11-02-1",
       "visitNumber": "VISIT-4174",
-      "title": "Mike Brown - Scheduled Clean",
-      "clientName": "Mike Brown",
+      "title": "Suchi Jobanputra - Scheduled Clean",
+      "clientName": "Suchi Jobanputra",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "4310 114a St NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.53,
       "startAt": "2026-11-02T11:00:00-06:00",
       "endAt": "2026-11-02T13:30:00-06:00",
       "assignedCleaners": [
-        "Mike Brown"
+        "Kilab"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4175",
-      "notes": "Synced from Jobber. Team assignment: Mike Brown"
+      "notes": "Synced from Jobber. Team assignment: Kilab"
     },
     {
       "id": "vis-2026-11-02-2",
       "visitNumber": "VISIT-4175",
-      "title": "Matthew Penkala - Scheduled Clean",
-      "clientName": "Matthew Penkala",
+      "title": "Sarge & Regan - Scheduled Clean",
+      "clientName": "Sarge & Regan",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
+      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-11-02T13:00:00-06:00",
       "endAt": "2026-11-02T15:30:00-06:00",
       "assignedCleaners": [
-        "Joseph Juma"
+        "Neth & Carmen"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4176",
-      "notes": "Synced from Jobber. Team assignment: Joseph Juma"
+      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
     },
     {
       "id": "vis-2026-11-02-3",
       "visitNumber": "VISIT-4176",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.49,
       "startAt": "2026-11-02T15:00:00-06:00",
       "endAt": "2026-11-02T17:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4177",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-11-04-0",
       "visitNumber": "VISIT-4177",
-      "title": "Samantha Smits - Scheduled Clean",
-      "clientName": "Samantha Smits",
+      "title": "Clare Gibson - Scheduled Clean",
+      "clientName": "Clare Gibson",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
+      "serviceAddress": "8910 148 St NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.55,
       "startAt": "2026-11-04T09:00:00-06:00",
       "endAt": "2026-11-04T11:30:00-06:00",
       "assignedCleaners": [
-        "Samantha Smits"
+        "Melissa Clarke"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4178",
-      "notes": "Synced from Jobber. Team assignment: Samantha Smits"
+      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
     },
     {
       "id": "vis-2026-11-04-1",
       "visitNumber": "VISIT-4178",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.53,
       "startAt": "2026-11-04T11:00:00-06:00",
       "endAt": "2026-11-04T13:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4179",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-11-04-2",
       "visitNumber": "VISIT-4179",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.50999999999999,
       "startAt": "2026-11-04T13:00:00-06:00",
       "endAt": "2026-11-04T15:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4180",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-11-06-0",
       "visitNumber": "VISIT-4180",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.55,
       "startAt": "2026-11-06T09:00:00-06:00",
       "endAt": "2026-11-06T11:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4181",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-11-06-1",
       "visitNumber": "VISIT-4181",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.53,
       "startAt": "2026-11-06T11:00:00-06:00",
       "endAt": "2026-11-06T13:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4182",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-11-09-0",
       "visitNumber": "VISIT-4182",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.56000000000001,
       "lng": -113.55,
       "startAt": "2026-11-09T09:00:00-06:00",
       "endAt": "2026-11-09T11:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4183",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-11-09-1",
       "visitNumber": "VISIT-4183",
-      "title": "Adam Joly - Scheduled Clean",
-      "clientName": "Adam Joly",
+      "title": "Brenda Lee - Scheduled Clean",
+      "clientName": "Brenda Lee",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "5110 122 St NW, Edmonton, AB",
       "lat": 53.56000000000001,
       "lng": -113.53,
       "startAt": "2026-11-09T11:00:00-06:00",
       "endAt": "2026-11-09T13:30:00-06:00",
       "assignedCleaners": [
-        "Stacey Whitty"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4184",
-      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-11-11-0",
       "visitNumber": "VISIT-4184",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.55,
       "startAt": "2026-11-11T09:00:00-06:00",
       "endAt": "2026-11-11T11:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4185",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-11-11-1",
@@ -2481,378 +2270,375 @@
       "startAt": "2026-11-11T11:00:00-06:00",
       "endAt": "2026-11-11T13:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4186",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-11-11-2",
       "visitNumber": "VISIT-4186",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.50999999999999,
       "startAt": "2026-11-11T13:00:00-06:00",
       "endAt": "2026-11-11T15:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4187",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-11-11-3",
       "visitNumber": "VISIT-4187",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.49,
       "startAt": "2026-11-11T15:00:00-06:00",
       "endAt": "2026-11-11T17:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4188",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-11-13-0",
       "visitNumber": "VISIT-4188",
-      "title": "Sarge & Regan - Scheduled Clean",
-      "clientName": "Sarge & Regan",
+      "title": "Darcy - Scheduled Clean",
+      "clientName": "Darcy",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
+      "serviceAddress": "9812 144 St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.55,
       "startAt": "2026-11-13T09:00:00-06:00",
       "endAt": "2026-11-13T11:30:00-06:00",
       "assignedCleaners": [
-        "Neth & Carmen"
+        "Asanti Sayida"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4189",
-      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
+      "notes": "Synced from Jobber. Team assignment: Asanti Sayida"
     },
     {
       "id": "vis-2026-11-13-1",
       "visitNumber": "VISIT-4189",
-      "title": "Jacqueline Ares - Scheduled Clean",
-      "clientName": "Jacqueline Ares",
+      "title": "Brett & Ellie Kanuk - Scheduled Clean",
+      "clientName": "Brett & Ellie Kanuk",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
+      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.53,
       "startAt": "2026-11-13T11:00:00-06:00",
       "endAt": "2026-11-13T13:30:00-06:00",
       "assignedCleaners": [
-        "Joel MBATCHOU",
-        "Sergine Ngongang wetie"
+        "Jen & Bryan Cabugon"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4190",
-      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
+      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
     },
     {
       "id": "vis-2026-11-13-2",
       "visitNumber": "VISIT-4190",
-      "title": "Mike Brown - Scheduled Clean",
-      "clientName": "Mike Brown",
+      "title": "Suchi Jobanputra - Scheduled Clean",
+      "clientName": "Suchi Jobanputra",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "4310 114a St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-11-13T13:00:00-06:00",
       "endAt": "2026-11-13T15:30:00-06:00",
       "assignedCleaners": [
-        "Mike Brown"
+        "Kilab"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4191",
-      "notes": "Synced from Jobber. Team assignment: Mike Brown"
+      "notes": "Synced from Jobber. Team assignment: Kilab"
     },
     {
       "id": "vis-2026-11-16-0",
       "visitNumber": "VISIT-4191",
-      "title": "Jacqueline Ares - Scheduled Clean",
-      "clientName": "Jacqueline Ares",
+      "title": "Brett & Ellie Kanuk - Scheduled Clean",
+      "clientName": "Brett & Ellie Kanuk",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
+      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.55,
       "startAt": "2026-11-16T09:00:00-06:00",
       "endAt": "2026-11-16T11:30:00-06:00",
       "assignedCleaners": [
-        "Joel MBATCHOU",
-        "Sergine Ngongang wetie"
+        "Jen & Bryan Cabugon"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4192",
-      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
+      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
     },
     {
       "id": "vis-2026-11-16-1",
       "visitNumber": "VISIT-4192",
-      "title": "Mike Brown - Scheduled Clean",
-      "clientName": "Mike Brown",
+      "title": "Suchi Jobanputra - Scheduled Clean",
+      "clientName": "Suchi Jobanputra",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "4310 114a St NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.53,
       "startAt": "2026-11-16T11:00:00-06:00",
       "endAt": "2026-11-16T13:30:00-06:00",
       "assignedCleaners": [
-        "Mike Brown"
+        "Kilab"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4193",
-      "notes": "Synced from Jobber. Team assignment: Mike Brown"
+      "notes": "Synced from Jobber. Team assignment: Kilab"
     },
     {
       "id": "vis-2026-11-16-2",
       "visitNumber": "VISIT-4193",
-      "title": "Matthew Penkala - Scheduled Clean",
-      "clientName": "Matthew Penkala",
+      "title": "Sarge & Regan - Scheduled Clean",
+      "clientName": "Sarge & Regan",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
+      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-11-16T13:00:00-06:00",
       "endAt": "2026-11-16T15:30:00-06:00",
       "assignedCleaners": [
-        "Joseph Juma"
+        "Neth & Carmen"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4194",
-      "notes": "Synced from Jobber. Team assignment: Joseph Juma"
+      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
     },
     {
       "id": "vis-2026-11-18-0",
       "visitNumber": "VISIT-4194",
-      "title": "Samantha Smits - Scheduled Clean",
-      "clientName": "Samantha Smits",
+      "title": "Clare Gibson - Scheduled Clean",
+      "clientName": "Clare Gibson",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
+      "serviceAddress": "8910 148 St NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.55,
       "startAt": "2026-11-18T09:00:00-06:00",
       "endAt": "2026-11-18T11:30:00-06:00",
       "assignedCleaners": [
-        "Samantha Smits"
+        "Melissa Clarke"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4195",
-      "notes": "Synced from Jobber. Team assignment: Samantha Smits"
+      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
     },
     {
       "id": "vis-2026-11-18-1",
       "visitNumber": "VISIT-4195",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.53,
       "startAt": "2026-11-18T11:00:00-06:00",
       "endAt": "2026-11-18T13:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4196",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-11-20-0",
       "visitNumber": "VISIT-4196",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.470000000000006,
       "lng": -113.55,
       "startAt": "2026-11-20T09:00:00-06:00",
       "endAt": "2026-11-20T11:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4197",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-11-20-1",
       "visitNumber": "VISIT-4197",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.470000000000006,
       "lng": -113.53,
       "startAt": "2026-11-20T11:00:00-06:00",
       "endAt": "2026-11-20T13:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4198",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-11-20-2",
       "visitNumber": "VISIT-4198",
-      "title": "Adam Joly - Scheduled Clean",
-      "clientName": "Adam Joly",
+      "title": "Brenda Lee - Scheduled Clean",
+      "clientName": "Brenda Lee",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "5110 122 St NW, Edmonton, AB",
       "lat": 53.470000000000006,
       "lng": -113.50999999999999,
       "startAt": "2026-11-20T13:00:00-06:00",
       "endAt": "2026-11-20T15:30:00-06:00",
       "assignedCleaners": [
-        "Stacey Whitty"
+        "Cindy Guay"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4199",
-      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-11-20-3",
       "visitNumber": "VISIT-4199",
-      "title": "Jan Perrin - Scheduled Clean",
-      "clientName": "Jan Perrin",
+      "title": "Jacqueline Ares - Scheduled Clean",
+      "clientName": "Jacqueline Ares",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "11303 76 Ave NW, Edmonton, AB",
+      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
       "lat": 53.470000000000006,
       "lng": -113.49,
       "startAt": "2026-11-20T15:00:00-06:00",
       "endAt": "2026-11-20T17:30:00-06:00",
       "assignedCleaners": [
-        "Jan Perrin",
-        "Jasmin Kunin"
+        "Joel MBATCHOU",
+        "Sergine Ngongang wetie"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4200",
-      "notes": "Synced from Jobber. Team assignment: Jan Perrin & Jasmin Kunin"
+      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
     },
     {
       "id": "vis-2026-11-23-0",
       "visitNumber": "VISIT-4200",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.55,
       "startAt": "2026-11-23T09:00:00-06:00",
       "endAt": "2026-11-23T11:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4201",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-11-23-1",
       "visitNumber": "VISIT-4201",
-      "title": "Adam Joly - Scheduled Clean",
-      "clientName": "Adam Joly",
+      "title": "Brenda Lee - Scheduled Clean",
+      "clientName": "Brenda Lee",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "5110 122 St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.53,
       "startAt": "2026-11-23T11:00:00-06:00",
       "endAt": "2026-11-23T13:30:00-06:00",
       "assignedCleaners": [
-        "Stacey Whitty"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4202",
-      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-11-23-2",
       "visitNumber": "VISIT-4202",
-      "title": "Jan Perrin - Scheduled Clean",
-      "clientName": "Jan Perrin",
+      "title": "Jacqueline Ares - Scheduled Clean",
+      "clientName": "Jacqueline Ares",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "11303 76 Ave NW, Edmonton, AB",
+      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-11-23T13:00:00-06:00",
       "endAt": "2026-11-23T15:30:00-06:00",
       "assignedCleaners": [
-        "Jan Perrin",
-        "Jasmin Kunin"
+        "Joel MBATCHOU",
+        "Sergine Ngongang wetie"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4203",
-      "notes": "Synced from Jobber. Team assignment: Jan Perrin & Jasmin Kunin"
+      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
     },
     {
       "id": "vis-2026-11-23-3",
       "visitNumber": "VISIT-4203",
-      "title": "Samantha Smits - Scheduled Clean",
-      "clientName": "Samantha Smits",
+      "title": "Clare Gibson - Scheduled Clean",
+      "clientName": "Clare Gibson",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
+      "serviceAddress": "8910 148 St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.49,
       "startAt": "2026-11-23T15:00:00-06:00",
       "endAt": "2026-11-23T17:30:00-06:00",
       "assignedCleaners": [
-        "Samantha Smits"
+        "Melissa Clarke"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4204",
-      "notes": "Synced from Jobber. Team assignment: Samantha Smits"
+      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
     },
     {
       "id": "vis-2026-11-25-0",
       "visitNumber": "VISIT-4204",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.52,
       "lng": -113.55,
       "startAt": "2026-11-25T09:00:00-06:00",
       "endAt": "2026-11-25T11:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4205",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-11-25-1",
@@ -2866,319 +2652,316 @@
       "startAt": "2026-11-25T11:00:00-06:00",
       "endAt": "2026-11-25T13:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4206",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-11-25-2",
       "visitNumber": "VISIT-4206",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.52,
       "lng": -113.50999999999999,
       "startAt": "2026-11-25T13:00:00-06:00",
       "endAt": "2026-11-25T15:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4207",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-11-27-0",
       "visitNumber": "VISIT-4207",
-      "title": "Sarge & Regan - Scheduled Clean",
-      "clientName": "Sarge & Regan",
+      "title": "Darcy - Scheduled Clean",
+      "clientName": "Darcy",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
+      "serviceAddress": "9812 144 St NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.55,
       "startAt": "2026-11-27T09:00:00-06:00",
       "endAt": "2026-11-27T11:30:00-06:00",
       "assignedCleaners": [
-        "Neth & Carmen"
+        "Asanti Sayida"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4208",
-      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
+      "notes": "Synced from Jobber. Team assignment: Asanti Sayida"
     },
     {
       "id": "vis-2026-11-27-1",
       "visitNumber": "VISIT-4208",
-      "title": "Jacqueline Ares - Scheduled Clean",
-      "clientName": "Jacqueline Ares",
+      "title": "Brett & Ellie Kanuk - Scheduled Clean",
+      "clientName": "Brett & Ellie Kanuk",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
+      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.53,
       "startAt": "2026-11-27T11:00:00-06:00",
       "endAt": "2026-11-27T13:30:00-06:00",
       "assignedCleaners": [
-        "Joel MBATCHOU",
-        "Sergine Ngongang wetie"
+        "Jen & Bryan Cabugon"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4209",
-      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
+      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
     },
     {
       "id": "vis-2026-12-02-0",
       "visitNumber": "VISIT-4209",
-      "title": "Jacqueline Ares - Scheduled Clean",
-      "clientName": "Jacqueline Ares",
+      "title": "Brett & Ellie Kanuk - Scheduled Clean",
+      "clientName": "Brett & Ellie Kanuk",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
+      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.55,
       "startAt": "2026-12-02T09:00:00-06:00",
       "endAt": "2026-12-02T11:30:00-06:00",
       "assignedCleaners": [
-        "Joel MBATCHOU",
-        "Sergine Ngongang wetie"
+        "Jen & Bryan Cabugon"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4210",
-      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
+      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
     },
     {
       "id": "vis-2026-12-02-1",
       "visitNumber": "VISIT-4210",
-      "title": "Mike Brown - Scheduled Clean",
-      "clientName": "Mike Brown",
+      "title": "Suchi Jobanputra - Scheduled Clean",
+      "clientName": "Suchi Jobanputra",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "4310 114a St NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.53,
       "startAt": "2026-12-02T11:00:00-06:00",
       "endAt": "2026-12-02T13:30:00-06:00",
       "assignedCleaners": [
-        "Mike Brown"
+        "Kilab"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4211",
-      "notes": "Synced from Jobber. Team assignment: Mike Brown"
+      "notes": "Synced from Jobber. Team assignment: Kilab"
     },
     {
       "id": "vis-2026-12-02-2",
       "visitNumber": "VISIT-4211",
-      "title": "Matthew Penkala - Scheduled Clean",
-      "clientName": "Matthew Penkala",
+      "title": "Sarge & Regan - Scheduled Clean",
+      "clientName": "Sarge & Regan",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
+      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-12-02T13:00:00-06:00",
       "endAt": "2026-12-02T15:30:00-06:00",
       "assignedCleaners": [
-        "Joseph Juma"
+        "Neth & Carmen"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4212",
-      "notes": "Synced from Jobber. Team assignment: Joseph Juma"
+      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
     },
     {
       "id": "vis-2026-12-02-3",
       "visitNumber": "VISIT-4212",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.49000000000001,
       "lng": -113.49,
       "startAt": "2026-12-02T15:00:00-06:00",
       "endAt": "2026-12-02T17:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4213",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-12-04-0",
       "visitNumber": "VISIT-4213",
-      "title": "Samantha Smits - Scheduled Clean",
-      "clientName": "Samantha Smits",
+      "title": "Clare Gibson - Scheduled Clean",
+      "clientName": "Clare Gibson",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
+      "serviceAddress": "8910 148 St NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.55,
       "startAt": "2026-12-04T09:00:00-06:00",
       "endAt": "2026-12-04T11:30:00-06:00",
       "assignedCleaners": [
-        "Samantha Smits"
+        "Melissa Clarke"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4214",
-      "notes": "Synced from Jobber. Team assignment: Samantha Smits"
+      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
     },
     {
       "id": "vis-2026-12-04-1",
       "visitNumber": "VISIT-4214",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.53,
       "startAt": "2026-12-04T11:00:00-06:00",
       "endAt": "2026-12-04T13:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4215",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-12-04-2",
       "visitNumber": "VISIT-4215",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.50999999999999,
       "startAt": "2026-12-04T13:00:00-06:00",
       "endAt": "2026-12-04T15:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4216",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-12-07-0",
       "visitNumber": "VISIT-4216",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.55,
       "startAt": "2026-12-07T09:00:00-06:00",
       "endAt": "2026-12-07T11:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4217",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-12-07-1",
       "visitNumber": "VISIT-4217",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.53,
       "startAt": "2026-12-07T11:00:00-06:00",
       "endAt": "2026-12-07T13:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4218",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-12-07-2",
       "visitNumber": "VISIT-4218",
-      "title": "Sarge & Regan - Scheduled Clean",
-      "clientName": "Sarge & Regan",
+      "title": "Darcy - Scheduled Clean",
+      "clientName": "Darcy",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
+      "serviceAddress": "9812 144 St NW, Edmonton, AB",
       "lat": 53.540000000000006,
       "lng": -113.50999999999999,
       "startAt": "2026-12-07T13:00:00-06:00",
       "endAt": "2026-12-07T15:30:00-06:00",
       "assignedCleaners": [
-        "Neth & Carmen"
+        "Asanti Sayida"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4219",
-      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
+      "notes": "Synced from Jobber. Team assignment: Asanti Sayida"
     },
     {
       "id": "vis-2026-12-09-0",
       "visitNumber": "VISIT-4219",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.56000000000001,
       "lng": -113.55,
       "startAt": "2026-12-09T09:00:00-06:00",
       "endAt": "2026-12-09T11:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4220",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-12-09-1",
       "visitNumber": "VISIT-4220",
-      "title": "Adam Joly - Scheduled Clean",
-      "clientName": "Adam Joly",
+      "title": "Brenda Lee - Scheduled Clean",
+      "clientName": "Brenda Lee",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "5110 122 St NW, Edmonton, AB",
       "lat": 53.56000000000001,
       "lng": -113.53,
       "startAt": "2026-12-09T11:00:00-06:00",
       "endAt": "2026-12-09T13:30:00-06:00",
       "assignedCleaners": [
-        "Stacey Whitty"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4221",
-      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-12-11-0",
       "visitNumber": "VISIT-4221",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.55,
       "startAt": "2026-12-11T09:00:00-06:00",
       "endAt": "2026-12-11T11:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4222",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-12-11-1",
@@ -3192,51 +2975,50 @@
       "startAt": "2026-12-11T11:00:00-06:00",
       "endAt": "2026-12-11T13:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4223",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-12-11-2",
       "visitNumber": "VISIT-4223",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.50999999999999,
       "startAt": "2026-12-11T13:00:00-06:00",
       "endAt": "2026-12-11T15:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4224",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-12-11-3",
       "visitNumber": "VISIT-4224",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.49,
       "startAt": "2026-12-11T15:00:00-06:00",
       "endAt": "2026-12-11T17:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4225",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-12-14-0",
@@ -3250,300 +3032,298 @@
       "startAt": "2026-12-14T09:00:00-06:00",
       "endAt": "2026-12-14T11:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4226",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-12-14-1",
       "visitNumber": "VISIT-4226",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.53,
       "startAt": "2026-12-14T11:00:00-06:00",
       "endAt": "2026-12-14T13:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4227",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-12-14-2",
       "visitNumber": "VISIT-4227",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.50999999999999,
       "startAt": "2026-12-14T13:00:00-06:00",
       "endAt": "2026-12-14T15:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4228",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     },
     {
       "id": "vis-2026-12-14-3",
       "visitNumber": "VISIT-4228",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.510000000000005,
       "lng": -113.49,
       "startAt": "2026-12-14T15:00:00-06:00",
       "endAt": "2026-12-14T17:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4229",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-12-16-0",
       "visitNumber": "VISIT-4229",
-      "title": "Jacqueline Ares - Scheduled Clean",
-      "clientName": "Jacqueline Ares",
+      "title": "Brett & Ellie Kanuk - Scheduled Clean",
+      "clientName": "Brett & Ellie Kanuk",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
+      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.55,
       "startAt": "2026-12-16T09:00:00-06:00",
       "endAt": "2026-12-16T11:30:00-06:00",
       "assignedCleaners": [
-        "Joel MBATCHOU",
-        "Sergine Ngongang wetie"
+        "Jen & Bryan Cabugon"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4230",
-      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
+      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
     },
     {
       "id": "vis-2026-12-16-1",
       "visitNumber": "VISIT-4230",
-      "title": "Mike Brown - Scheduled Clean",
-      "clientName": "Mike Brown",
+      "title": "Suchi Jobanputra - Scheduled Clean",
+      "clientName": "Suchi Jobanputra",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "5311 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "4310 114a St NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.53,
       "startAt": "2026-12-16T11:00:00-06:00",
       "endAt": "2026-12-16T13:30:00-06:00",
       "assignedCleaners": [
-        "Mike Brown"
+        "Kilab"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4231",
-      "notes": "Synced from Jobber. Team assignment: Mike Brown"
+      "notes": "Synced from Jobber. Team assignment: Kilab"
     },
     {
       "id": "vis-2026-12-16-2",
       "visitNumber": "VISIT-4231",
-      "title": "Matthew Penkala - Scheduled Clean",
-      "clientName": "Matthew Penkala",
+      "title": "Sarge & Regan - Scheduled Clean",
+      "clientName": "Sarge & Regan",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
+      "serviceAddress": "15403 75 Ave NW, Edmonton, AB",
       "lat": 53.53000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-12-16T13:00:00-06:00",
       "endAt": "2026-12-16T15:30:00-06:00",
       "assignedCleaners": [
-        "Joseph Juma"
+        "Neth & Carmen"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4232",
-      "notes": "Synced from Jobber. Team assignment: Joseph Juma"
+      "notes": "Synced from Jobber. Team assignment: Neth & Carmen"
     },
     {
       "id": "vis-2026-12-18-0",
       "visitNumber": "VISIT-4232",
-      "title": "Samantha Smits - Scheduled Clean",
-      "clientName": "Samantha Smits",
+      "title": "Clare Gibson - Scheduled Clean",
+      "clientName": "Clare Gibson",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
+      "serviceAddress": "8910 148 St NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.55,
       "startAt": "2026-12-18T09:00:00-06:00",
       "endAt": "2026-12-18T11:30:00-06:00",
       "assignedCleaners": [
-        "Samantha Smits"
+        "Melissa Clarke"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4233",
-      "notes": "Synced from Jobber. Team assignment: Samantha Smits"
+      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
     },
     {
       "id": "vis-2026-12-18-1",
       "visitNumber": "VISIT-4233",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.53,
       "startAt": "2026-12-18T11:00:00-06:00",
       "endAt": "2026-12-18T13:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4234",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-12-21-0",
       "visitNumber": "VISIT-4234",
-      "title": "Danielle Pettipas - Scheduled Clean",
-      "clientName": "Danielle Pettipas",
+      "title": "Adam Joly - Scheduled Clean",
+      "clientName": "Adam Joly",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8820 156 St NW, Edmonton, AB",
+      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.55,
       "startAt": "2026-12-21T09:00:00-06:00",
       "endAt": "2026-12-21T11:30:00-06:00",
       "assignedCleaners": [
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4235",
-      "notes": "Synced from Jobber. Team assignment: Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
     },
     {
       "id": "vis-2026-12-21-1",
       "visitNumber": "VISIT-4235",
-      "title": "Suchi Jobanputra - Scheduled Clean",
-      "clientName": "Suchi Jobanputra",
+      "title": "Chris Reaume - Scheduled Clean",
+      "clientName": "Chris Reaume",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4310 114a St NW, Edmonton, AB",
+      "serviceAddress": "10712 84 Ave NW, Edmonton, AB",
       "lat": 53.480000000000004,
       "lng": -113.53,
       "startAt": "2026-12-21T11:00:00-06:00",
       "endAt": "2026-12-21T13:30:00-06:00",
       "assignedCleaners": [
-        "Kilab"
+        "Robyn Adele"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4236",
-      "notes": "Synced from Jobber. Team assignment: Kilab"
+      "notes": "Synced from Jobber. Team assignment: Robyn Adele"
     },
     {
       "id": "vis-2026-12-23-0",
       "visitNumber": "VISIT-4236",
-      "title": "Clare Gibson - Scheduled Clean",
-      "clientName": "Clare Gibson",
+      "title": "Nicholas Christensen - Scheduled Clean",
+      "clientName": "Nicholas Christensen",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "8910 148 St NW, Edmonton, AB",
+      "serviceAddress": "9920 110 St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.55,
       "startAt": "2026-12-23T09:00:00-06:00",
       "endAt": "2026-12-23T11:30:00-06:00",
       "assignedCleaners": [
-        "Melissa Clarke"
+        "Jasmin Kunin"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4237",
-      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
+      "notes": "Synced from Jobber. Team assignment: Jasmin Kunin"
     },
     {
       "id": "vis-2026-12-23-1",
       "visitNumber": "VISIT-4237",
-      "title": "Adam Joly - Scheduled Clean",
-      "clientName": "Adam Joly",
+      "title": "Brenda Lee - Scheduled Clean",
+      "clientName": "Brenda Lee",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "6812 112 Ave NW, Edmonton, AB",
+      "serviceAddress": "5110 122 St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.53,
       "startAt": "2026-12-23T11:00:00-06:00",
       "endAt": "2026-12-23T13:30:00-06:00",
       "assignedCleaners": [
-        "Stacey Whitty"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4238",
-      "notes": "Synced from Jobber. Team assignment: Stacey Whitty"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-12-23-2",
       "visitNumber": "VISIT-4238",
-      "title": "Jan Perrin - Scheduled Clean",
-      "clientName": "Jan Perrin",
+      "title": "Jacqueline Ares - Scheduled Clean",
+      "clientName": "Jacqueline Ares",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "11303 76 Ave NW, Edmonton, AB",
+      "serviceAddress": "14102 102 Ave NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.50999999999999,
       "startAt": "2026-12-23T13:00:00-06:00",
       "endAt": "2026-12-23T15:30:00-06:00",
       "assignedCleaners": [
-        "Jan Perrin",
-        "Jasmin Kunin"
+        "Joel MBATCHOU",
+        "Sergine Ngongang wetie"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4239",
-      "notes": "Synced from Jobber. Team assignment: Jan Perrin & Jasmin Kunin"
+      "notes": "Synced from Jobber. Team assignment: Joel MBATCHOU & Sergine Ngongang wetie"
     },
     {
       "id": "vis-2026-12-23-3",
       "visitNumber": "VISIT-4239",
-      "title": "Samantha Smits - Scheduled Clean",
-      "clientName": "Samantha Smits",
+      "title": "Clare Gibson - Scheduled Clean",
+      "clientName": "Clare Gibson",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "14304 92a Ave NW, Edmonton, AB",
+      "serviceAddress": "8910 148 St NW, Edmonton, AB",
       "lat": 53.50000000000001,
       "lng": -113.49,
       "startAt": "2026-12-23T15:00:00-06:00",
       "endAt": "2026-12-23T17:30:00-06:00",
       "assignedCleaners": [
-        "Samantha Smits"
+        "Melissa Clarke"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4240",
-      "notes": "Synced from Jobber. Team assignment: Samantha Smits"
+      "notes": "Synced from Jobber. Team assignment: Melissa Clarke"
     },
     {
       "id": "vis-2026-12-25-0",
       "visitNumber": "VISIT-4240",
-      "title": "Sindhu Murugavel - Scheduled Clean",
-      "clientName": "Sindhu Murugavel",
+      "title": "Angie Moxam - Scheduled Clean",
+      "clientName": "Angie Moxam",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
+      "serviceAddress": "8310 160 St NW, Edmonton, AB",
       "lat": 53.52,
       "lng": -113.55,
       "startAt": "2026-12-25T09:00:00-06:00",
       "endAt": "2026-12-25T11:30:00-06:00",
       "assignedCleaners": [
-        "N. Dinku"
+        "Adison Haugland"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4241",
-      "notes": "Synced from Jobber. Team assignment: N. Dinku"
+      "notes": "Synced from Jobber. Team assignment: Adison Haugland"
     },
     {
       "id": "vis-2026-12-25-1",
@@ -3557,32 +3337,31 @@
       "startAt": "2026-12-25T11:00:00-06:00",
       "endAt": "2026-12-25T13:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4242",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-12-25-2",
       "visitNumber": "VISIT-4242",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.52,
       "lng": -113.50999999999999,
       "startAt": "2026-12-25T13:00:00-06:00",
       "endAt": "2026-12-25T15:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4243",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-12-28-0",
@@ -3596,51 +3375,50 @@
       "startAt": "2026-12-28T09:00:00-06:00",
       "endAt": "2026-12-28T11:30:00-06:00",
       "assignedCleaners": [
-        "Cindy Guay",
-        "Danielle Pettipas"
+        "Cindy Guay"
       ],
       "serviceType": "Standard Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4244",
-      "notes": "Synced from Jobber. Team assignment: Cindy Guay & Danielle Pettipas"
+      "notes": "Synced from Jobber. Team assignment: Cindy Guay"
     },
     {
       "id": "vis-2026-12-28-1",
       "visitNumber": "VISIT-4244",
-      "title": "Scott Chambers - Scheduled Clean",
-      "clientName": "Scott Chambers",
+      "title": "Matthew Penkala - Scheduled Clean",
+      "clientName": "Matthew Penkala",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "10830 82 Ave NW, Edmonton, AB",
+      "serviceAddress": "10920 84 Ave NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.53,
       "startAt": "2026-12-28T11:00:00-06:00",
       "endAt": "2026-12-28T13:30:00-06:00",
       "assignedCleaners": [
-        "Scott Chambers"
+        "1 Joseph Juma"
       ],
       "serviceType": "Deep Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4245",
-      "notes": "Synced from Jobber. Team assignment: Scott Chambers"
+      "notes": "Synced from Jobber. Team assignment: 1 Joseph Juma"
     },
     {
       "id": "vis-2026-12-28-2",
       "visitNumber": "VISIT-4245",
-      "title": "Brett & Ellie Kanuk - Scheduled Clean",
-      "clientName": "Brett & Ellie Kanuk",
+      "title": "Sindhu Murugavel - Scheduled Clean",
+      "clientName": "Sindhu Murugavel",
       "clientPhone": "(780) 555-0199",
-      "serviceAddress": "4904 141 Ave NW, Edmonton, AB",
+      "serviceAddress": "12411 106 Ave NW, Edmonton, AB",
       "lat": 53.550000000000004,
       "lng": -113.50999999999999,
       "startAt": "2026-12-28T13:00:00-06:00",
       "endAt": "2026-12-28T15:30:00-06:00",
       "assignedCleaners": [
-        "Jen & Bryan Cabugon"
+        "N.Dinku"
       ],
       "serviceType": "Move-Out Cleaning",
       "status": "SCHEDULED",
       "jobberWebUri": "https://secure.getjobber.com/visits/4246",
-      "notes": "Synced from Jobber. Team assignment: Jen & Bryan Cabugon"
+      "notes": "Synced from Jobber. Team assignment: N.Dinku"
     }
   ],
   "quotes": [],
@@ -3754,8 +3532,8 @@
       "status": "UNSCHEDULED",
       "requestedWindow": "First week of October (Flexible)",
       "preferredCleaners": [
-        "Jan Perrin",
-        "Jasmin Kunin"
+        "Jasmin Kunin",
+        "1 Joseph Juma"
       ],
       "notes": "Quoted in Jobber. Tenant turnover requested: oven interior, fridge, baseboards, and window tracks. Client requested 2 cleaners for rapid turnover.",
       "jobberWebUri": "https://secure.getjobber.com/jobs/1082",
@@ -3826,7 +3604,7 @@
       "status": "UNSCHEDULED",
       "requestedWindow": "October 12 - 15 (Afternoon)",
       "preferredCleaners": [
-        "Scott Chambers"
+        "Adison Haugland"
       ],
       "notes": "Recurring residential clean quote converted in Jobber. Pet friendly cleaning products requested (has 2 friendly golden retrievers).",
       "jobberWebUri": "https://secure.getjobber.com/jobs/1088",
@@ -3853,7 +3631,7 @@
       "requestedWindow": "Oct 16 - Morning 9:00 AM",
       "preferredCleaners": [
         "Cindy Guay",
-        "Danielle Pettipas"
+        "Stacey Whitty"
       ],
       "notes": "Full rental turnover. Key in lockbox code 3920. Needs 2 cleaners assigned for 3.5 hour deadline.",
       "jobberWebUri": "https://secure.getjobber.com/jobs/1091",
@@ -3942,7 +3720,7 @@
       "lead": false,
       "active": true,
       "homeAddress": "8306 Chappelle Way Southwest, Edmonton, AB, Canada T6W4L3",
-      "color": "#2563EB",
+      "color": "#7C3AED",
       "vanUnit": "Executive HQ",
       "lat": 53.4184,
       "lng": -113.5786
@@ -3956,7 +3734,7 @@
       "lead": false,
       "active": true,
       "homeAddress": "8306 Chappelle Way Southwest, Edmonton, AB, Canada T6W4L3",
-      "color": "#7C3AED",
+      "color": "#EC4899",
       "vanUnit": "HQ Ops 1",
       "lat": 53.4184,
       "lng": -113.5786
@@ -3985,7 +3763,7 @@
       "active": true,
       "homeAddress": "7221 Chivers Pl SW, Edmonton, AB, Canada T6W4L4",
       "color": "#2563EB",
-      "vanUnit": "Unit 4",
+      "vanUnit": "Unit 1",
       "lat": 53.415,
       "lng": -113.572
     },
@@ -3999,7 +3777,7 @@
       "active": true,
       "homeAddress": "3624 1 Avenue Southwest, Edmonton, AB, Canada T6X2W4",
       "color": "#9333EA",
-      "vanUnit": "Unit 5",
+      "vanUnit": "Unit 2",
       "lat": 53.4285,
       "lng": -113.435
     },
@@ -4013,7 +3791,7 @@
       "active": true,
       "homeAddress": "574 Saddleback Rd NW, Edmonton, AB T6J 4Z3",
       "color": "#059669",
-      "vanUnit": "Unit 6",
+      "vanUnit": "Unit 3",
       "lat": 53.468,
       "lng": -113.528
     },
@@ -4026,8 +3804,8 @@
       "lead": false,
       "active": true,
       "homeAddress": "7221 Chivers Pl SW, Edmonton, AB T6W 4L4",
-      "color": "#10B981",
-      "vanUnit": "Unit 7",
+      "color": "#2563EB",
+      "vanUnit": "Unit 1B",
       "lat": 53.415,
       "lng": -113.572
     },
@@ -4041,7 +3819,7 @@
       "active": true,
       "homeAddress": "10231 120 St NW, Edmonton, AB T5K 2A4",
       "color": "#D97706",
-      "vanUnit": "Unit 8",
+      "vanUnit": "Unit 4",
       "lat": 53.5435,
       "lng": -113.5285
     },
@@ -4054,8 +3832,8 @@
       "lead": false,
       "active": true,
       "homeAddress": "3751 139 Ave NW, Edmonton, AB T5Y 3J5",
-      "color": "#F59E0B",
-      "vanUnit": "Unit 9",
+      "color": "#0891B2",
+      "vanUnit": "Unit 5",
       "lat": 53.6025,
       "lng": -113.401
     },
@@ -4069,7 +3847,7 @@
       "active": true,
       "homeAddress": "308 Ambleside Link SW, Edmonton, AB T6W 0V3",
       "color": "#FB7185",
-      "vanUnit": "Unit 10",
+      "vanUnit": "Unit 6",
       "lat": 53.435,
       "lng": -113.595
     },
@@ -4083,7 +3861,7 @@
       "active": true,
       "homeAddress": "740 Knottwood Rd S Northwest, Edmonton, AB T6K 1W5",
       "color": "#10B981",
-      "vanUnit": "Unit 11",
+      "vanUnit": "Unit 7",
       "lat": 53.454,
       "lng": -113.435
     },
@@ -4097,7 +3875,7 @@
       "active": true,
       "homeAddress": "10740 109 St NW, Edmonton, AB T5H 3B6",
       "color": "#6366F1",
-      "vanUnit": "Unit 12",
+      "vanUnit": "Unit 8",
       "lat": 53.5525,
       "lng": -113.5085
     },
@@ -4111,7 +3889,7 @@
       "active": true,
       "homeAddress": "9434 208 St NW, Edmonton, AB T5T 5X9",
       "color": "#F59E0B",
-      "vanUnit": "Unit 13",
+      "vanUnit": "Unit 9 (Team)",
       "lat": 53.531,
       "lng": -113.682
     },
@@ -4125,7 +3903,7 @@
       "active": true,
       "homeAddress": "17115 61 Ave NW, Edmonton, AB",
       "color": "#D946EF",
-      "vanUnit": "Unit 14",
+      "vanUnit": "Unit 10",
       "lat": 53.498,
       "lng": -113.618
     },
@@ -4139,7 +3917,7 @@
       "active": true,
       "homeAddress": "17908 61 Ave NW, Edmonton, AB T6M 1T1",
       "color": "#8B5CF6",
-      "vanUnit": "Unit 15",
+      "vanUnit": "Unit 11",
       "lat": 53.4975,
       "lng": -113.631
     },
@@ -4153,7 +3931,7 @@
       "active": true,
       "homeAddress": "12219 103 St NW, Edmonton, AB T5G 2K2",
       "color": "#3B82F6",
-      "vanUnit": "Unit 16",
+      "vanUnit": "Unit 12",
       "lat": 53.578,
       "lng": -113.498
     },
@@ -4167,7 +3945,7 @@
       "active": true,
       "homeAddress": "10408 155 Ave NW, Edmonton, AB T5X 4G6",
       "color": "#06B6D4",
-      "vanUnit": "Unit 17",
+      "vanUnit": "Unit 13",
       "lat": 53.6175,
       "lng": -113.504
     },
@@ -4181,7 +3959,7 @@
       "active": true,
       "homeAddress": "20123 58 Ave NW, Edmonton, AB T6M 0B5",
       "color": "#F43F5E",
-      "vanUnit": "Unit 18",
+      "vanUnit": "Unit 14 (Team)",
       "lat": 53.494,
       "lng": -113.668
     },
@@ -4191,83 +3969,13 @@
       "email": "mittens45dm@gmail.com",
       "phone": "(587) 385-8329",
       "role": "Dispatcher",
-      "lead": false,
+      "lead": true,
       "active": true,
       "homeAddress": "9722 154 St, Edmonton, AB T5P 2G3",
       "color": "#4F46E5",
       "vanUnit": "Unit 15 (Lead Mobile)",
       "lat": 53.535,
       "lng": -113.587
-    },
-    {
-      "id": "staff-20",
-      "name": "Danielle Pettipas",
-      "email": "danielle.p@bookmycleaning.net",
-      "phone": "(780) 555-0116",
-      "role": "Cleaner",
-      "lead": false,
-      "active": true,
-      "homeAddress": "8820 156 St NW, Edmonton, AB T5R 1Y5",
-      "color": "#84CC16",
-      "vanUnit": "Unit 20",
-      "lat": 53.522,
-      "lng": -113.591
-    },
-    {
-      "id": "staff-21",
-      "name": "Scott Chambers",
-      "email": "scott.c@bookmycleaning.net",
-      "phone": "(780) 555-0117",
-      "role": "Cleaner",
-      "lead": false,
-      "active": true,
-      "homeAddress": "10830 82 Ave NW, Edmonton, AB T6E 2B3",
-      "color": "#D946EF",
-      "vanUnit": "Unit 21",
-      "lat": 53.518,
-      "lng": -113.51
-    },
-    {
-      "id": "staff-22",
-      "name": "Samantha Smits",
-      "email": "samantha.s@bookmycleaning.net",
-      "phone": "(780) 555-0118",
-      "role": "Cleaner",
-      "lead": false,
-      "active": true,
-      "homeAddress": "14304 92a Ave NW, Edmonton, AB T5R 5C6",
-      "color": "#F43F5E",
-      "vanUnit": "Unit 22",
-      "lat": 53.5285,
-      "lng": -113.568
-    },
-    {
-      "id": "staff-23",
-      "name": "Mike Brown",
-      "email": "mike.b@bookmycleaning.net",
-      "phone": "(780) 555-0119",
-      "role": "Cleaner",
-      "lead": false,
-      "active": true,
-      "homeAddress": "5311 112 Ave NW, Edmonton, AB T5W 0M8",
-      "color": "#3B82F6",
-      "vanUnit": "Unit 23",
-      "lat": 53.565,
-      "lng": -113.421
-    },
-    {
-      "id": "staff-24",
-      "name": "Jan Perrin",
-      "email": "jan.p@bookmycleaning.net",
-      "phone": "(780) 555-0120",
-      "role": "Cleaner",
-      "lead": false,
-      "active": true,
-      "homeAddress": "11303 76 Ave NW, Edmonton, AB T6G 0K9",
-      "color": "#8B5CF6",
-      "vanUnit": "Unit 24",
-      "lat": 53.513,
-      "lng": -113.523
     }
   ]
 }

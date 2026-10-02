@@ -17,25 +17,22 @@ export interface ScheduledJobItem {
   notes?: string;
 }
 
-// Cleaner color map matching Screenshot 1 & 3
+// Cleaner color map matching Jobber staff roster
 export const CLEANER_COLOR_MAP: Record<string, string> = {
-  'Danielle Pettipas': '#84CC16', // Lime green
-  'Scott Chambers': '#D946EF',    // Fuchsia magenta
-  'Jan Perrin': '#8B5CF6',        // Electric violet
-  'Samantha Smits': '#F43F5E',    // Warm rose
-  'Mike Brown': '#3B82F6',        // Royal sky blue
-  'Joel MBATCHOU': '#8B5CF6',     // Electric violet
+  'Melissa Clarke': '#2563EB',    // Royal blue
+  'Melissa': '#10B981',           // Emerald mint
+  'Stacey Whitty': '#9333EA',     // Purple
+  'Robyn Adele': '#059669',       // Deep emerald
+  'Adison Haugland': '#D97706',   // Warm amber
+  '1 Joseph Juma': '#0891B2',     // Cyan
+  'Joseph Juma': '#0891B2',       // Cyan
+  'Asanti Sayida': '#FB7185',     // Rose pink
+  'Cindy Guay': '#10B981',        // Emerald mint
+  'Jasmin Kunin': '#6366F1',      // Indigo
+  'Jen & Bryan Cabugon': '#F59E0B', // Amber orange
   'Sergine Ngongang wetie': '#D946EF', // Fuchsia
   'Sergine Ngongang': '#D946EF',
-  'Jen & Bryan Cabugon': '#F59E0B', // Amber orange
-  'Cindy Guay': '#10B981',        // Emerald mint
-  'Melissa Clarke': '#2563EB',    // Royal blue
-  'Joseph Juma': '#0891B2',       // Cyan
-  'Adison Haugland': '#D97706',   // Warm amber
-  'Jasmin Kunin': '#6366F1',      // Indigo
-  'Robyn Adele': '#059669',       // Deep emerald
-  'Stacey Whitty': '#9333EA',     // Purple
-  'Asanti Sayida': '#FB7185',     // Rose pink
+  'Joel MBATCHOU': '#8B5CF6',     // Electric violet
   'Kilab': '#3B82F6',             // Blue
   'Kilab Facility Services': '#3B82F6',
   'N.Dinku': '#06B6D4',           // Cyan teal
@@ -44,7 +41,9 @@ export const CLEANER_COLOR_MAP: Record<string, string> = {
   'Dominic Mancini': '#4F46E5',   // Indigo
   'Richard': '#7C3AED',           // Violet
   'Richard "Owner Account"': '#7C3AED',
+  'Richard “Owner Account”': '#7C3AED',
   'Boss iPad Pro': '#EC4899',     // Hot pink
+  'Boss iPad  Pro': '#EC4899',
   'Unassigned': '#64748B',        // Slate
 };
 
@@ -85,10 +84,9 @@ export const JOBBER_TEAM_MEMBERS: JobberTeamMember[] = [
   { id: 'tm-14', name: 'Sergine Ngongang wetie', jobberLinkedName: 'Sergine Ngongang wetie', isLinked: true, role: 'Cleaner', color: '#D946EF', vanUnit: 'Unit 10', phone: '(418) 261-4689', email: 'tatiwetie@gmail.com', address: '17115 61 Ave NW, Edmonton, AB' },
   { id: 'tm-15', name: 'Stacey Whitty', jobberLinkedName: 'Stacey Whitty', isLinked: true, role: 'Cleaner', color: '#9333EA', vanUnit: 'Unit 2', phone: '(825) 436-2409', email: 'stacey_whitty44@hotmail.com', address: '3624 1 Avenue SW, Edmonton, AB' },
   { id: 'tm-16', name: 'Asanti Sayida', jobberLinkedName: 'Asanti Sayida', isLinked: true, role: 'Cleaner', color: '#FB7185', vanUnit: 'Unit 6', phone: '(825) 419-3215', email: 'asantisayida20@gmail.com', address: '308 Ambleside Link SW, Edmonton, AB' },
-  { id: 'tm-17', name: 'Danielle Pettipas', jobberLinkedName: 'Danielle Pettipas', isLinked: true, role: 'Cleaner', color: '#84CC16', vanUnit: 'Unit 16', phone: '(780) 555-0116', email: 'danielle.p@bookmycleaning.net', address: '8820 156 St NW, Edmonton, AB' },
-  { id: 'tm-18', name: 'Scott Chambers', jobberLinkedName: 'Scott Chambers', isLinked: true, role: 'Cleaner', color: '#D946EF', vanUnit: 'Unit 17', phone: '(780) 555-0117', email: 'scott.c@bookmycleaning.net', address: '10830 82 Ave NW, Edmonton, AB' },
-  { id: 'tm-19', name: 'Samantha Smits', jobberLinkedName: 'Samantha Smits', isLinked: true, role: 'Cleaner', color: '#F43F5E', vanUnit: 'Unit 18', phone: '(780) 555-0118', email: 'samantha.s@bookmycleaning.net', address: '14304 92a Ave NW, Edmonton, AB' },
-  { id: 'tm-20', name: 'Jan Perrin', jobberLinkedName: 'Jan Perrin', isLinked: true, role: 'Cleaner', color: '#8B5CF6', vanUnit: 'Unit 20', phone: '(780) 555-0120', email: 'jan.p@bookmycleaning.net', address: '11303 76 Ave NW, Edmonton, AB' },
+  { id: 'tm-17', name: 'Melissa', jobberLinkedName: 'Melissa', isLinked: true, role: 'Cleaner', color: '#10B981', vanUnit: 'Unit 4', phone: '(780) 953-2409', email: 'clarkemelissa2025@gmail.com', address: '7221 Chivers Pl SW, Edmonton, AB T6W 4L4' },
+  { id: 'tm-18', name: 'Richard', jobberLinkedName: 'Richard', isLinked: true, role: 'Dispatcher', color: '#7C3AED', vanUnit: 'HQ Ops 2', phone: '(780) 863-6995', email: 'support@833tidyups.com', address: '8306 Chappelle Way Southwest, Edmonton, AB' },
+  { id: 'tm-19', name: 'Dominic Mancini', jobberLinkedName: 'Dominic Mancini', isLinked: true, role: 'Dispatcher', color: '#4F46E5', vanUnit: 'Unit 15 (Lead Mobile)', phone: '(587) 385-8329', email: 'mittens45dm@gmail.com', address: '9722 154 St, Edmonton, AB T5P 2G3' },
 ];
 
 /**
@@ -144,7 +142,7 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       lng: -113.4990,
       startAt: '2026-09-28T17:00:00-06:00',
       endAt: '2026-09-28T19:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
+      assignedCleaners: ['Melissa Clarke'],
       serviceType: 'Move-Out Cleaning',
       status: 'COMPLETED',
       jobberWebUri: 'https://secure.getjobber.com/visits/4030',
@@ -217,23 +215,6 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
     },
     // Thu Oct 1 - Today in screenshot!
     {
-      id: 'vis-oct-01a',
-      visitNumber: 'VISIT-4035',
-      title: 'Jan Perrin - Move In Clean',
-      clientName: 'Jan Perrin',
-      clientPhone: '(780) 555-0120',
-      serviceAddress: '11303 76 Ave NW, Edmonton, AB',
-      lat: 53.5130,
-      lng: -113.5230,
-      startAt: '2026-10-01T10:00:00-06:00',
-      endAt: '2026-10-01T12:30:00-06:00',
-      assignedCleaners: ['Jan Perrin', 'Jasmin Kunin'],
-      serviceType: 'Move-Out Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4035',
-      notes: 'Customer quoted in MDT. 2 Cleaners requested for 2-hour turnover turnaround.',
-    },
-    {
       id: 'vis-oct-01b',
       visitNumber: 'VISIT-4036',
       title: 'Jacqueline Ares - 2 Cleaners Tandem Deep Scrub',
@@ -251,38 +232,6 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       notes: 'Assigned to Joel MBATCHOU and Sergine Ngongang wetie. Focus on master bath grout and oven interior.',
     },
     // Fri Oct 2
-    {
-      id: 'vis-oct-02a',
-      visitNumber: 'VISIT-4037',
-      title: 'Danielle Pettipas - Standard Residential',
-      clientName: 'Danielle Pettipas',
-      clientPhone: '(780) 555-0116',
-      serviceAddress: '8820 156 St NW, Edmonton, AB',
-      lat: 53.5220,
-      lng: -113.5910,
-      startAt: '2026-10-02T10:00:00-06:00',
-      endAt: '2026-10-02T12:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
-      serviceType: 'Standard Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4037',
-    },
-    {
-      id: 'vis-oct-02b',
-      visitNumber: 'VISIT-4038',
-      title: 'Scott Chambers - Deep Clean',
-      clientName: 'Scott Chambers',
-      clientPhone: '(780) 555-0117',
-      serviceAddress: '10830 82 Ave NW, Edmonton, AB',
-      lat: 53.5180,
-      lng: -113.5100,
-      startAt: '2026-10-02T10:00:00-06:00',
-      endAt: '2026-10-02T12:30:00-06:00',
-      assignedCleaners: ['Scott Chambers'],
-      serviceType: 'Deep Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4038',
-    },
     {
       id: 'vis-oct-02c',
       visitNumber: 'VISIT-4039',
@@ -393,7 +342,7 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       lng: -113.5250,
       startAt: '2026-10-07T10:00:00-06:00',
       endAt: '2026-10-07T12:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
+      assignedCleaners: ['Robyn Adele'],
       serviceType: 'Standard Cleaning',
       status: 'SCHEDULED',
       jobberWebUri: 'https://secure.getjobber.com/visits/4045',
@@ -415,22 +364,6 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       jobberWebUri: 'https://secure.getjobber.com/visits/4046',
     },
     // Thu Oct 8
-    {
-      id: 'vis-oct-08a',
-      visitNumber: 'VISIT-4047',
-      title: 'Samantha Smits - Standard Home',
-      clientName: 'Samantha Smits',
-      clientPhone: '(780) 555-0118',
-      serviceAddress: '14304 92a Ave NW, Edmonton, AB',
-      lat: 53.5285,
-      lng: -113.5680,
-      startAt: '2026-10-08T09:00:00-06:00',
-      endAt: '2026-10-08T11:30:00-06:00',
-      assignedCleaners: ['Samantha Smits'],
-      serviceType: 'Standard Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4047',
-    },
     {
       id: 'vis-oct-08b',
       visitNumber: 'VISIT-4048',
@@ -464,22 +397,6 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       jobberWebUri: 'https://secure.getjobber.com/visits/4049',
     },
     // Fri Oct 9
-    {
-      id: 'vis-oct-09a',
-      visitNumber: 'VISIT-4050',
-      title: 'Mike Brown - 2bed Condo Clean',
-      clientName: 'Mike Brown',
-      clientPhone: '(780) 555-0119',
-      serviceAddress: '5311 112 Ave NW, Edmonton, AB',
-      lat: 53.5650,
-      lng: -113.4210,
-      startAt: '2026-10-09T09:00:00-06:00',
-      endAt: '2026-10-09T11:30:00-06:00',
-      assignedCleaners: ['Mike Brown'],
-      serviceType: 'Standard Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4050',
-    },
     // Mon Oct 12
     {
       id: 'vis-oct-12a',
@@ -492,7 +409,7 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       lng: -113.5350,
       startAt: '2026-10-12T11:00:00-06:00',
       endAt: '2026-10-12T13:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
+      assignedCleaners: ['Cindy Guay'],
       serviceType: 'Standard Cleaning',
       status: 'SCHEDULED',
       jobberWebUri: 'https://secure.getjobber.com/visits/4051',
@@ -508,7 +425,7 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       lng: -113.4990,
       startAt: '2026-10-12T17:00:00-06:00',
       endAt: '2026-10-12T19:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
+      assignedCleaners: ['Melissa Clarke'],
       serviceType: 'Move-Out Cleaning',
       status: 'SCHEDULED',
       jobberWebUri: 'https://secure.getjobber.com/visits/4052',
@@ -531,22 +448,6 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       jobberWebUri: 'https://secure.getjobber.com/visits/4053',
     },
     // Wed Oct 14
-    {
-      id: 'vis-oct-14a',
-      visitNumber: 'VISIT-4054',
-      title: 'Samantha Smits - Deep Clean',
-      clientName: 'Samantha Smits',
-      clientPhone: '(780) 555-0118',
-      serviceAddress: '14304 92a Ave NW, Edmonton, AB',
-      lat: 53.5285,
-      lng: -113.5680,
-      startAt: '2026-10-14T09:00:00-06:00',
-      endAt: '2026-10-14T11:30:00-06:00',
-      assignedCleaners: ['Samantha Smits'],
-      serviceType: 'Deep Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4054',
-    },
     {
       id: 'vis-oct-14b',
       visitNumber: 'VISIT-4055',
@@ -574,7 +475,7 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       lng: -113.5250,
       startAt: '2026-10-14T10:00:00-06:00',
       endAt: '2026-10-14T12:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
+      assignedCleaners: ['Robyn Adele'],
       serviceType: 'Standard Cleaning',
       status: 'SCHEDULED',
       jobberWebUri: 'https://secure.getjobber.com/visits/4056',
@@ -597,22 +498,6 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       jobberWebUri: 'https://secure.getjobber.com/visits/4057',
     },
     // Fri Oct 16
-    {
-      id: 'vis-oct-16a',
-      visitNumber: 'VISIT-4058',
-      title: 'Danielle Pettipas - Bi-weekly',
-      clientName: 'Danielle Pettipas',
-      clientPhone: '(780) 555-0116',
-      serviceAddress: '8820 156 St NW, Edmonton, AB',
-      lat: 53.5220,
-      lng: -113.5910,
-      startAt: '2026-10-16T10:00:00-06:00',
-      endAt: '2026-10-16T12:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
-      serviceType: 'Standard Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4058',
-    },
     // Mon Oct 19
     {
       id: 'vis-oct-19a',
@@ -625,7 +510,7 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       lng: -113.5350,
       startAt: '2026-10-19T11:00:00-06:00',
       endAt: '2026-10-19T13:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
+      assignedCleaners: ['Cindy Guay'],
       serviceType: 'Standard Cleaning',
       status: 'SCHEDULED',
       jobberWebUri: 'https://secure.getjobber.com/visits/4059',
@@ -641,7 +526,7 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       lng: -113.4990,
       startAt: '2026-10-19T17:00:00-06:00',
       endAt: '2026-10-19T19:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
+      assignedCleaners: ['Melissa Clarke'],
       serviceType: 'Move-Out Cleaning',
       status: 'SCHEDULED',
       jobberWebUri: 'https://secure.getjobber.com/visits/4060',
@@ -675,7 +560,7 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       lng: -113.5250,
       startAt: '2026-10-21T10:00:00-06:00',
       endAt: '2026-10-21T12:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
+      assignedCleaners: ['Robyn Adele'],
       serviceType: 'Standard Cleaning',
       status: 'SCHEDULED',
       jobberWebUri: 'https://secure.getjobber.com/visits/4062',
@@ -698,22 +583,6 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
     },
     // Thu Oct 22
     {
-      id: 'vis-oct-22a',
-      visitNumber: 'VISIT-4064',
-      title: 'Scott Chambers - Deep Clean',
-      clientName: 'Scott Chambers',
-      clientPhone: '(780) 555-0117',
-      serviceAddress: '10830 82 Ave NW, Edmonton, AB',
-      lat: 53.5180,
-      lng: -113.5100,
-      startAt: '2026-10-22T09:00:00-06:00',
-      endAt: '2026-10-22T11:30:00-06:00',
-      assignedCleaners: ['Scott Chambers'],
-      serviceType: 'Deep Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4064',
-    },
-    {
       id: 'vis-oct-22b',
       visitNumber: 'VISIT-4065',
       title: 'Clare Gibson - Bi-weekly Detail',
@@ -731,22 +600,6 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
     },
     // Fri Oct 23
     {
-      id: 'vis-oct-23a',
-      visitNumber: 'VISIT-4066',
-      title: 'Mike Brown - 2bed Condo Clean',
-      clientName: 'Mike Brown',
-      clientPhone: '(780) 555-0119',
-      serviceAddress: '5311 112 Ave NW, Edmonton, AB',
-      lat: 53.5650,
-      lng: -113.4210,
-      startAt: '2026-10-23T09:00:00-06:00',
-      endAt: '2026-10-23T11:30:00-06:00',
-      assignedCleaners: ['Mike Brown'],
-      serviceType: 'Standard Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4066',
-    },
-    {
       id: 'vis-oct-23b',
       visitNumber: 'VISIT-4067',
       title: 'Kati Luknowsky - Move-Out Detail',
@@ -757,7 +610,7 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       lng: -113.5660,
       startAt: '2026-10-23T10:00:00-06:00',
       endAt: '2026-10-23T13:00:00-06:00',
-      assignedCleaners: ['Danielle Pettipas', 'Scott Chambers'], // Two cleaners
+      assignedCleaners: ['Joel MBATCHOU', 'Sergine Ngongang wetie'], // Two cleaners
       serviceType: 'Move-Out Cleaning',
       status: 'SCHEDULED',
       jobberWebUri: 'https://secure.getjobber.com/visits/4067',
@@ -791,7 +644,7 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       lng: -113.5350,
       startAt: '2026-10-26T11:00:00-06:00',
       endAt: '2026-10-26T13:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
+      assignedCleaners: ['Cindy Guay'],
       serviceType: 'Standard Cleaning',
       status: 'SCHEDULED',
       jobberWebUri: 'https://secure.getjobber.com/visits/4069',
@@ -814,22 +667,6 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       jobberWebUri: 'https://secure.getjobber.com/visits/4070',
     },
     // Wed Oct 28
-    {
-      id: 'vis-oct-28d',
-      visitNumber: 'VISIT-4071',
-      title: 'Samantha Smits - Deep Clean',
-      clientName: 'Samantha Smits',
-      clientPhone: '(780) 555-0118',
-      serviceAddress: '14304 92a Ave NW, Edmonton, AB',
-      lat: 53.5285,
-      lng: -113.5680,
-      startAt: '2026-10-28T09:00:00-06:00',
-      endAt: '2026-10-28T11:30:00-06:00',
-      assignedCleaners: ['Samantha Smits'],
-      serviceType: 'Deep Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4071',
-    },
     // Thu Oct 29
     {
       id: 'vis-oct-29b',
@@ -848,22 +685,6 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
       jobberWebUri: 'https://secure.getjobber.com/visits/4072',
     },
     // Fri Oct 30
-    {
-      id: 'vis-oct-30d',
-      visitNumber: 'VISIT-4073',
-      title: 'Danielle Pettipas - Bi-weekly',
-      clientName: 'Danielle Pettipas',
-      clientPhone: '(780) 555-0116',
-      serviceAddress: '8820 156 St NW, Edmonton, AB',
-      lat: 53.5220,
-      lng: -113.5910,
-      startAt: '2026-10-30T10:00:00-06:00',
-      endAt: '2026-10-30T12:30:00-06:00',
-      assignedCleaners: ['Danielle Pettipas'],
-      serviceType: 'Standard Cleaning',
-      status: 'SCHEDULED',
-      jobberWebUri: 'https://secure.getjobber.com/visits/4073',
-    },
   ];
 
   // ----------------------------------------------------
@@ -878,20 +699,20 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
   ];
 
   const sampleClients = [
-    { name: 'Owa & Alex Isegh', addr: '3112 119 St NW, Edmonton', cleaners: ['Cindy Guay', 'Danielle Pettipas'] },
-    { name: 'Jan Perrin', addr: '11303 76 Ave NW, Edmonton', cleaners: ['Jan Perrin', 'Jasmin Kunin'] },
+    { name: 'Owa & Alex Isegh', addr: '3112 119 St NW, Edmonton', cleaners: ['Cindy Guay'] },
     { name: 'Jacqueline Ares', addr: '14102 102 Ave NW, Edmonton', cleaners: ['Joel MBATCHOU', 'Sergine Ngongang wetie'] },
-    { name: 'Scott Chambers', addr: '10830 82 Ave NW, Edmonton', cleaners: ['Scott Chambers'] },
-    { name: 'Samantha Smits', addr: '14304 92a Ave NW, Edmonton', cleaners: ['Samantha Smits'] },
-    { name: 'Mike Brown', addr: '5311 112 Ave NW, Edmonton', cleaners: ['Mike Brown'] },
     { name: 'Brett & Ellie Kanuk', addr: '4904 141 Ave NW, Edmonton', cleaners: ['Jen & Bryan Cabugon'] },
-    { name: 'Danielle Pettipas', addr: '8820 156 St NW, Edmonton', cleaners: ['Danielle Pettipas'] },
-    { name: 'Matthew Penkala', addr: '10920 84 Ave NW, Edmonton', cleaners: ['Joseph Juma'] },
+    { name: 'Matthew Penkala', addr: '10920 84 Ave NW, Edmonton', cleaners: ['1 Joseph Juma'] },
     { name: 'Clare Gibson', addr: '8910 148 St NW, Edmonton', cleaners: ['Melissa Clarke'] },
     { name: 'Suchi Jobanputra', addr: '4310 114a St NW, Edmonton', cleaners: ['Kilab'] },
-    { name: 'Sindhu Murugavel', addr: '12411 106 Ave NW, Edmonton', cleaners: ['N. Dinku'] },
+    { name: 'Sindhu Murugavel', addr: '12411 106 Ave NW, Edmonton', cleaners: ['N.Dinku'] },
     { name: 'Adam Joly', addr: '6812 112 Ave NW, Edmonton', cleaners: ['Stacey Whitty'] },
     { name: 'Sarge & Regan', addr: '15403 75 Ave NW, Edmonton', cleaners: ['Neth & Carmen'] },
+    { name: 'Nicholas Christensen', addr: '9920 110 St NW, Edmonton', cleaners: ['Jasmin Kunin'] },
+    { name: 'Chris Reaume', addr: '10712 84 Ave NW, Edmonton', cleaners: ['Robyn Adele'] },
+    { name: 'Angie Moxam', addr: '8310 160 St NW, Edmonton', cleaners: ['Adison Haugland'] },
+    { name: 'Brenda Lee', addr: '5110 122 St NW, Edmonton', cleaners: ['Cindy Guay'] },
+    { name: 'Darcy', addr: '9812 144 St NW, Edmonton', cleaners: ['Asanti Sayida'] },
   ];
 
   let visitCounter = 4100;
@@ -970,7 +791,7 @@ export const INITIAL_UNSCHEDULED_JOBS: UnscheduledJobItem[] = [
     totalAmount: 420.0,
     status: 'UNSCHEDULED',
     requestedWindow: 'First week of October (Flexible)',
-    preferredCleaners: ['Jan Perrin', 'Jasmin Kunin'],
+    preferredCleaners: ['Jasmin Kunin', '1 Joseph Juma'],
     notes: 'Quoted in Jobber. Tenant turnover requested: oven interior, fridge, baseboards, and window tracks. Client requested 2 cleaners for rapid turnover.',
     jobberWebUri: 'https://secure.getjobber.com/jobs/1082',
     lineItems: [
@@ -1011,7 +832,7 @@ export const INITIAL_UNSCHEDULED_JOBS: UnscheduledJobItem[] = [
     totalAmount: 240.0,
     status: 'UNSCHEDULED',
     requestedWindow: 'October 12 - 15 (Afternoon)',
-    preferredCleaners: ['Scott Chambers'],
+    preferredCleaners: ['Adison Haugland'],
     notes: 'Recurring residential clean quote converted in Jobber. Pet friendly cleaning products requested (has 2 friendly golden retrievers).',
     jobberWebUri: 'https://secure.getjobber.com/jobs/1088',
     lineItems: [
@@ -1030,7 +851,7 @@ export const INITIAL_UNSCHEDULED_JOBS: UnscheduledJobItem[] = [
     totalAmount: 480.0,
     status: 'UNSCHEDULED',
     requestedWindow: 'Oct 16 - Morning 9:00 AM',
-    preferredCleaners: ['Cindy Guay', 'Danielle Pettipas'],
+    preferredCleaners: ['Cindy Guay', 'Stacey Whitty'],
     notes: 'Full rental turnover. Key in lockbox code 3920. Needs 2 cleaners assigned for 3.5 hour deadline.',
     jobberWebUri: 'https://secure.getjobber.com/jobs/1091',
     lineItems: [
