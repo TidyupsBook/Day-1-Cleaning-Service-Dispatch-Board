@@ -29,7 +29,9 @@ import {
 import { 
   generateHistoricAndFutureVisits, 
   INITIAL_UNSCHEDULED_JOBS, 
-  UnscheduledJobItem 
+  UnscheduledJobItem,
+  INITIAL_JOBBER_QUOTES,
+  INITIAL_JOBBER_INVOICES,
 } from './data/jobberCalendarData';
 import { QuotesView } from './components/QuotesView';
 import { InvoicesView } from './components/InvoicesView';
@@ -126,8 +128,8 @@ export function App() {
   const [isStaffModalOpen, setIsStaffModalOpen] = useState<boolean>(false);
   const [isQuickLinksOpen, setIsQuickLinksOpen] = useState<boolean>(false);
   const [scheduledJobsSubTab, setScheduledJobsSubTab] = useState<'CALENDAR' | 'LIST' | 'UNSCHEDULED'>('CALENDAR');
-  const [quotesList, setQuotesList] = useState<JobberQuote[]>([]);
-  const [invoicesList, setInvoicesList] = useState<JobberInvoice[]>([]);
+  const [quotesList, setQuotesList] = useState<JobberQuote[]>(() => INITIAL_JOBBER_QUOTES);
+  const [invoicesList, setInvoicesList] = useState<JobberInvoice[]>(() => INITIAL_JOBBER_INVOICES);
 
   // Update staff roster and automatically synchronize technicians across map and kanban
   const handleUpdateStaffList = useCallback((updatedStaff: JobberStaffMember[]) => {
@@ -1082,7 +1084,11 @@ export function App() {
             jobs={scheduledJobsList}
             technicians={technicians}
             unscheduledJobs={unscheduledJobsList}
+            quotes={quotesList}
+            invoices={invoicesList}
             initialTab={scheduledJobsSubTab}
+            onNavigateToQuotes={() => setActiveTopView('QUOTES')}
+            onNavigateToInvoices={() => setActiveTopView('INVOICES')}
             onUpdateJobAssignment={(jobId, assignedCleaners) => {
               setScheduledJobsList((prev) =>
                 prev.map((job) =>

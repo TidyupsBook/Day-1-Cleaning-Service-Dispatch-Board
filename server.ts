@@ -12,6 +12,8 @@ import {
   generateHistoricAndFutureVisits,
   INITIAL_UNSCHEDULED_JOBS,
   UnscheduledJobItem,
+  generateJobberQuotes,
+  generateJobberInvoices,
 } from "./src/data/jobberCalendarData";
 import {
   JobberStaffMember,
@@ -1201,8 +1203,8 @@ app.get("/api/store", async (_req, res) => {
       cleanerOverrides: {},
       scheduledVisits: generateHistoricAndFutureVisits(),
       unscheduledJobs: INITIAL_UNSCHEDULED_JOBS,
-      quotes: [],
-      invoices: [],
+      quotes: generateJobberQuotes(),
+      invoices: generateJobberInvoices(),
     };
     changed = true;
   } else {
@@ -1214,6 +1216,16 @@ app.get("/api/store", async (_req, res) => {
     // If unscheduledJobs is empty or null, seed with Jobber unscheduled jobs
     if (!store.unscheduledJobs || store.unscheduledJobs.length === 0) {
       store.unscheduledJobs = INITIAL_UNSCHEDULED_JOBS;
+      changed = true;
+    }
+    // If quotes is empty or null, seed with 120-day quotes
+    if (!store.quotes || store.quotes.length === 0) {
+      store.quotes = generateJobberQuotes();
+      changed = true;
+    }
+    // If invoices is empty or null, seed with 120-day invoices
+    if (!store.invoices || store.invoices.length === 0) {
+      store.invoices = generateJobberInvoices();
       changed = true;
     }
     // If staffRoster is empty or null, seed with Jobber staff roster
@@ -1555,11 +1567,12 @@ app.post("/api/jobber/schedule-job", (req, res) => {
   });
 });
 
-// Download full repository archive with Git history & tags for SourceTree
-app.get(["/api/download-repo", "/api/download-zip", "/api/backup/download-zip"], (_req, res) => {
-  const zipPath = path.join(process.cwd(), "public", "bookmycleaning-dispatch-jobber-synced.zip");
+// Download full repository archive with Git history & tags for SourceTree (Short name: dispatch.zip)
+app.get(["/api/download-repo", "/api/download-zip", "/api/backup/download-zip", "/dispatch.zip", "/api/dispatch.zip"], (_req, res) => {
+  const zipPath = path.join(process.cwd(), "public", "dispatch.zip");
+
   if (fs.existsSync(zipPath)) {
-    res.setHeader("Content-Disposition", 'attachment; filename="bookmycleaning-dispatch-jobber-synced.zip"');
+    res.setHeader("Content-Disposition", 'attachment; filename="dispatch.zip"');
     res.setHeader("Content-Type", "application/zip");
     res.sendFile(zipPath);
   } else {

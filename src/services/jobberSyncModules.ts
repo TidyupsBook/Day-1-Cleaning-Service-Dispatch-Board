@@ -151,24 +151,36 @@ export interface JobberQuote {
   id: string;
   quoteNumber: string;
   clientName: string;
+  clientPhone?: string;
+  serviceAddress?: string;
   service: string;
   quoteStatus: "DRAFT" | "AWAITING_RESPONSE" | "APPROVED" | "CHANGES_REQUESTED" | "CONVERTED";
   total: number;
   depositRequired: number;
   createdAt: string;
+  scheduledDate?: string;
+  scheduledTime?: string;
   jobberWebUri: string;
+  notes?: string;
+  lineItems?: Array<{ description: string; quantity: number; unitPrice: number; total: number }>;
 }
 
 export interface JobberInvoice {
   id: string;
   invoiceNumber: string;
   clientName: string;
+  clientPhone?: string;
+  serviceAddress?: string;
+  service?: string;
   invoiceStatus: "DRAFT" | "AWAITING_PAYMENT" | "PAID" | "BAD_DEBT";
   total: number;
   balance: number;
   issuedDate: string;
   dueDate: string;
+  scheduledTime?: string;
   jobberWebUri: string;
+  notes?: string;
+  lineItems?: Array<{ description: string; quantity: number; unitPrice: number; total: number }>;
 }
 
 export interface JobberPushResult {

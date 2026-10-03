@@ -1,3 +1,5 @@
+import { JobberQuote, JobberInvoice } from '../services/jobberSyncModules';
+
 export interface ScheduledJobItem {
   id: string;
   visitNumber: string;
@@ -15,6 +17,12 @@ export interface ScheduledJobItem {
   status: 'SCHEDULED' | 'IN_PROGRESS' | 'COMPLETED';
   jobberWebUri: string;
   notes?: string;
+  quoteNumber?: string;
+  quoteTotal?: number;
+  quoteStatus?: 'APPROVED' | 'CONVERTED' | 'AWAITING_RESPONSE' | 'DRAFT';
+  invoiceNumber?: string;
+  invoiceTotal?: number;
+  invoiceStatus?: 'PAID' | 'AWAITING_PAYMENT' | 'DRAFT' | 'BAD_DEBT';
 }
 
 // Cleaner color map matching Jobber staff roster
@@ -748,6 +756,12 @@ export function generateHistoricAndFutureVisits(): ScheduledJobItem[] {
             status: m.month < 10 ? 'COMPLETED' : 'SCHEDULED',
             jobberWebUri: `https://secure.getjobber.com/visits/${visitCounter}`,
             notes: `Synced from Jobber. Team assignment: ${clientTemplate.cleaners.join(' & ')}`,
+            quoteNumber: `QT-${2000 + (visitCounter % 250)}`,
+            quoteTotal: i === 0 ? 220 : i === 1 ? 340 : 420,
+            quoteStatus: 'APPROVED',
+            invoiceNumber: `INV-${4000 + (visitCounter % 350)}`,
+            invoiceTotal: i === 0 ? 220 : i === 1 ? 340 : 420,
+            invoiceStatus: m.month < 10 ? 'PAID' : 'AWAITING_PAYMENT',
           });
         }
       }
@@ -900,4 +914,389 @@ export const INITIAL_UNSCHEDULED_JOBS: UnscheduledJobItem[] = [
     createdAt: '2026-10-01T09:30:00-06:00',
   },
 ];
+
+/**
+ * Jobber Quotes spanning 60 days back (August & September 2026),
+ * current month (October 2026), and 60 days forward (November & December 2026)
+ */
+export function generateJobberQuotes(): JobberQuote[] {
+  const quotes: JobberQuote[] = [
+    // October 2026 (Current)
+    {
+      id: 'qt-2041',
+      quoteNumber: 'QT-2041',
+      clientName: 'Matthew Penkala',
+      clientPhone: '(780) 555-8912',
+      serviceAddress: '10920 84 Ave NW, Edmonton, AB',
+      service: 'Standard Maintenance Clean',
+      quoteStatus: 'APPROVED',
+      total: 240.0,
+      depositRequired: 50.0,
+      createdAt: '2026-09-25T11:00:00-06:00',
+      scheduledDate: '2026-10-02',
+      scheduledTime: '10:00 AM',
+      jobberWebUri: 'https://secure.getjobber.com/quotes/2041',
+      notes: 'Approved via Jobber Client Hub. Regular bi-weekly schedule request.',
+      lineItems: [
+        { description: 'Standard Residential Clean (2 Bed / 2 Bath)', quantity: 1, unitPrice: 200.0, total: 200.0 },
+        { description: 'Pet Eco-Safe Sanitizer Treatment', quantity: 1, unitPrice: 40.0, total: 40.0 },
+      ],
+    },
+    {
+      id: 'qt-2042',
+      quoteNumber: 'QT-2042',
+      clientName: 'Talia & Marcus Vance',
+      clientPhone: '(780) 555-7819',
+      serviceAddress: '12420 102 Ave NW, Edmonton, AB',
+      service: 'Move-Out Deep Turnover',
+      quoteStatus: 'APPROVED',
+      total: 420.0,
+      depositRequired: 100.0,
+      createdAt: '2026-09-29T14:22:00-06:00',
+      scheduledDate: '2026-10-05',
+      scheduledTime: '11:00 AM',
+      jobberWebUri: 'https://secure.getjobber.com/quotes/2042',
+      notes: 'Move-out package with oven and fridge detailing.',
+      lineItems: [
+        { description: 'Move-Out Turnover Deep Scrub', quantity: 1, unitPrice: 320.0, total: 320.0 },
+        { description: 'Interior Oven & Range Degrease', quantity: 1, unitPrice: 50.0, total: 50.0 },
+        { description: 'Interior Refrigerator Detailing', quantity: 1, unitPrice: 50.0, total: 50.0 },
+      ],
+    },
+    {
+      id: 'qt-2045',
+      quoteNumber: 'QT-2045',
+      clientName: 'Heritage Pointe Condominiums',
+      clientPhone: '(780) 555-4309',
+      serviceAddress: '10540 85 Ave NW, Edmonton, AB',
+      service: 'Commercial Facility Clean',
+      quoteStatus: 'APPROVED',
+      total: 350.0,
+      depositRequired: 0,
+      createdAt: '2026-09-30T09:15:00-06:00',
+      scheduledDate: '2026-10-08',
+      scheduledTime: '09:00 AM',
+      jobberWebUri: 'https://secure.getjobber.com/quotes/2045',
+      notes: 'Strata council approved for common amenity clubhouse and gym.',
+      lineItems: [
+        { description: 'Amenity Building Floor Buff & Scrub', quantity: 1, unitPrice: 275.0, total: 275.0 },
+        { description: 'Gym Equipment Disinfection', quantity: 1, unitPrice: 75.0, total: 75.0 },
+      ],
+    },
+    {
+      id: 'qt-2048',
+      quoteNumber: 'QT-2048',
+      clientName: 'Dr. Alistair Finch',
+      clientPhone: '(780) 555-6611',
+      serviceAddress: '11204 71 Ave NW, Edmonton, AB',
+      service: 'Deep Cleaning',
+      quoteStatus: 'AWAITING_RESPONSE',
+      total: 390.0,
+      depositRequired: 100.0,
+      createdAt: '2026-10-01T15:30:00-06:00',
+      scheduledDate: '2026-10-12',
+      scheduledTime: '01:00 PM',
+      jobberWebUri: 'https://secure.getjobber.com/quotes/2048',
+      notes: 'Client reviewed quote in Jobber Portal. Follow-up consultation scheduled.',
+      lineItems: [
+        { description: 'Full Home Deep Clean (3,100 sq ft)', quantity: 1, unitPrice: 350.0, total: 350.0 },
+        { description: 'Window Interior & Track Steam', quantity: 1, unitPrice: 40.0, total: 40.0 },
+      ],
+    },
+    {
+      id: 'qt-2051',
+      quoteNumber: 'QT-2051',
+      clientName: 'Liam & Chloe Bennett',
+      clientPhone: '(780) 555-3184',
+      serviceAddress: '9632 142 St NW, Edmonton, AB',
+      service: 'Post-Renovation Clean',
+      quoteStatus: 'APPROVED',
+      total: 510.0,
+      depositRequired: 150.0,
+      createdAt: '2026-10-01T09:10:00-06:00',
+      scheduledDate: '2026-10-15',
+      scheduledTime: '09:30 AM',
+      jobberWebUri: 'https://secure.getjobber.com/quotes/2051',
+      notes: 'Tandem 2-cleaner team booked for drywall dust removal.',
+      lineItems: [
+        { description: 'Post-Construction / Renovation Package', quantity: 1, unitPrice: 430.0, total: 430.0 },
+        { description: 'Air Vent Grates & High Reach Detail', quantity: 1, unitPrice: 80.0, total: 80.0 },
+      ],
+    },
+    {
+      id: 'qt-2055',
+      quoteNumber: 'QT-2055',
+      clientName: 'S. Al-Mansoor',
+      clientPhone: '(780) 555-5201',
+      serviceAddress: '2045 111A St NW, Edmonton, AB',
+      service: 'Standard Maintenance Clean',
+      quoteStatus: 'AWAITING_RESPONSE',
+      total: 195.0,
+      depositRequired: 50.0,
+      createdAt: '2026-10-01T09:30:00-06:00',
+      scheduledDate: '2026-10-23',
+      scheduledTime: '02:00 PM',
+      jobberWebUri: 'https://secure.getjobber.com/quotes/2055',
+      notes: 'Century Park condo. Sent quote reminder.',
+    },
+  ];
+
+  // Seed August 2026 (-60 days) and September 2026 (-30 days) Quotes
+  const pastMonths = [
+    { year: 2026, month: '08', days: [4, 11, 18, 25], status: 'CONVERTED' as const },
+    { year: 2026, month: '09', days: [2, 8, 15, 22, 29], status: 'CONVERTED' as const },
+  ];
+
+  let quoteIdx = 2001;
+  const sampleNames = [
+    { name: 'Owa & Alex Isegh', addr: '3112 119 St NW, Edmonton', amt: 260, s: 'Standard Clean' },
+    { name: 'Jacqueline Ares', addr: '14102 102 Ave NW, Edmonton', amt: 380, s: 'Deep Cleaning' },
+    { name: 'Brett & Ellie Kanuk', addr: '4904 141 Ave NW, Edmonton', amt: 240, s: 'Bi-Weekly Clean' },
+    { name: 'Clare Gibson', addr: '8910 148 St NW, Edmonton', amt: 310, s: 'Move-Out Clean' },
+    { name: 'Suchi Jobanputra', addr: '4310 114a St NW, Edmonton', amt: 290, s: 'Standard Clean' },
+    { name: 'Sindhu Murugavel', addr: '12411 106 Ave NW, Edmonton', amt: 450, s: 'Deep Clean' },
+    { name: 'Adam Joly', addr: '6812 112 Ave NW, Edmonton', amt: 220, s: 'Bi-Weekly Clean' },
+  ];
+
+  for (const pm of pastMonths) {
+    pm.days.forEach((day, i) => {
+      const sample = sampleNames[(day + i) % sampleNames.length];
+      const dayStr = day < 10 ? `0${day}` : `${day}`;
+      quotes.push({
+        id: `qt-${pm.year}-${pm.month}-${dayStr}`,
+        quoteNumber: `QT-${quoteIdx++}`,
+        clientName: sample.name,
+        clientPhone: '(780) 555-0144',
+        serviceAddress: sample.addr,
+        service: sample.s,
+        quoteStatus: pm.status,
+        total: sample.amt,
+        depositRequired: 50,
+        createdAt: `${pm.year}-${pm.month}-${dayStr}T09:00:00-06:00`,
+        scheduledDate: `${pm.year}-${pm.month}-${dayStr}`,
+        scheduledTime: '10:00 AM',
+        jobberWebUri: `https://secure.getjobber.com/quotes/${quoteIdx}`,
+        notes: `Historic Jobber quote successfully approved and converted into visit.`,
+      });
+    });
+  }
+
+  // Seed November 2026 (+30 days) and December 2026 (+60 days) Quotes
+  const futureMonths = [
+    { year: 2026, month: '11', days: [3, 10, 17, 24] },
+    { year: 2026, month: '12', days: [1, 8, 15, 22] },
+  ];
+
+  for (const fm of futureMonths) {
+    fm.days.forEach((day, i) => {
+      const sample = sampleNames[(day + i * 2) % sampleNames.length];
+      const dayStr = day < 10 ? `0${day}` : `${day}`;
+      const status: 'APPROVED' | 'AWAITING_RESPONSE' = i % 2 === 0 ? 'APPROVED' : 'AWAITING_RESPONSE';
+      quotes.push({
+        id: `qt-${fm.year}-${fm.month}-${dayStr}`,
+        quoteNumber: `QT-${quoteIdx++}`,
+        clientName: sample.name,
+        clientPhone: '(780) 555-0144',
+        serviceAddress: sample.addr,
+        service: sample.s,
+        quoteStatus: status,
+        total: sample.amt + 20,
+        depositRequired: 50,
+        createdAt: `${fm.year}-${fm.month}-${dayStr}T09:00:00-06:00`,
+        scheduledDate: `${fm.year}-${fm.month}-${dayStr}`,
+        scheduledTime: i % 2 === 0 ? '11:00 AM' : '02:00 PM',
+        jobberWebUri: `https://secure.getjobber.com/quotes/${quoteIdx}`,
+        notes: `Forward pipeline quote for ${fm.month === '11' ? 'November' : 'December'} 2026 scheduling.`,
+      });
+    });
+  }
+
+  return quotes;
+}
+
+/**
+ * Jobber Invoices spanning 60 days back (August & September 2026),
+ * current month (October 2026), and 60 days forward (November & December 2026)
+ */
+export function generateJobberInvoices(): JobberInvoice[] {
+  const invoices: JobberInvoice[] = [
+    // Current October 2026 Invoices
+    {
+      id: 'inv-4028',
+      invoiceNumber: 'INV-4028',
+      clientName: 'Matthew Penkala',
+      clientPhone: '(780) 555-8912',
+      serviceAddress: '10920 84 Ave NW, Edmonton, AB',
+      service: 'Standard Maintenance Clean',
+      invoiceStatus: 'PAID',
+      total: 240.0,
+      balance: 0.0,
+      issuedDate: '2026-10-02',
+      dueDate: '2026-10-16',
+      scheduledTime: '01:00 PM',
+      jobberWebUri: 'https://secure.getjobber.com/invoices/4028',
+      notes: 'Paid via Jobber Payments with Visa ending in 4119.',
+      lineItems: [
+        { description: 'Standard Residential Clean (2 Bed / 2 Bath)', quantity: 1, unitPrice: 200.0, total: 200.0 },
+        { description: 'Pet Eco-Safe Sanitizer Treatment', quantity: 1, unitPrice: 40.0, total: 40.0 },
+      ],
+    },
+    {
+      id: 'inv-4029',
+      invoiceNumber: 'INV-4029',
+      clientName: 'Owa & Alex Isegh',
+      clientPhone: '(780) 555-2341',
+      serviceAddress: '3112 119 St NW, Edmonton, AB',
+      service: 'Bi-Weekly Maintenance Clean',
+      invoiceStatus: 'PAID',
+      total: 220.0,
+      balance: 0.0,
+      issuedDate: '2026-10-02',
+      dueDate: '2026-10-16',
+      scheduledTime: '03:30 PM',
+      jobberWebUri: 'https://secure.getjobber.com/invoices/4029',
+      notes: 'Automated card-on-file payment processed in Jobber.',
+    },
+    {
+      id: 'inv-4033',
+      invoiceNumber: 'INV-4033',
+      clientName: 'Jacqueline Ares',
+      clientPhone: '(780) 555-9988',
+      serviceAddress: '14102 102 Ave NW, Edmonton, AB',
+      service: 'Tandem Home Detail Clean',
+      invoiceStatus: 'AWAITING_PAYMENT',
+      total: 380.0,
+      balance: 380.0,
+      issuedDate: '2026-10-05',
+      dueDate: '2026-10-19',
+      scheduledTime: '10:00 AM',
+      jobberWebUri: 'https://secure.getjobber.com/invoices/4033',
+      notes: 'Invoice sent via email with 1-click Pay Now link.',
+    },
+    {
+      id: 'inv-4038',
+      invoiceNumber: 'INV-4038',
+      clientName: 'Heritage Pointe Condominiums',
+      clientPhone: '(780) 555-4309',
+      serviceAddress: '10540 85 Ave NW, Edmonton, AB',
+      service: 'Commercial Strata Sanitization',
+      invoiceStatus: 'AWAITING_PAYMENT',
+      total: 350.0,
+      balance: 350.0,
+      issuedDate: '2026-10-08',
+      dueDate: '2026-10-22',
+      scheduledTime: '11:30 AM',
+      jobberWebUri: 'https://secure.getjobber.com/invoices/4038',
+      notes: 'Net-14 terms for Strata management board.',
+    },
+    {
+      id: 'inv-4042',
+      invoiceNumber: 'INV-4042',
+      clientName: 'Brett & Ellie Kanuk',
+      clientPhone: '(780) 555-4421',
+      serviceAddress: '4904 141 Ave NW, Edmonton, AB',
+      service: 'Bi-Weekly Residential Clean',
+      invoiceStatus: 'PAID',
+      total: 240.0,
+      balance: 0.0,
+      issuedDate: '2026-10-12',
+      dueDate: '2026-10-26',
+      scheduledTime: '02:00 PM',
+      jobberWebUri: 'https://secure.getjobber.com/invoices/4042',
+      notes: 'Card on file debited.',
+    },
+    {
+      id: 'inv-4045',
+      invoiceNumber: 'INV-4045',
+      clientName: 'Liam & Chloe Bennett',
+      clientPhone: '(780) 555-3184',
+      serviceAddress: '9632 142 St NW, Edmonton, AB',
+      service: 'Post-Renovation Clean',
+      invoiceStatus: 'AWAITING_PAYMENT',
+      total: 510.0,
+      balance: 360.0, // deposit already paid
+      issuedDate: '2026-10-16',
+      dueDate: '2026-10-30',
+      scheduledTime: '04:00 PM',
+      jobberWebUri: 'https://secure.getjobber.com/invoices/4045',
+      notes: '$150 deposit deducted. Remaining $360 balance awaiting payment.',
+    },
+  ];
+
+  // Seed August & September 2026 Paid Invoices (-60 & -30 days)
+  const pastMonths = [
+    { year: 2026, month: '08', days: [5, 12, 19, 26] },
+    { year: 2026, month: '09', days: [3, 9, 16, 23, 30] },
+  ];
+
+  let invIdx = 3980;
+  const sampleClients = [
+    { name: 'Adam Joly', addr: '6812 112 Ave NW, Edmonton', amt: 220 },
+    { name: 'Suchi Jobanputra', addr: '4310 114a St NW, Edmonton', amt: 290 },
+    { name: 'Sindhu Murugavel', addr: '12411 106 Ave NW, Edmonton', amt: 450 },
+    { name: 'Clare Gibson', addr: '8910 148 St NW, Edmonton', amt: 310 },
+    { name: 'Angie Moxam', addr: '8310 160 St NW, Edmonton', amt: 250 },
+    { name: 'Brenda Lee', addr: '5110 122 St NW, Edmonton', amt: 275 },
+    { name: 'Sarge & Regan', addr: '15403 75 Ave NW, Edmonton', amt: 340 },
+  ];
+
+  for (const pm of pastMonths) {
+    pm.days.forEach((day, i) => {
+      const sample = sampleClients[(day + i) % sampleClients.length];
+      const dayStr = day < 10 ? `0${day}` : `${day}`;
+      invoices.push({
+        id: `inv-${pm.year}-${pm.month}-${dayStr}`,
+        invoiceNumber: `INV-${invIdx++}`,
+        clientName: sample.name,
+        clientPhone: '(780) 555-0188',
+        serviceAddress: sample.addr,
+        service: 'Completed Residential Clean',
+        invoiceStatus: 'PAID',
+        total: sample.amt,
+        balance: 0,
+        issuedDate: `${pm.year}-${pm.month}-${dayStr}`,
+        dueDate: `${pm.year}-${pm.month}-${dayStr}`,
+        scheduledTime: '01:00 PM',
+        jobberWebUri: `https://secure.getjobber.com/invoices/${invIdx}`,
+        notes: 'Payment collected and deposited in Jobber account.',
+      });
+    });
+  }
+
+  // Seed November & December 2026 Invoices (+30 & +60 days)
+  const futureMonths = [
+    { year: 2026, month: '11', days: [4, 11, 18, 25] },
+    { year: 2026, month: '12', days: [2, 9, 16, 23] },
+  ];
+
+  for (const fm of futureMonths) {
+    fm.days.forEach((day, i) => {
+      const sample = sampleClients[(day + i * 2) % sampleClients.length];
+      const dayStr = day < 10 ? `0${day}` : `${day}`;
+      const status: 'PAID' | 'AWAITING_PAYMENT' = i % 2 === 0 ? 'AWAITING_PAYMENT' : 'PAID';
+      invoices.push({
+        id: `inv-${fm.year}-${fm.month}-${dayStr}`,
+        invoiceNumber: `INV-${invIdx++}`,
+        clientName: sample.name,
+        clientPhone: '(780) 555-0188',
+        serviceAddress: sample.addr,
+        service: 'Scheduled Service Clean',
+        invoiceStatus: status,
+        total: sample.amt,
+        balance: status === 'PAID' ? 0 : sample.amt,
+        issuedDate: `${fm.year}-${fm.month}-${dayStr}`,
+        dueDate: `${fm.year}-${fm.month}-${Math.min(28, day + 14)}`,
+        scheduledTime: '02:30 PM',
+        jobberWebUri: `https://secure.getjobber.com/invoices/${invIdx}`,
+        notes: `Forward recurring billing in Jobber for ${sample.name}.`,
+      });
+    });
+  }
+
+  return invoices;
+}
+
+export const INITIAL_JOBBER_QUOTES: JobberQuote[] = generateJobberQuotes();
+export const INITIAL_JOBBER_INVOICES: JobberInvoice[] = generateJobberInvoices();
+
 
